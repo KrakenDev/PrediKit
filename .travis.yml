@@ -9,5 +9,4 @@ before_install:
 
 script:
   - set -o pipefail
-  - xcodebuild -project PrediKit.xcodeproj -scheme "PrediKit iOS" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO  test | xcpretty -c
-  - xcodebuild -project PrediKit.xcodeproj -scheme "PrediKit OSX" ONLY_ACTIVE_ARCH=YES test | xcpretty -c
+  - xcodebuild -project PrediKit.xcodeproj -scheme "PrediKit" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO  test | xcpretty -c
