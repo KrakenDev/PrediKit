@@ -1,11 +1,8 @@
 [![](https://travis-ci.org/TheKrakenDev/PrediKit.svg?branch=master)](https://travis-ci.org/TheKrakenDev/PrediKit)
-<p align="left">
-<a href="https://travis-ci.org/hectormatos2011/PrediKit"><img src="https://travis-ci.org/hectormatos2011/PrediKit.svg?branch=master" alt="Build status" /></a>
-<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat" alt="Swift 2 compatible" /></a>
-<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" /></a>
-<a href="https://cocoapods.org/pods/XLActionController"><img src="https://img.shields.io/badge/pod-1.0.0-blue.svg" alt="CocoaPods compatible" /></a>
-<a href="https://raw.githubusercontent.com/TheKrakenDev/PrediKit/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License: MIT" /></a>
-</p>
+[![](https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
+[![](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![](https://img.shields.io/badge/pod-1.0.0-blue.svg)](https://cocoapods.org/pods/PreditKit)
+[![](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/TheKrakenDev/PrediKit/master/LICENSE)
 ![](https://github.com/TheKrakenDev/PrediKit/wiki/Sources/Banner.jpg)
 
 #PREDIKIT
