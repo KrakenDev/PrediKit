@@ -78,7 +78,7 @@ public class PredicateBuilder<T: Reflectable> {
     
     private func validatedProperty(property: Selector, file: String = #file, line: Int = #line) -> String {
         guard type.properties().contains(property) else {
-            fatalError("\(String(type)) does not contain property \"\(property)\".\nFailed in file:\(file) at line \(line)")
+            fatalError("\(String(type)) does not contain property \"\(property)\". Possible property key values:\n\(type.properties()).\nFailed in file:\(file) at line \(line)")
         }
         return String(property)
     }

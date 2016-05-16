@@ -4,7 +4,4 @@
    <FileRef
       location = "container:PrediKit.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Example.xcodeproj">
-   </FileRef>
 </Workspace>

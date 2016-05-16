@@ -10,7 +10,8 @@
 		287D0A6E1C4B73BD004566D6 /* PrediKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */; };
 		28F828811C494B2C00330CF4 /* PrediKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 28F828801C494B2C00330CF4 /* PrediKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28F828881C494B2C00330CF4 /* PrediKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* PrediKit.framework */; };
-		28F8289A1C494B4200330CF4 /* iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F828991C494B4200330CF4 /* iOS.swift */; };
+		5DDAE95C1CEA6D9D00C01903 /* PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95B1CEA6D9D00C01903 /* PrediKit.swift */; };
+		5DDAE95E1CEA6F1100C01903 /* Selector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,8 +31,8 @@
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* PrediKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrediKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F8288E1C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = "<group>"; };
-		28F828991C494B4200330CF4 /* iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS.swift; sourceTree = "<group>"; };
-		28F8289B1C494BF100330CF4 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
+		5DDAE95B1CEA6D9D00C01903 /* PrediKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrediKit.swift; sourceTree = "<group>"; };
+		5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Selector+Extension.swift"; path = "Tests/Selector+Extension.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +57,6 @@
 		28F828731C494B2C00330CF4 = {
 			isa = PBXGroup;
 			children = (
-				28F8289B1C494BF100330CF4 /* Playground.playground */,
 				28F828971C494B4200330CF4 /* Sources */,
 				28F8287F1C494B2C00330CF4 /* PrediKit */,
 				28F8288B1C494B2C00330CF4 /* Tests */,
@@ -87,6 +87,7 @@
 			children = (
 				28F8288E1C494B2C00330CF4 /* Info.plist */,
 				287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */,
+				5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */,
 			);
 			name = Tests;
 			path = PrediKitTests;
@@ -95,7 +96,7 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				28F828991C494B4200330CF4 /* iOS.swift */,
+				5DDAE95B1CEA6D9D00C01903 /* PrediKit.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -156,7 +157,7 @@
 		28F828741C494B2C00330CF4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				TargetAttributes = {
 					28F8287C1C494B2C00330CF4 = {
@@ -207,7 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28F8289A1C494B4200330CF4 /* iOS.swift in Sources */,
+				5DDAE95C1CEA6D9D00C01903 /* PrediKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DDAE95E1CEA6F1100C01903 /* Selector+Extension.swift in Sources */,
 				287D0A6E1C4B73BD004566D6 /* PrediKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,6 +324,7 @@
 		28F828921C494B2C00330CF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -332,12 +335,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.KrakenDev.PrediKit.PrediKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		28F828931C494B2C00330CF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
