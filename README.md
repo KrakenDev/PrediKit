@@ -136,7 +136,7 @@ let predicate = NSPredicate(ManagedLegend.self) { includeIf in
     includeIf.string("title").equals("The Almighty Kraken") &&
     
     //Only include Krakens that have more than three hungry cerberus friends
-    includeIf.list("cerberusFriends").subquery(ManagedCerberus.self) {
+    includeIf.collection("cerberusFriends").subquery(ManagedCerberus.self) {
         $0.bool("isHungry").isTrue
         return .MatchElementAmount(.GreaterThan(3))
     }
