@@ -96,12 +96,23 @@ let predicate = NSPredicate(ManagedLegend.self) { includeIf in
     includeIf.string("title").equals("The Almighty Kraken")
 }
 ```
+To check if a property is nil:
+```swift
+let predicate = NSPredicate(ManagedLegend.self) { includeIf in
+    includeIf.string("title").equalsNil
+}
+```
+
 PrediKit also overloads the `&&`, `||`, and `!` operators. This allows you compound and specify whether or `not` to include your `includers` (Crappy name, I know. Feel free to give me suggestions).
 
 ```swift
 let predicate = NSPredicate(ManagedLegend.self) { includeIf in
+    //Include any ManagedLegend instance if the property named "string" is NOT nil and does NOT equal "The Almighty Kraken" 
+    !includeIf.string("title").equalsNil &&
     !includeIf.string("title").equals("The Almighty Kraken") &&
-    includeIf.date("birthDate").isEarlierThan(NSDate()) ||
+    
+    //Also include any ManagedLegend instance if the date property named "birthdate" is in the past or if the bool property "isAwesome" is true. 
+    includeIf.date("birthdate").isEarlierThan(NSDate()) ||
     includeIf.bool("isAwesome").isTrue
 }
 ```
@@ -111,7 +122,7 @@ You can even create `includers` conditionally!
 ```swift
 let predicate = NSPredicate(ManagedLegend.self) { includeIf in
     let isKrakenQuery = includeIf.string("title").equals("The Almighty Kraken")
-    let birthdateQuery = includeIf.date("birthDate").isEarlierThan(NSDate())
+    let birthdateQuery = includeIf.date("birthdate").isEarlierThan(NSDate())
     let isAwesomeQuery = includeIf.bool("isAwesome").isTrue
     
     if shouldCheckBirthdate {
