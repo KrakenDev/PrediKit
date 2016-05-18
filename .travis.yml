@@ -6,8 +6,7 @@ env:
 before_install:
     - gem install xcpretty -N
     - rvm use $RVM_RUBY_VERSION
-install:
-    - bundle install --without=documentation --path ../travis_bundle_dir
+    - gem install slather
 script:
     - set -o pipefail
     - xcodebuild -project PrediKit.xcodeproj -scheme "PrediKit" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO  test | xcpretty -c
