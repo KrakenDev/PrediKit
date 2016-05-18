@@ -156,11 +156,11 @@ public extension NSPredicate {
 
      - Parameters:
      - type: The `Reflectable` class type that you'll be querying against. The type you supply here is what PrediKit will inspect to ensure the property names you specify in your includers are contained in that class' property list.
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      - builder: A closure that you use to generate includers that construct each subpredicate in the created `NSPredicate`
      */
-    convenience init<T: Reflectable>(_ type: T.Type, file: String = #file, line: Int = #line, @noescape builder: ((includeIf: PredicateBuilder<T>) -> Void)) {
+    convenience init<T: Reflectable>(_ type: T.Type, file: String = __FILE__, line: Int = __LINE__, @noescape builder: ((includeIf: PredicateBuilder<T>) -> Void)) {
         let predicateBuilder = PredicateBuilder(type: type)
         builder(includeIf: predicateBuilder)
         
@@ -210,10 +210,10 @@ public class PredicateBuilder<T: Reflectable> {
      
      - Parameters:
      - property: The name of the property in the class of type `T`
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
-    public func string(property: Selector, file: String = #file, line: Int = #line) -> PredicateStringQuery<T> {
+    public func string(property: Selector, file: String = __FILE__, line: Int = __LINE__) -> PredicateStringQuery<T> {
         return PredicateStringQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -229,10 +229,10 @@ public class PredicateBuilder<T: Reflectable> {
      
      - Parameters:
      - property: The name of the property in the class of type `T`
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
-    public func number(property: Selector, file: String = #file, line: Int = #line) -> PredicateNumberQuery<T> {
+    public func number(property: Selector, file: String = __FILE__, line: Int = __LINE__) -> PredicateNumberQuery<T> {
         return PredicateNumberQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -248,10 +248,10 @@ public class PredicateBuilder<T: Reflectable> {
      
      - Parameters:
      - property: The name of the property in the class of type `T`
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
-    public func date(property: Selector, file: String = #file, line: Int = #line) -> PredicateDateQuery<T> {
+    public func date(property: Selector, file: String = __FILE__, line: Int = __LINE__) -> PredicateDateQuery<T> {
         return PredicateDateQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -267,10 +267,10 @@ public class PredicateBuilder<T: Reflectable> {
      
      - Parameters:
      - property: The name of the property in the class of type `T`
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
-    public func bool(property: Selector, file: String = #file, line: Int = #line) -> PredicateBooleanQuery<T> {
+    public func bool(property: Selector, file: String = __FILE__, line: Int = __LINE__) -> PredicateBooleanQuery<T> {
         return PredicateBooleanQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -286,14 +286,14 @@ public class PredicateBuilder<T: Reflectable> {
      
      - Parameters:
      - property: The name of the property in the class of type `T`
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
-    public func collection(property: Selector, file: String = #file, line: Int = #line) -> PredicateSequenceQuery<T> {
+    public func collection(property: Selector, file: String = __FILE__, line: Int = __LINE__) -> PredicateSequenceQuery<T> {
         return PredicateSequenceQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
-    private func validatedProperty(property: Selector, file: String = #file, line: Int = #line) -> String {
+    private func validatedProperty(property: Selector, file: String = __FILE__, line: Int = __LINE__) -> String {
         if !type.properties().contains(property) && self.type != NSObject.self {
             #if DEBUG
             print("\(String(type)) does not seem to contain property \"\(property)\". This could be due to the optionality of a value type. Possible property key values:\n\(type.properties()).\nWarning in file:\(file) at line \(line)")
@@ -377,8 +377,8 @@ public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T
      - Parameters:
      - string: The string to match the property's value against.
      - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func beginsWith(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) BEGINSWITH\(optionsString(options)) \"\(string)\""
@@ -398,8 +398,8 @@ public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T
      - Parameters:
      - string: The string to match the property's value against.
      - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func endsWith(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) ENDSWITH\(optionsString(options)) \"\(string)\""
@@ -419,8 +419,8 @@ public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T
      - Parameters:
      - string: The string to match the property's value against.
      - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func contains(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) CONTAINS\(optionsString(options)) \"\(string)\""
@@ -440,8 +440,8 @@ public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T
      - Parameters:
      - string: The string to match the property's value against.
      - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func matches(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) MATCHES\(optionsString(options)) \"\(string)\""
@@ -461,8 +461,8 @@ public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T
      - Parameters:
      - string: The string to match the property's value against.
      - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func equals(string: String) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) == \"\(string)\""
@@ -506,8 +506,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - Parameters:
      - number: The number to compare against the property's value.
      - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isGreaterThan(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) > %@", number).predicateFormat
@@ -527,8 +527,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - Parameters:
      - number: The number to compare against the property's value.
      - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isLessThan(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) < %@", number).predicateFormat
@@ -548,8 +548,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - Parameters:
      - number: The number to compare against the property's value.
      - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isGreaterThanOrEqualTo(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) >= %@", number).predicateFormat
@@ -569,8 +569,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - Parameters:
      - number: The number to compare against the property's value.
      - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isLessThanOrEqualTo(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) <= %@", number).predicateFormat
@@ -590,8 +590,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - Parameters:
      - number: The number to compare against the property's value.
      - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func doesNotEqual(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) != %@", number).predicateFormat
@@ -611,8 +611,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - Parameters:
      - number: The number to compare against the property's value.
      - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func equals(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) == %@", number).predicateFormat
@@ -641,8 +641,8 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
      
      - Parameters:
      - date: The date to compare against the property's value.
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isLaterThan(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) > %@", date).predicateFormat
@@ -661,8 +661,8 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
      
      - Parameters:
      - date: The date to compare against the property's value.
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isEarlierThan(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) < %@", date).predicateFormat
@@ -681,8 +681,8 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
      
      - Parameters:
      - date: The date to compare against the property's value.
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isLaterThanOrOn(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) >= %@", date).predicateFormat
@@ -701,8 +701,8 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
      
      - Parameters:
      - date: The date to compare against the property's value.
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isEarlierThanOrOn(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) <= %@", date).predicateFormat
@@ -721,8 +721,8 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
      
      - Parameters:
      - date: The date to compare against the property's value.
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func equals(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) == %@", date).predicateFormat
