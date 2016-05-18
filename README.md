@@ -1,10 +1,10 @@
-![](https://github.com/TheKrakenDev/PrediKit/wiki/Sources/Banner.jpg)
-[![](https://travis-ci.org/TheKrakenDev/PrediKit.svg?branch=master?style=flat-square)](https://travis-ci.org/TheKrakenDev/PrediKit)
-[![](https://coveralls.io/repos/github/TheKrakenDev/PrediKit/badge.svg?branch=master?style=flat-square)](https://coveralls.io/github/TheKrakenDev/PrediKit?branch=master)
-[![](https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat-square)](https://developer.apple.com/swift)
-[![](https://img.shields.io/badge/pod-1.0.1-blue.svg?style=flat-square)](https://cocoapods.org/pods/PrediKit)
-[![](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
-[![](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/TheKrakenDev/PrediKit/master/LICENSE)
+![Pretty Banner](https://github.com/TheKrakenDev/PrediKit/wiki/Sources/Banner.jpg)
+[![Travis Build Status](http://img.shields.io/travis/TheKrakenDev/PrediKit.svg?style=flat-square)](https://travis-ci.org/TheKrakenDev/PrediKit)
+[![Coveralls](https://img.shields.io/coveralls/TheKrakenDev/PrediKit/master.svg?maxAge=60)](https://coveralls.io/github/TheKrakenDev/PrediKit?branch=master)
+[![Swift Version Compatibility](https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat-square)](https://developer.apple.com/swift)
+[![Cocoapods Version](https://img.shields.io/badge/pod-1.0.1-blue.svg?style=flat-square)](https://cocoapods.org/pods/PrediKit)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
+[![LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/TheKrakenDev/PrediKit/master/LICENSE)
 
 #PREDIKIT
 A Swift `NSPredicate` DSL for iOS &amp; OS X inspired by [SnapKit](https://github.com/SnapKit/SnapKit), lovingly written in Swift, and created by that weird dude at [KrakenDev](https://krakendev.io).
