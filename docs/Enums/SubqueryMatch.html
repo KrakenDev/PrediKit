@@ -14,7 +14,7 @@
     <a title="SubqueryMatch Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">PrediKit Docs</a> (44% documented)</p>
+        <p><a href="../index.html">PrediKit Docs</a> (85% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -82,16 +82,16 @@
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF8PrediKitop1nuRxS_11ReflectablerFGCS_23FinalizedPredicateQueryx_GS1_x_">!(_:)</a>
+                <a href="../Functions/!(_:).html">!(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF8PrediKitoi2aauRxS_11ReflectablerFTGCS_23FinalizedPredicateQueryx_GS1_x__GS1_x_">&amp;&amp;(_:_:)</a>
+                <a href="../Functions/&amp;&amp;(_:_:).html">&amp;&amp;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF8PrediKitoi2aaFTCSo11NSPredicateS0__S0_">&amp;&amp;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF8PrediKitoi2oouRxS_11ReflectablerFTGCS_23FinalizedPredicateQueryx_GS1_x__GS1_x_">||(_:_:)</a>
+                <a href="../Functions/||(_:_:).html">||(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF8PrediKitoi2ooFTCSo11NSPredicateS0__S0_">||(_:_:)</a>
@@ -120,7 +120,13 @@
         <section>
           <section class="section">
             <h1>SubqueryMatch</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SubqueryMatch</span></code></pre>
+
+                </div>
+              </div>
+            <p>An instance of this enum must be returned in the subquery closure to indicate how the queries collected in that closure</p>
 
           </section>
           <section class="section task-group-section">
@@ -139,8 +145,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The starting point of the subquery match type. You MUST include an associated value in this case to create a valid subquery predicate.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">IncludeIfMatched</span><span class="p">(</span><span class="kt">MatchType</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -169,9 +183,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The next (second) point of the subquery match type that describes the predicate of the qualifying queries array return from the subquery. You MUST include an associated value in each case to create a valid subquery predicate.</p>
 
                         <a href="../Enums/SubqueryMatch/MatchType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MatchType</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

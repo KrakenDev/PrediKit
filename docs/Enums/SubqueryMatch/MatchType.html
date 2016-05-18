@@ -14,7 +14,7 @@
     <a title="MatchType Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../../index.html">PrediKit Docs</a> (44% documented)</p>
+        <p><a href="../../index.html">PrediKit Docs</a> (85% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -82,16 +82,16 @@
             <a href="../../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Functions.html#/s:ZF8PrediKitop1nuRxS_11ReflectablerFGCS_23FinalizedPredicateQueryx_GS1_x_">!(_:)</a>
+                <a href="../../Functions/!(_:).html">!(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Functions.html#/s:ZF8PrediKitoi2aauRxS_11ReflectablerFTGCS_23FinalizedPredicateQueryx_GS1_x__GS1_x_">&amp;&amp;(_:_:)</a>
+                <a href="../../Functions/&amp;&amp;(_:_:).html">&amp;&amp;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Functions.html#/s:ZF8PrediKitoi2aaFTCSo11NSPredicateS0__S0_">&amp;&amp;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Functions.html#/s:ZF8PrediKitoi2oouRxS_11ReflectablerFTGCS_23FinalizedPredicateQueryx_GS1_x__GS1_x_">||(_:_:)</a>
+                <a href="../../Functions/||(_:_:).html">||(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Functions.html#/s:ZF8PrediKitoi2ooFTCSo11NSPredicateS0__S0_">||(_:_:)</a>
@@ -120,7 +120,13 @@
         <section>
           <section class="section">
             <h1>MatchType</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MatchType</span></code></pre>
+
+                </div>
+              </div>
+            <p>The next (second) point of the subquery match type that describes the predicate of the qualifying queries array return from the subquery. You MUST include an associated value in each case to create a valid subquery predicate.</p>
 
           </section>
           <section class="section task-group-section">
@@ -139,8 +145,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns the collection.count value of the queried collection.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Amount</span><span class="p">(</span><span class="kt">CompareType</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -152,9 +166,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOO8PrediKit13SubqueryMatch9MatchType8MinCountFMS1_FOS1_11CompareTypeS1_"></a>
-                    <a name="//apple_ref/swift/Element/MinCount" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOO8PrediKit13SubqueryMatch9MatchType8MinCountFMS1_FOS1_11CompareTypeS1_">MinCount</a>
+                    <a name="/s:FOO8PrediKit13SubqueryMatch9MatchType8MinValueFMS1_FOS1_11CompareTypeS1_"></a>
+                    <a name="//apple_ref/swift/Element/MinValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOO8PrediKit13SubqueryMatch9MatchType8MinValueFMS1_FOS1_11CompareTypeS1_">MinValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -162,8 +176,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns the minimum value of every number in a queried number collection.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">MinValue</span><span class="p">(</span><span class="kt">CompareType</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -175,9 +197,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOO8PrediKit13SubqueryMatch9MatchType8MaxCountFMS1_FOS1_11CompareTypeS1_"></a>
-                    <a name="//apple_ref/swift/Element/MaxCount" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOO8PrediKit13SubqueryMatch9MatchType8MaxCountFMS1_FOS1_11CompareTypeS1_">MaxCount</a>
+                    <a name="/s:FOO8PrediKit13SubqueryMatch9MatchType8MaxValueFMS1_FOS1_11CompareTypeS1_"></a>
+                    <a name="//apple_ref/swift/Element/MaxValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOO8PrediKit13SubqueryMatch9MatchType8MaxValueFMS1_FOS1_11CompareTypeS1_">MaxValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -185,8 +207,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns the maximum value of every number in a queried number collection.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">MaxValue</span><span class="p">(</span><span class="kt">CompareType</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -198,9 +228,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOO8PrediKit13SubqueryMatch9MatchType12AverageCountFMS1_FOS1_11CompareTypeS1_"></a>
-                    <a name="//apple_ref/swift/Element/AverageCount" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOO8PrediKit13SubqueryMatch9MatchType12AverageCountFMS1_FOS1_11CompareTypeS1_">AverageCount</a>
+                    <a name="/s:FOO8PrediKit13SubqueryMatch9MatchType12AverageValueFMS1_FOS1_11CompareTypeS1_"></a>
+                    <a name="//apple_ref/swift/Element/AverageValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOO8PrediKit13SubqueryMatch9MatchType12AverageValueFMS1_FOS1_11CompareTypeS1_">AverageValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -208,8 +238,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns the average value of every number in a number collection. Best used against an array of numbers to get the average of all numbers in that array.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">AverageValue</span><span class="p">(</span><span class="kt">CompareType</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -238,9 +276,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The last point of the subquery match type that describes the amount to compare against the values generated from the MatchType enum. You MUST include an associated value in each case to create a valid subquery predicate.</p>
 
                         <a href="../../Enums/SubqueryMatch/MatchType/CompareType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CompareType</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

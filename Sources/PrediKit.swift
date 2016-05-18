@@ -11,23 +11,38 @@ import CoreData
 // MARK: PredicateOptions
 /**
  An `OptionSetType` that describes the options in which to create a string comparison.
- 
- - CaseInsensitive: When comparing two strings, the predicate system will ignore case. For example, the characters 'e' and 'E' will match.
- - DiacriticInsensitive: When comparing two strings, the predicate system will ignore diacritic characters and normalize the special character to its base character. For example, the characters `e é ê è` are all equivalent.
  */
 public struct PredicateOptions: OptionSetType {
+    /**
+     The raw value of the given `PredicateOptions` value.
+     */
     public let rawValue: UInt32
     public init(rawValue: UInt32) {
         self.rawValue = rawValue
     }
     
+    /**
+     The strictest comparison option. When comparing two strings, the left and right hand side MUST equal each other and is diacritic AND case-sensitive.
+     */
     public static let None =                 PredicateOptions(rawValue: 1<<0)
+    /**
+     When comparing two strings, the predicate system will ignore case. For example, the characters 'e' and 'E' will match.
+     */
     public static let CaseInsensitive =      PredicateOptions(rawValue: 1<<1)
+    /**
+     When comparing two strings, the predicate system will ignore diacritic characters and normalize the special character to its base character. For example, the characters `e é ê è` are all equivalent.
+     */
     public static let DiacriticInsensitive = PredicateOptions(rawValue: 1<<2)
 }
 
 // MARK: SubqueryMatch Enum
+/**
+ An instance of this enum must be returned in the subquery closure to indicate how the queries collected in that closure
+ */
 public enum SubqueryMatch {
+    /**
+     The starting point of the subquery match type. You MUST include an associated value in this case to create a valid subquery predicate.
+     */
     case IncludeIfMatched(MatchType)
     var collectionQuery: String {
         switch self {
@@ -37,22 +52,40 @@ public enum SubqueryMatch {
     }
     
     // MARK: MatchType Enum
+    /**
+     The next (second) point of the subquery match type that describes the predicate of the qualifying queries array return from the subquery. You MUST include an associated value in each case to create a valid subquery predicate.
+     */
     public enum MatchType {
+        /**
+         Returns the collection.count value of the queried collection.
+         */
         case Amount(CompareType)
-        case MinCount(CompareType)
-        case MaxCount(CompareType)
-        case AverageCount(CompareType)
+        /**
+         Returns the minimum value of every number in a queried number collection.
+         */
+        case MinValue(CompareType)
+        /**
+         Returns the maximum value of every number in a queried number collection.
+         */
+        case MaxValue(CompareType)
+        /**
+         Returns the average value of every number in a number collection. Best used against an array of numbers to get the average of all numbers in that array.
+         */
+        case AverageValue(CompareType)
         
         var matchTypeString: String {
             switch self {
             case .Amount(let compare): return "@count \(compare.compareString)"
-            case .MinCount(let compare): return "@min \(compare.compareString)"
-            case .MaxCount(let compare): return "@max \(compare.compareString)"
-            case .AverageCount(let compare): return "@avg \(compare.compareString)"
+            case .MinValue(let compare): return "@min \(compare.compareString)"
+            case .MaxValue(let compare): return "@max \(compare.compareString)"
+            case .AverageValue(let compare): return "@avg \(compare.compareString)"
             }
         }
         
         // MARK: CompareType Enum
+        /**
+         The last point of the subquery match type that describes the amount to compare against the values generated from the MatchType enum. You MUST include an associated value in each case to create a valid subquery predicate.
+         */
         public enum CompareType {
             case Equals(Int64)
             case IsGreaterThan(Int64)
@@ -75,18 +108,29 @@ public enum SubqueryMatch {
 
 // MARK: Reflectable Protocol
 /**
- Used to query the property list of the conforming class. PrediKit uses this protocol to determine if the property you are specifying in the creation of a predicate actually exists in the conforming class. 
+ Used to query the property list of the conforming class. PrediKit uses this protocol to determine if the property you are specifying in the creation of a predicate actually exists in the conforming class. If it doesn't, PrediKit will print a warning to the console.
  
- All `NSObject`s conform to this protocol through an extension.
- 
- - Returns: An `Array` of `Selector`s. These can just be the strings detailing the properties of your class.
+ All `NSObject`s conform to this protocol through a public extension declared in PrediKit.
  */
 public protocol Reflectable: class {
+    /**
+     Must implement this protocol in order to take advantage of PrediKit's property warning console print behavior.
+     
+     - Returns: An `Array` of `Selector`s. These can just be the strings that equal the names of the properties in your class.
+     */
     static func properties() -> [Selector]
 }
 
 // MARK: NSObject Reflectable Extension
+/**
+ PrediKit is best used with CoreData `ManagedObject`s. Since each ManagedObject is an NSObject, PrediKit's `NSPredicate` creation works out of the box for all of your `ManagedObject` subclasses.
+ */
 extension NSObject: Reflectable {
+    /**
+     Uses the Objective-C Runtime to determine the list of properties in an NSObject subclass.
+     
+     - Returns: An `Array` of `Selector`s whose string values are equal to the names of each property in the NSObject subclass.
+     */
     public static func properties() -> [Selector] {
         var count: UInt32 = 0
         let properties = class_copyPropertyList(self, &count)
@@ -103,10 +147,22 @@ extension NSObject: Reflectable {
 }
 
 // MARK: NSPredicate Convenience Initializers
+/**
+ This is where the magic happens. This extension allows anyone to construct an `NSPredicate` from a closure.
+ */
 public extension NSPredicate {
-    convenience init<T: Reflectable>(_ type: T.Type, file: String = #file, line: Int = #line, @noescape builder: ((include: PredicateBuilder<T>) -> Void)) {
+    /**
+     A generic convenience initializer that accepts a `Reflectable` type and a builder closure that allows you to construct includers that describe the resulting `NSPredicate` instance.
+
+     - Parameters:
+     - type: The `Reflectable` class type that you'll be querying against. The type you supply here is what PrediKit will inspect to ensure the property names you specify in your includers are contained in that class' property list.
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     - builder: A closure that you use to generate includers that construct each subpredicate in the created `NSPredicate`
+     */
+    convenience init<T: Reflectable>(_ type: T.Type, file: String = #file, line: Int = #line, @noescape builder: ((includeIf: PredicateBuilder<T>) -> Void)) {
         let predicateBuilder = PredicateBuilder(type: type)
-        builder(include: predicateBuilder)
+        builder(includeIf: predicateBuilder)
         
         let predicateFormat = predicateBuilder.currentPredicate?.predicateFormat ?? predicateBuilder.predicateString
         if let prettyFile = file.componentsSeparatedByString("/").last {
@@ -121,8 +177,11 @@ public extension NSPredicate {
 }
 
 // MARK: PredicateBuilder
+/**
+ The class that gets passed into the builder closure of PrediKit's `NSPredicate` convenience initializer.
+ */
 public class PredicateBuilder<T: Reflectable> {
-    public let type: T.Type
+    private let type: T.Type
     private(set) var predicateString: String = ""
     private(set) var currentPredicate: NSPredicate?
     
@@ -246,6 +305,9 @@ public class PredicateBuilder<T: Reflectable> {
 }
 
 // MARK: PredicateQueryBuilder
+/**
+ The class that all queries returned from each function in `PredicateBuilder<T>` inherits from. Provides common API for each type of QueryBuilder like `IN` operations and `SELF` operations.
+ */
 public class PredicateQueryBuilder<T: Reflectable> {
     private let builder: PredicateBuilder<T>
     private var property: String
@@ -290,6 +352,9 @@ public class PredicateQueryBuilder<T: Reflectable> {
 }
 
 // MARK: PredicateStringQuery
+/**
+ A class that queries against `String` properties in the `T` class.
+ */
 public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T> {
     public var isEmpty: FinalizedPredicateQuery<T> {
         return equals("")
@@ -420,6 +485,9 @@ public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T
 }
 
 // MARK: PredicateNumberQuery
+/**
+ A class that queries against number properties in the `T` class.
+ */
 public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T> {
     override init(builder: PredicateBuilder<T>, property: String) {
         super.init(builder: builder, property: property)
@@ -553,6 +621,9 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
 }
 
 // MARK: PredicateDateQuery
+/**
+ A class that queries against `NSDate` properties in the `T` class.
+ */
 public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> {
     override init(builder: PredicateBuilder<T>, property: String) {
         super.init(builder: builder, property: property)
@@ -660,6 +731,9 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
 }
 
 // MARK: PredicateBooleanQuery
+/**
+ A class that queries against `Bool` properties in the `T` class.
+ */
 public final class PredicateBooleanQuery<T: Reflectable>: PredicateQueryBuilder<T> {
     override init(builder: PredicateBuilder<T>, property: String) {
         super.init(builder: builder, property: property)
@@ -697,6 +771,9 @@ public final class PredicateBooleanQuery<T: Reflectable>: PredicateQueryBuilder<
 }
 
 // MARK: PredicateSequenceQuery
+/**
+ A class that queries against `CollectionType` properties in the `T` class.
+ */
 public final class PredicateSequenceQuery<T: Reflectable>: PredicateQueryBuilder<T> {
     override init(builder: PredicateBuilder<T>, property: String) {
         super.init(builder: builder, property: property)
@@ -744,6 +821,9 @@ public final class PredicateSequenceQuery<T: Reflectable>: PredicateQueryBuilder
 }
 
 // MARK: PredicateSubqueryBuilder
+/**
+ A class that facilitates the creation of subqueries against `T`'s `CollectionType` properties. Used in tandem with the `PredicateSequenceQuery<T>` class.
+ */
 public final class PredicateSubqueryBuilder<T: Reflectable>: PredicateBuilder<T> {
     private override init(type: T.Type) {
         super.init(type: type)
@@ -756,6 +836,9 @@ public final class PredicateSubqueryBuilder<T: Reflectable>: PredicateBuilder<T>
 }
 
 // MARK: FinalizedPredicateQuery
+/**
+ A class that finalizes an includer created within the builder closure of PrediKit's `NSPredicate` convenience initializer. All includers (basically any line of code within that closure) must end in a call to a function that returns an instance or subclassed instance of this class to create a valid `NSPredicate`.
+ */
 public final class FinalizedPredicateQuery<T: Reflectable> {
     private let builder: PredicateBuilder<T>
     private let finalizedPredicateString: String
@@ -808,23 +891,44 @@ public final class FinalizedPredicateQuery<T: Reflectable> {
 }
 
 // MARK: NSPredicate Convenience Combinators
+/**
+ Convenience infix `&&` operator that combines two `NSPredicate` instances into one ANDed `NSCompoundPredicate`
+ */
 public func && (lhs: NSPredicate, rhs: NSPredicate) -> NSPredicate {
     return NSCompoundPredicate(andPredicateWithSubpredicates: [lhs, rhs])
 }
 
+/**
+ Convenience infix `||` operator that combines two `NSPredicate` instances into one ORed `NSCompoundPredicate`
+ */
 public func || (lhs: NSPredicate, rhs: NSPredicate) -> NSPredicate {
     return NSCompoundPredicate(orPredicateWithSubpredicates: [lhs, rhs])
 }
 
 // MARK: Query Includer Operators
+/**
+ Convenience infix `&&` operator that combines two `FinalizedPredicateQuery<T>` instances into one `FinalizedPredicateQuery<T>` that represents the ANDed compound of the `finalizedPredicate` properties in each instance.
+ 
+ Essentially, you use this operator to join together two includers.
+ */
 public func && <T>(lhs: FinalizedPredicateQuery<T>, rhs: FinalizedPredicateQuery<T>) -> FinalizedPredicateQuery<T> {
     return .combine(lhs, rhs: rhs, logicalAND: true)
 }
 
+/**
+ Convenience infix `||` operator that combines two `FinalizedPredicateQuery<T>` instances into one `FinalizedPredicateQuery<T>` that represents the ORed compound of the `finalizedPredicate` properties in each instance.
+ 
+ Essentially, you use this operator to join together two includers.
+ */
 public func || <T>(lhs: FinalizedPredicateQuery<T>, rhs: FinalizedPredicateQuery<T>) -> FinalizedPredicateQuery<T> {
     return .combine(lhs, rhs: rhs, logicalAND: false)
 }
 
+/**
+ Convenience prefix `!` operator that turns `FinalizedPredicateQuery<T>` into its NOT version.
+ 
+ Essentially, you use this operator to indicate the opposite of an includer.
+ */
 public prefix func ! <T>(rhs: FinalizedPredicateQuery<T>) -> FinalizedPredicateQuery<T> {
     rhs.finalPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: rhs.finalPredicate)
     rhs.builder.predicateString = rhs.finalPredicate.predicateFormat

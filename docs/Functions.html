@@ -13,7 +13,7 @@
     <a title="Functions  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">PrediKit Docs</a> (44% documented)</p>
+        <p><a href="index.html">PrediKit Docs</a> (85% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -81,16 +81,16 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF8PrediKitop1nuRxS_11ReflectablerFGCS_23FinalizedPredicateQueryx_GS1_x_">!(_:)</a>
+                <a href="Functions/!(_:).html">!(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF8PrediKitoi2aauRxS_11ReflectablerFTGCS_23FinalizedPredicateQueryx_GS1_x__GS1_x_">&amp;&amp;(_:_:)</a>
+                <a href="Functions/&amp;&amp;(_:_:).html">&amp;&amp;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:ZF8PrediKitoi2aaFTCSo11NSPredicateS0__S0_">&amp;&amp;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF8PrediKitoi2oouRxS_11ReflectablerFTGCS_23FinalizedPredicateQueryx_GS1_x__GS1_x_">||(_:_:)</a>
+                <a href="Functions/||(_:_:).html">||(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:ZF8PrediKitoi2ooFTCSo11NSPredicateS0__S0_">||(_:_:)</a>
@@ -145,8 +145,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Convenience infix <code>&amp;&amp;</code> operator that combines two <code><a href="Extensions/NSPredicate.html">NSPredicate</a></code> instances into one ANDed <code>NSCompoundPredicate</code></p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">NSPredicate</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">NSPredicate</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSPredicate</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -164,8 +172,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Convenience infix <code>||</code> operator that combines two <code><a href="Extensions/NSPredicate.html">NSPredicate</a></code> instances into one ORed <code>NSCompoundPredicate</code></p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">||</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">NSPredicate</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">NSPredicate</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSPredicate</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -194,8 +210,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Convenience infix <code>&amp;&amp;</code> operator that combines two <code><a href="Classes.html#/s:C8PrediKit23FinalizedPredicateQuery">FinalizedPredicateQuery&lt;T&gt;</a></code> instances into one <code><a href="Classes.html#/s:C8PrediKit23FinalizedPredicateQuery">FinalizedPredicateQuery&lt;T&gt;</a></code> that represents the ANDed compound of the <code>finalizedPredicate</code> properties in each instance.</p>
 
+<p>Essentially, you use this operator to join together two includers.</p>
+
+                        <a href="Functions/&&(_:_:).html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">&amp;&amp;</span> <span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -213,8 +240,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Convenience infix <code>||</code> operator that combines two <code><a href="Classes.html#/s:C8PrediKit23FinalizedPredicateQuery">FinalizedPredicateQuery&lt;T&gt;</a></code> instances into one <code><a href="Classes.html#/s:C8PrediKit23FinalizedPredicateQuery">FinalizedPredicateQuery&lt;T&gt;</a></code> that represents the ORed compound of the <code>finalizedPredicate</code> properties in each instance.</p>
 
+<p>Essentially, you use this operator to join together two includers.</p>
+
+                        <a href="Functions/||(_:_:).html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">||</span> <span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -232,8 +270,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Convenience prefix <code>!</code> operator that turns <code><a href="Classes.html#/s:C8PrediKit23FinalizedPredicateQuery">FinalizedPredicateQuery&lt;T&gt;</a></code> into its NOT version.</p>
 
+<p>Essentially, you use this operator to indicate the opposite of an includer.</p>
+
+                        <a href="Functions/!(_:).html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">prefix</span> <span class="kd">func</span> <span class="o">!</span> <span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">rhs</span><span class="p">:</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

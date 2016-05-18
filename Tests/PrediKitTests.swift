@@ -163,21 +163,21 @@ class PrediKitTests: XCTestCase {
         XCTAssertEqual(match(amount(.IsGreaterThan(0))).collectionQuery, "@count > 0")
         XCTAssertEqual(match(amount(.IsGreaterThanOrEqualTo(0))).collectionQuery, "@count >= 0")
 
-        let min = SubqueryMatch.MatchType.MinCount
+        let min = SubqueryMatch.MatchType.MinValue
         XCTAssertEqual(match(min(.Equals(0))).collectionQuery, "@min == 0")
         XCTAssertEqual(match(min(.IsLessThan(0))).collectionQuery, "@min < 0")
         XCTAssertEqual(match(min(.IsLessThanOrEqualTo(0))).collectionQuery, "@min <= 0")
         XCTAssertEqual(match(min(.IsGreaterThan(0))).collectionQuery, "@min > 0")
         XCTAssertEqual(match(min(.IsGreaterThanOrEqualTo(0))).collectionQuery, "@min >= 0")
 
-        let max = SubqueryMatch.MatchType.MaxCount
+        let max = SubqueryMatch.MatchType.MaxValue
         XCTAssertEqual(match(max(.Equals(0))).collectionQuery, "@max == 0")
         XCTAssertEqual(match(max(.IsLessThan(0))).collectionQuery, "@max < 0")
         XCTAssertEqual(match(max(.IsLessThanOrEqualTo(0))).collectionQuery, "@max <= 0")
         XCTAssertEqual(match(max(.IsGreaterThan(0))).collectionQuery, "@max > 0")
         XCTAssertEqual(match(max(.IsGreaterThanOrEqualTo(0))).collectionQuery, "@max >= 0")
 
-        let avg = SubqueryMatch.MatchType.AverageCount
+        let avg = SubqueryMatch.MatchType.AverageValue
         XCTAssertEqual(match(avg(.Equals(0))).collectionQuery, "@avg == 0")
         XCTAssertEqual(match(avg(.IsLessThan(0))).collectionQuery, "@avg < 0")
         XCTAssertEqual(match(avg(.IsLessThanOrEqualTo(0))).collectionQuery, "@avg <= 0")

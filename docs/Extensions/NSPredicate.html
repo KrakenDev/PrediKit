@@ -14,7 +14,7 @@
     <a title="NSPredicate Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">PrediKit Docs</a> (44% documented)</p>
+        <p><a href="../index.html">PrediKit Docs</a> (85% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -82,16 +82,16 @@
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF8PrediKitop1nuRxS_11ReflectablerFGCS_23FinalizedPredicateQueryx_GS1_x_">!(_:)</a>
+                <a href="../Functions/!(_:).html">!(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF8PrediKitoi2aauRxS_11ReflectablerFTGCS_23FinalizedPredicateQueryx_GS1_x__GS1_x_">&amp;&amp;(_:_:)</a>
+                <a href="../Functions/&amp;&amp;(_:_:).html">&amp;&amp;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF8PrediKitoi2aaFTCSo11NSPredicateS0__S0_">&amp;&amp;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF8PrediKitoi2oouRxS_11ReflectablerFTGCS_23FinalizedPredicateQueryx_GS1_x__GS1_x_">||(_:_:)</a>
+                <a href="../Functions/||(_:_:).html">||(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF8PrediKitoi2ooFTCSo11NSPredicateS0__S0_">||(_:_:)</a>
@@ -129,9 +129,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE8PrediKitCSo11NSPredicatecuRxS_11ReflectablerFTMx4fileSS4lineSi7builderFT7includeGCS_16PredicateBuilderx__T__S0_"></a>
+                    <a name="/s:FE8PrediKitCSo11NSPredicatecuRxS_11ReflectablerFTMx4fileSS4lineSi7builderFT9includeIfGCS_16PredicateBuilderx__T__S0_"></a>
                     <a name="//apple_ref/swift/Method/init(_:file:line:builder:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE8PrediKitCSo11NSPredicatecuRxS_11ReflectablerFTMx4fileSS4lineSi7builderFT7includeGCS_16PredicateBuilderx__T__S0_">init(_:file:line:builder:)</a>
+                    <a class="token" href="#/s:FE8PrediKitCSo11NSPredicatecuRxS_11ReflectablerFTMx4fileSS4lineSi7builderFT9includeIfGCS_16PredicateBuilderx__T__S0_">init(_:file:line:builder:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -139,8 +139,24 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A generic convenience initializer that accepts a <code><a href="../Protocols/Reflectable.html">Reflectable</a></code> type and a builder closure that allows you to construct includers that describe the resulting <code><a href="../Extensions/NSPredicate.html">NSPredicate</a></code> instance.</p>
 
+<ul>
+<li>Parameters:</li>
+<li>type: The <code><a href="../Protocols/Reflectable.html">Reflectable</a></code> class type that you&rsquo;ll be querying against. The type you supply here is what PrediKit will inspect to ensure the property names you specify in your includers are contained in that class&rsquo; property list.</li>
+<li>file: Name of the file the function is being called from. Defaults to <code>#file</code></li>
+<li>line: Number of the line the function is being called from. Defaults to <code>#line</code></li>
+<li>builder: A closure that you use to generate includers that construct each subpredicate in the created <code><a href="../Extensions/NSPredicate.html">NSPredicate</a></code></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">convenience</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Reflectable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="err">#</span><span class="n">file</span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="err">#</span><span class="n">line</span><span class="p">,</span> <span class="kd">@noescape</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">((</span><span class="nv">includeIf</span><span class="p">:</span> <span class="kt">PredicateBuilder</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

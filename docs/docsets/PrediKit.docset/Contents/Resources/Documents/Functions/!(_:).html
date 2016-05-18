@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PredicateQueryBuilder Class Reference</title>
+    <title>!(_:) Function Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/PredicateQueryBuilder" class="dashAnchor"></a>
-    <a title="PredicateQueryBuilder Class Reference"></a>
+    <a name="//apple_ref/swift/Function/!(_:)" class="dashAnchor"></a>
+    <a title="!(_:) Function Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">PrediKit Docs</a> (85% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">PrediKit Reference</a>
         <img id="carat" src="../img/carat.png" />
-        PredicateQueryBuilder Class Reference
+        !(_:) Function Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -119,14 +119,16 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>PredicateQueryBuilder</h1>
+            <h1>!(_:)</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PredicateQueryBuilder</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Reflectable</span><span class="o">&gt;</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="k">prefix</span> <span class="kd">func</span> <span class="o">!</span> <span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">rhs</span><span class="p">:</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
 
                 </div>
               </div>
-            <p>The class that all queries returned from each function in <code><a href="../Classes/PredicateBuilder.html">PredicateBuilder&lt;T&gt;</a></code> inherits from. Provides common API for each type of QueryBuilder like <code>IN</code> operations and <code>SELF</code> operations.</p>
+            <p>Convenience prefix <code>!</code> operator that turns <code><a href="../Classes.html#/s:C8PrediKit23FinalizedPredicateQuery">FinalizedPredicateQuery&lt;T&gt;</a></code> into its NOT version.</p>
+
+<p>Essentially, you use this operator to indicate the opposite of an includer.</p>
 
           </section>
           <section class="section task-group-section">
@@ -135,9 +137,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8PrediKit21PredicateQueryBuilder9equalsNilGCS_23FinalizedPredicateQueryx_"></a>
-                    <a name="//apple_ref/swift/Property/equalsNil" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8PrediKit21PredicateQueryBuilder9equalsNilGCS_23FinalizedPredicateQueryx_">equalsNil</a>
+                    <a name="/s:tZF8PrediKitop1nuRxS_11ReflectablerFGCS_23FinalizedPredicateQueryx_GS1_x_L_1TMx"></a>
+                    <a name="//apple_ref/swift/Parameter/T" class="dashAnchor"></a>
+                    <a class="token" href="#/s:tZF8PrediKitop1nuRxS_11ReflectablerFGCS_23FinalizedPredicateQueryx_GS1_x_L_1TMx">T</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -145,60 +147,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates an includer that determines if the property being queried is nil. The resulting predicate would be equivalent to this predicate:</p>
-
-<pre class="highlight plaintext"><code>class Kraken: NSObject {
-    var isAwesome: Bool?
-}
-NSPredicate(format: "isAwesome == nil")
-</code></pre>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">equalsNil</span><span class="p">:</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC8PrediKit21PredicateQueryBuilder17matchesAnyValueInuRd__s14CollectionTyperFqd__GCS_23FinalizedPredicateQueryx_"></a>
-                    <a name="//apple_ref/swift/Method/matchesAnyValueIn(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8PrediKit21PredicateQueryBuilder17matchesAnyValueInuRd__s14CollectionTyperFqd__GCS_23FinalizedPredicateQueryx_">matchesAnyValueIn(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Equivalent to the SQL-like <code>IN</code> operator where a predicate is created to match if a class&rsquo; property matches ANY value in an CollectionType. Equivalent to creating this predicate:</p>
-
-<pre class="highlight plaintext"><code>class Kraken {
-    var name: String
-}
-NSPredicate(format: "name IN %@", listOfObjects)
-</code></pre>
-
-<p><q>Fetch the `Kraken` object if the value of its `name` property matches any value in the `listOfObjects` array.</q></p>
-
-<ul>
-<li>Parameters:</li>
-<li>collection: An <code>Array</code> or <code>Set</code> of objects to match against.</li>
-</ul>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="n">matchesAnyValueIn</span><span class="o">&lt;</span><span class="kt">U</span><span class="p">:</span> <span class="kt">CollectionType</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">collection</span><span class="p">:</span> <span class="kt">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">prefix</span> <span class="kd">func</span> <span class="o">!</span> <span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">rhs</span><span class="p">:</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">FinalizedPredicateQuery</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>

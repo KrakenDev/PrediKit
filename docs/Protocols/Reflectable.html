@@ -14,7 +14,7 @@
     <a title="Reflectable Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">PrediKit Docs</a> (44% documented)</p>
+        <p><a href="../index.html">PrediKit Docs</a> (85% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -82,16 +82,16 @@
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF8PrediKitop1nuRxS_11ReflectablerFGCS_23FinalizedPredicateQueryx_GS1_x_">!(_:)</a>
+                <a href="../Functions/!(_:).html">!(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF8PrediKitoi2aauRxS_11ReflectablerFTGCS_23FinalizedPredicateQueryx_GS1_x__GS1_x_">&amp;&amp;(_:_:)</a>
+                <a href="../Functions/&amp;&amp;(_:_:).html">&amp;&amp;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF8PrediKitoi2aaFTCSo11NSPredicateS0__S0_">&amp;&amp;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF8PrediKitoi2oouRxS_11ReflectablerFTGCS_23FinalizedPredicateQueryx_GS1_x__GS1_x_">||(_:_:)</a>
+                <a href="../Functions/||(_:_:).html">||(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF8PrediKitoi2ooFTCSo11NSPredicateS0__S0_">||(_:_:)</a>
@@ -126,15 +126,9 @@
 
                 </div>
               </div>
-            <p>Used to query the property list of the conforming class. PrediKit uses this protocol to determine if the property you are specifying in the creation of a predicate actually exists in the conforming class. </p>
+            <p>Used to query the property list of the conforming class. PrediKit uses this protocol to determine if the property you are specifying in the creation of a predicate actually exists in the conforming class. If it doesn&rsquo;t, PrediKit will print a warning to the console.</p>
 
-<p>All <code><a href="../Extensions/NSObject.html">NSObject</a></code>s conform to this protocol through an extension.</p>
-
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    An <code>Array</code> of <code>Selector</code>s. These can just be the strings detailing the properties of your class.
-
-</div>
+<p>All <code><a href="../Extensions/NSObject.html">NSObject</a></code>s conform to this protocol through a public extension declared in PrediKit.</p>
 
           </section>
           <section class="section task-group-section">
@@ -153,16 +147,27 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Must implement this protocol in order to take advantage of PrediKit&rsquo;s property warning console print behavior.</p>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    An <code>Array</code> of <code>Selector</code>s. These can just be the strings that equal the names of the properties in your class.
+
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Reflectable</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">properties</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Selector</span><span class="p">]</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An <code>Array</code> of <code>Selector</code>s. These can just be the strings that equal the names of the properties in your class.</p>
+
                       </div>
                     </section>
                   </div>
