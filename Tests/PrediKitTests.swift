@@ -158,31 +158,31 @@ class PrediKitTests: XCTestCase {
         let match = SubqueryMatch.IncludeIfMatched
         let amount = SubqueryMatch.MatchType.Amount
         XCTAssertEqual(match(amount(.Equals(0))).collectionQuery, "@count == 0")
-        XCTAssertEqual(match(amount(.LessThan(0))).collectionQuery, "@count < 0")
-        XCTAssertEqual(match(amount(.LessThanOrEqualTo(0))).collectionQuery, "@count <= 0")
-        XCTAssertEqual(match(amount(.GreaterThan(0))).collectionQuery, "@count > 0")
-        XCTAssertEqual(match(amount(.GreaterThanOrEqualTo(0))).collectionQuery, "@count >= 0")
+        XCTAssertEqual(match(amount(.IsLessThan(0))).collectionQuery, "@count < 0")
+        XCTAssertEqual(match(amount(.IsLessThanOrEqualTo(0))).collectionQuery, "@count <= 0")
+        XCTAssertEqual(match(amount(.IsGreaterThan(0))).collectionQuery, "@count > 0")
+        XCTAssertEqual(match(amount(.IsGreaterThanOrEqualTo(0))).collectionQuery, "@count >= 0")
 
-        let min = SubqueryMatch.MatchType.CountMin
+        let min = SubqueryMatch.MatchType.MinCount
         XCTAssertEqual(match(min(.Equals(0))).collectionQuery, "@min == 0")
-        XCTAssertEqual(match(min(.LessThan(0))).collectionQuery, "@min < 0")
-        XCTAssertEqual(match(min(.LessThanOrEqualTo(0))).collectionQuery, "@min <= 0")
-        XCTAssertEqual(match(min(.GreaterThan(0))).collectionQuery, "@min > 0")
-        XCTAssertEqual(match(min(.GreaterThanOrEqualTo(0))).collectionQuery, "@min >= 0")
+        XCTAssertEqual(match(min(.IsLessThan(0))).collectionQuery, "@min < 0")
+        XCTAssertEqual(match(min(.IsLessThanOrEqualTo(0))).collectionQuery, "@min <= 0")
+        XCTAssertEqual(match(min(.IsGreaterThan(0))).collectionQuery, "@min > 0")
+        XCTAssertEqual(match(min(.IsGreaterThanOrEqualTo(0))).collectionQuery, "@min >= 0")
 
-        let max = SubqueryMatch.MatchType.CountMax
+        let max = SubqueryMatch.MatchType.MaxCount
         XCTAssertEqual(match(max(.Equals(0))).collectionQuery, "@max == 0")
-        XCTAssertEqual(match(max(.LessThan(0))).collectionQuery, "@max < 0")
-        XCTAssertEqual(match(max(.LessThanOrEqualTo(0))).collectionQuery, "@max <= 0")
-        XCTAssertEqual(match(max(.GreaterThan(0))).collectionQuery, "@max > 0")
-        XCTAssertEqual(match(max(.GreaterThanOrEqualTo(0))).collectionQuery, "@max >= 0")
+        XCTAssertEqual(match(max(.IsLessThan(0))).collectionQuery, "@max < 0")
+        XCTAssertEqual(match(max(.IsLessThanOrEqualTo(0))).collectionQuery, "@max <= 0")
+        XCTAssertEqual(match(max(.IsGreaterThan(0))).collectionQuery, "@max > 0")
+        XCTAssertEqual(match(max(.IsGreaterThanOrEqualTo(0))).collectionQuery, "@max >= 0")
 
-        let avg = SubqueryMatch.MatchType.CountAverage
+        let avg = SubqueryMatch.MatchType.AverageCount
         XCTAssertEqual(match(avg(.Equals(0))).collectionQuery, "@avg == 0")
-        XCTAssertEqual(match(avg(.LessThan(0))).collectionQuery, "@avg < 0")
-        XCTAssertEqual(match(avg(.LessThanOrEqualTo(0))).collectionQuery, "@avg <= 0")
-        XCTAssertEqual(match(avg(.GreaterThan(0))).collectionQuery, "@avg > 0")
-        XCTAssertEqual(match(avg(.GreaterThanOrEqualTo(0))).collectionQuery, "@avg >= 0")
+        XCTAssertEqual(match(avg(.IsLessThan(0))).collectionQuery, "@avg < 0")
+        XCTAssertEqual(match(avg(.IsLessThanOrEqualTo(0))).collectionQuery, "@avg <= 0")
+        XCTAssertEqual(match(avg(.IsGreaterThan(0))).collectionQuery, "@avg > 0")
+        XCTAssertEqual(match(avg(.IsGreaterThanOrEqualTo(0))).collectionQuery, "@avg >= 0")
     }
     
     func testSimpleANDIncluderCombination() {

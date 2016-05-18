@@ -8,6 +8,72 @@
 
 import CoreData
 
+// MARK: PredicateOptions
+/**
+ An `OptionSetType` that describes the options in which to create a string comparison.
+ 
+ - CaseInsensitive: When comparing two strings, the predicate system will ignore case. For example, the characters 'e' and 'E' will match.
+ - DiacriticInsensitive: When comparing two strings, the predicate system will ignore diacritic characters and normalize the special character to its base character. For example, the characters `e é ê è` are all equivalent.
+ */
+public struct PredicateOptions: OptionSetType {
+    public let rawValue: UInt32
+    public init(rawValue: UInt32) {
+        self.rawValue = rawValue
+    }
+    
+    public static let None =                 PredicateOptions(rawValue: 1<<0)
+    public static let CaseInsensitive =      PredicateOptions(rawValue: 1<<1)
+    public static let DiacriticInsensitive = PredicateOptions(rawValue: 1<<2)
+}
+
+// MARK: SubqueryMatch Enum
+public enum SubqueryMatch {
+    case IncludeIfMatched(MatchType)
+    var collectionQuery: String {
+        switch self {
+        case .IncludeIfMatched(let matchType):
+            return matchType.matchTypeString
+        }
+    }
+    
+    // MARK: MatchType Enum
+    public enum MatchType {
+        case Amount(CompareType)
+        case MinCount(CompareType)
+        case MaxCount(CompareType)
+        case AverageCount(CompareType)
+        
+        var matchTypeString: String {
+            switch self {
+            case .Amount(let compare): return "@count \(compare.compareString)"
+            case .MinCount(let compare): return "@min \(compare.compareString)"
+            case .MaxCount(let compare): return "@max \(compare.compareString)"
+            case .AverageCount(let compare): return "@avg \(compare.compareString)"
+            }
+        }
+        
+        // MARK: CompareType Enum
+        public enum CompareType {
+            case Equals(Int64)
+            case IsGreaterThan(Int64)
+            case IsGreaterThanOrEqualTo(Int64)
+            case IsLessThan(Int64)
+            case IsLessThanOrEqualTo(Int64)
+            
+            var compareString: String {
+                switch self {
+                case .Equals(let amount): return "== \(amount)"
+                case .IsGreaterThan(let amount): return "> \(amount)"
+                case .IsGreaterThanOrEqualTo(let amount): return ">= \(amount)"
+                case .IsLessThan(let amount): return "< \(amount)"
+                case .IsLessThanOrEqualTo(let amount): return "<= \(amount)"
+                }
+            }
+        }
+    }
+}
+
+// MARK: Reflectable Protocol
 /**
  Used to query the property list of the conforming class. PrediKit uses this protocol to determine if the property you are specifying in the creation of a predicate actually exists in the conforming class. 
  
@@ -19,11 +85,7 @@ public protocol Reflectable: class {
     static func properties() -> [Selector]
 }
 
-public protocol NilComparator {
-    associatedtype CompareType: Reflectable
-    var equalsNil: FinalizedPredicateQuery<CompareType> { get }
-}
-
+// MARK: NSObject Reflectable Extension
 extension NSObject: Reflectable {
     public static func properties() -> [Selector] {
         var count: UInt32 = 0
@@ -40,6 +102,7 @@ extension NSObject: Reflectable {
     }
 }
 
+// MARK: NSPredicate Convenience Initializers
 public extension NSPredicate {
     convenience init<T: Reflectable>(_ type: T.Type, file: String = #file, line: Int = #line, @noescape builder: ((include: PredicateBuilder<T>) -> Void)) {
         let predicateBuilder = PredicateBuilder(type: type)
@@ -57,6 +120,7 @@ public extension NSPredicate {
     }
 }
 
+// MARK: PredicateBuilder
 public class PredicateBuilder<T: Reflectable> {
     public let type: T.Type
     private(set) var predicateString: String = ""
@@ -64,9 +128,8 @@ public class PredicateBuilder<T: Reflectable> {
     
     /**
      Used to indicate that you want to query the actual object checked when the predicate is run. Behaves like the `SELF` in the SQL-like query:
-     ```
-     NSPredicate(format: "SELF in names")
-     ```
+
+         NSPredicate(format: "SELF in names")
      */
     public var SELF: PredicateQueryBuilder<T> {
         return PredicateQueryBuilder(builder: self, property: "SELF")
@@ -78,12 +141,11 @@ public class PredicateBuilder<T: Reflectable> {
     
     /**
      Describes the key of class `T`'s `String` property you want to query. For example, when creating a predicate that compares a class' string property to a given string:
-     ```
-     class Kraken: NSObject {
-        var theyCallMe: String
-     }
-     NSPredicate(format: "theyCallMe == 'Chief Supreme'")
-     ```
+
+         class Kraken: NSObject {
+             var theyCallMe: String
+         }
+         NSPredicate(format: "theyCallMe == 'Chief Supreme'")
      
      The `property` parameter would be the "theyCallMe" in the example predicate format.
      
@@ -98,12 +160,11 @@ public class PredicateBuilder<T: Reflectable> {
     
     /**
      Describes the key of class `T`'s number type property you want to query. For example, when creating a predicate that compares a number property to a given value:
-     ```
-     class Kraken: NSObject {
-        var numberOfHumansEaten: Int
-     }
-     NSPredicate(format: "numberOfHumansEaten >= 6")
-     ```
+
+         class Kraken: NSObject {
+             var numberOfHumansEaten: Int
+         }
+         NSPredicate(format: "numberOfHumansEaten >= 6")
      
      The `property` parameter would be the "numberOfHumansEaten" in the example predicate format.
      
@@ -118,12 +179,11 @@ public class PredicateBuilder<T: Reflectable> {
     
     /**
      Describes the key of class `T`'s `NSDate` property you want to query. For example, when creating a predicate compares a class' date property to another given date:
-     ```
-     class Kraken: NSObject {
-        var birthdate: NSDate
-     }
-     NSPredicate(format: "birthdate == %@", NSDate())
-     ```
+
+         class Kraken: NSObject {
+             var birthdate: NSDate
+         }
+         NSPredicate(format: "birthdate == %@", NSDate())
      
      The `property` parameter would be the "birthdate" in the example predicate format.
      
@@ -138,12 +198,11 @@ public class PredicateBuilder<T: Reflectable> {
     
     /**
      Describes the key of class `T`'s `Bool` property you want to query. For example, when creating a predicate that checks against a given `Bool` flag in a class:
-     ```
-     class Kraken: NSObject {
-        var isHungry: Bool
-     }
-     NSPredicate(format: "isHungry == true")
-     ```
+
+         class Kraken: NSObject {
+             var isHungry: Bool
+         }
+         NSPredicate(format: "isHungry == true")
      
      The `property` parameter would be the "isHungry" in the example predicate format.
      
@@ -158,12 +217,11 @@ public class PredicateBuilder<T: Reflectable> {
     
     /**
      Describes the key of class `T`'s `CollectionType` property you want to query. This is also the starting point for subqueries on list properties. For example, when creating a predicate that checks if a class' array property has 5 objects:
-     ```
-     class Kraken: NSObject {
-        var friends: [LegendaryCreatures]
-     }
-     NSPredicate(format: "friends.@count == 5")
-     ```
+
+         class Kraken: NSObject {
+             var friends: [LegendaryCreatures]
+         }
+         NSPredicate(format: "friends.@count == 5")
      
      The `property` parameter would be the "friends" in the example predicate format.
      
@@ -187,9 +245,19 @@ public class PredicateBuilder<T: Reflectable> {
     }
 }
 
-public class PredicateQueryBuilder<T: Reflectable>: NilComparator {
+// MARK: PredicateQueryBuilder
+public class PredicateQueryBuilder<T: Reflectable> {
     private let builder: PredicateBuilder<T>
     private var property: String
+
+    /**
+     Creates an includer that determines if the property being queried is nil. The resulting predicate would be equivalent to this predicate:
+
+         class Kraken: NSObject {
+             var isAwesome: Bool?
+         }
+         NSPredicate(format: "isAwesome == nil")
+     */
     public var equalsNil: FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) == nil"
         return FinalizedPredicateQuery(builder: builder)
@@ -201,10 +269,17 @@ public class PredicateQueryBuilder<T: Reflectable>: NilComparator {
     }
     
     /**
-     Equivalent to the SQL-like `IN` operator where a predicate is created to match if a class' property matches ANY value in an CollectionType.
+     Equivalent to the SQL-like `IN` operator where a predicate is created to match if a class' property matches ANY value in an CollectionType. Equivalent to creating this predicate:
+
+         class Kraken {
+             var name: String
+         }
+         NSPredicate(format: "name IN %@", listOfObjects)
+
+     "Fetch the `Kraken` object if the value of its `name` property matches any value in the `listOfObjects` array."
      
      - Parameters:
-     - array: An array of objects to match against. The array must only contain objects that conform to the `AnyObject` protocol. (All swift classes conform to this implicitly.)
+     - collection: An `Array` or `Set` of objects to match against.
      */
     public final func matchesAnyValueIn<U: CollectionType>(collection: U) -> FinalizedPredicateQuery<T> {
         if let collection = collection as? NSObject {
@@ -214,23 +289,7 @@ public class PredicateQueryBuilder<T: Reflectable>: NilComparator {
     }
 }
 
-/**
- An OptionSetType that describes the options in which to create a string comparison.
- 
- - CaseInsensitive: When comparing two strings, the predicate system will ignore case. For example, the characters 'e' and 'E' will match.
- - DiacriticInsensitive: When comparing two strings, the predicate system will ignore diacritic characters and normalize the special character to its base character. For example, the characters `e é ê è` are all equivalent.
- */
-public struct PredicateOptions: OptionSetType {
-    public let rawValue: UInt32
-    public init(rawValue: UInt32) {
-        self.rawValue = rawValue
-    }
-    
-    public static let None =                 PredicateOptions(rawValue: 1<<0)
-    public static let CaseInsensitive =      PredicateOptions(rawValue: 1<<1)
-    public static let DiacriticInsensitive = PredicateOptions(rawValue: 1<<2)
-}
-
+// MARK: PredicateStringQuery
 public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T> {
     public var isEmpty: FinalizedPredicateQuery<T> {
         return equals("")
@@ -240,26 +299,106 @@ public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T
         super.init(builder: builder, property: property)
     }
     
+    /**
+     Equivalent to the `BEGINSWITH` operator. Equivalent to creating this predicate:
+     
+         class Kraken {
+             var name: String
+         }
+         NSPredicate(format: "name BEGINSWITH \"K\"")
+     
+     "Fetch the `Kraken` object if the value of its `name` property begins with the letter 'K'"
+     
+     - Parameters:
+     - string: The string to match the property's value against.
+     - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func beginsWith(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) BEGINSWITH\(optionsString(options)) \"\(string)\""
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the `ENDSWITH` operator. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var name: String
+         }
+         NSPredicate(format: "name ENDSWITH \"n\"")
+     
+     "Fetch the `Kraken` object if the value of its `name` property ends with the letter 'n'"
+     
+     - Parameters:
+     - string: The string to match the property's value against.
+     - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func endsWith(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) ENDSWITH\(optionsString(options)) \"\(string)\""
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the `CONTAINS` operator. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var name: String
+         }
+         NSPredicate(format: "name CONTAINS \"rake\"")
+     
+     "Fetch the `Kraken` object if the value of its `name` property contains the word 'rake'"
+     
+     - Parameters:
+     - string: The string to match the property's value against.
+     - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func contains(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) CONTAINS\(optionsString(options)) \"\(string)\""
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the `MATCHES` operator. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var name: String
+         }
+         NSPredicate(format: "name MATCHES %@", regex)
+     
+     "Fetch the `Kraken` object if the value of its `name` property matches the regular expression pattern stored in the regex variable."
+     
+     - Parameters:
+     - string: The string to match the property's value against.
+     - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func matches(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) MATCHES\(optionsString(options)) \"\(string)\""
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the `==` operator. Equivalent to creating this predicate:
+     
+         class Kraken {
+             var name: String
+         }
+         NSPredicate(format: "name == \"Kraken\"")
+     
+     "Fetch the `Kraken` object if the value of its `name` property equals the word 'Kraken'"
+     
+     - Parameters:
+     - string: The string to match the property's value against.
+     - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func equals(string: String) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) == \"\(string)\""
         return FinalizedPredicateQuery(builder: builder)
@@ -280,144 +419,319 @@ public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T
     }
 }
 
+// MARK: PredicateNumberQuery
 public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T> {
     override init(builder: PredicateBuilder<T>, property: String) {
         super.init(builder: builder, property: property)
     }
     
+    /**
+     Equivalent to the `>` operator. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var age: Int
+         }
+         NSPredicate(format: "age > 5")
+     
+     "Fetch the `Kraken` object if the value of its `age` property is greater than 5"
+     
+     - Parameters:
+     - number: The number to compare against the property's value.
+     - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func isGreaterThan(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) > %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the `<` operator. Equivalent to creating this predicate:
+     
+         class Kraken {
+             var age: Int
+         }
+         NSPredicate(format: "age < 5")
+     
+     "Fetch the `Kraken` object if the value of its `age` property is less than 5"
+     
+     - Parameters:
+     - number: The number to compare against the property's value.
+     - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func isLessThan(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) < %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the `>=` operator. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var age: Int
+         }
+         NSPredicate(format: "age >= 5")
+     
+     "Fetch the `Kraken` object if the value of its `age` property is greater than or equal to 5"
+     
+     - Parameters:
+     - number: The number to compare against the property's value.
+     - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func isGreaterThanOrEqualTo(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) >= %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the `<=` operator. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var age: Int
+         }
+         NSPredicate(format: "age <= 5")
+     
+     "Fetch the `Kraken` object if the value of its `age` property is less than or equal to 5"
+     
+     - Parameters:
+     - number: The number to compare against the property's value.
+     - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func isLessThanOrEqualTo(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) <= %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the `!=` operator. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var age: Int
+         }
+         NSPredicate(format: "age != 5")
+     
+     "Fetch the `Kraken` object if the value of its `age` property does not equal 5"
+     
+     - Parameters:
+     - number: The number to compare against the property's value.
+     - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func doesNotEqual(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) != %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the `==` operator. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var age: Int
+         }
+         NSPredicate(format: "age == 5")
+     
+     "Fetch the `Kraken` object if the value of its `age` property equals 5"
+     
+     - Parameters:
+     - number: The number to compare against the property's value.
+     - options: Used to describe the sensitivity (diacritic or case) of the string comparator operation. Defaults to PredicateOptions.None
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func equals(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) == %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
 }
 
+// MARK: PredicateDateQuery
 public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> {
     override init(builder: PredicateBuilder<T>, property: String) {
         super.init(builder: builder, property: property)
     }
     
+    /**
+     Equivalent to the infix `>` operator for two dates. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var birthdate: NSDate
+         }
+         NSPredicate(format: "birthdate > %@", halloween2008)
+     
+     "Fetch the `Kraken` object if it was born later than halloween2008"
+     
+     - Parameters:
+     - date: The date to compare against the property's value.
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func isLaterThan(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) > %@", date).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the infix `<` operator for two dates. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var birthdate: NSDate
+         }
+         NSPredicate(format: "birthdate < %@", halloween2008)
+     
+     "Fetch the `Kraken` object if it was born earlier than halloween2008"
+     
+     - Parameters:
+     - date: The date to compare against the property's value.
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func isEarlierThan(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) < %@", date).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the infix `>=` operator for two dates. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var birthdate: NSDate
+         }
+         NSPredicate(format: "birthdate >= %@", halloween2008)
+     
+     "Fetch the `Kraken` object if it was born on halloween2008 or later than halloween2008"
+     
+     - Parameters:
+     - date: The date to compare against the property's value.
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func isLaterThanOrOn(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) >= %@", date).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the infix `<=` operator for two dates. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var birthdate: NSDate
+         }
+         NSPredicate(format: "birthdate <= %@", halloween2008)
+     
+     "Fetch the `Kraken` object if it was born on halloween2008 or earlier than halloween2008"
+     
+     - Parameters:
+     - date: The date to compare against the property's value.
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func isEarlierThanOrOn(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) <= %@", date).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to the infix `==` operator for two dates. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var birthdate: NSDate
+         }
+         NSPredicate(format: "birthdate == %@", halloween2008)
+     
+     "Fetch the `Kraken` object if it was born on halloween2008"
+     
+     - Parameters:
+     - date: The date to compare against the property's value.
+     - file: Name of the file the function is being called from. Defaults to `#file`
+     - line: Number of the line the function is being called from. Defaults to `#line`
+     */
     public func equals(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = NSPredicate(format: "\(property) == %@", date).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
 }
 
+// MARK: PredicateBooleanQuery
 public final class PredicateBooleanQuery<T: Reflectable>: PredicateQueryBuilder<T> {
     override init(builder: PredicateBuilder<T>, property: String) {
         super.init(builder: builder, property: property)
     }
     
+    /**
+     Equivalent to creating this predicate:
+     
+         class Kraken {
+            var isAwesome: Bool
+         }
+         NSPredicate(format: "isAwesome == true")
+     
+     "Fetch the `Kraken` object if the value of its `isAwesome` property is true"
+     */
     public var isTrue: FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) == true"
         return FinalizedPredicateQuery(builder: builder)
     }
     
+    /**
+     Equivalent to creating this predicate:
+     
+         class Kraken {
+            var isAwesome: Bool
+         }
+         NSPredicate(format: "isAwesome == false")
+     
+     "Fetch the `Kraken` object if the value of its `isAwesome` property is false"
+     */
     public var isFalse: FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) == false"
         return FinalizedPredicateQuery(builder: builder)
     }
 }
 
-public enum SubqueryMatch {
-    case IncludeIfMatched(MatchType)
-    var collectionQuery: String {
-        switch self {
-        case .IncludeIfMatched(let matchType):
-            return matchType.matchTypeString
-        }
-    }
-
-    public enum MatchType {
-        case Amount(CompareType)
-        case CountMin(CompareType)
-        case CountMax(CompareType)
-        case CountAverage(CompareType)
-        
-        var matchTypeString: String {
-            switch self {
-            case .Amount(let compare): return "@count \(compare.compareString)"
-            case .CountMin(let compare): return "@min \(compare.compareString)"
-            case .CountMax(let compare): return "@max \(compare.compareString)"
-            case .CountAverage(let compare): return "@avg \(compare.compareString)"
-            }
-        }
-
-        public enum CompareType {
-            case Equals(Int64)
-            case GreaterThan(Int64)
-            case GreaterThanOrEqualTo(Int64)
-            case LessThan(Int64)
-            case LessThanOrEqualTo(Int64)
-            
-            var compareString: String {
-                switch self {
-                case .Equals(let amount): return "== \(amount)"
-                case .GreaterThan(let amount): return "> \(amount)"
-                case .GreaterThanOrEqualTo(let amount): return ">= \(amount)"
-                case .LessThan(let amount): return "< \(amount)"
-                case .LessThanOrEqualTo(let amount): return "<= \(amount)"
-                }
-            }
-        }
-    }
-}
-
+// MARK: PredicateSequenceQuery
 public final class PredicateSequenceQuery<T: Reflectable>: PredicateQueryBuilder<T> {
     override init(builder: PredicateBuilder<T>, property: String) {
         super.init(builder: builder, property: property)
     }
     
+    /**
+     Equivalent to creating this predicate:
+     
+         class Kraken {
+            var friends: [LegendaryCreature]
+         }
+         NSPredicate(format: "friends.@count == 0")
+     
+     "Fetch the `Kraken` object if it doesn't have any friends"
+     */
     public var isEmpty: FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property).@count == 0"
         return FinalizedPredicateQuery(builder: builder)
     }
     
-    public func subquery<U: NSObject where U: Reflectable>(type: U.Type, line: Int = #line, subbuilder: (includeIf: PredicateSubqueryBuilder<U>) -> SubqueryMatch) -> FinalizedPredicateQuery<T> {
+    /**
+     Creates a subpredicate that iterates through the collection property to return qualifying queries. Equivalent to creating this predicate:
+     
+         class Kraken {
+            var friends: [LegendaryCreature]
+         }
+         NSPredicate(format: "SUBQUERY(friends, $friend, friend.isHungry == true).@count > 0")
+     
+     "Fetch the `Kraken` object if it has any friends that are hungry"
+
+     - Parameters:
+     - type: The type of the objects found in the collection property being subqueried.
+     - subbuilder: A closure that defines queries that describe each object found in the collection property being subqueried. The closure must return an instance of the `SubqueryMatch` enum.
+     */
+    public func subquery<U: NSObject where U: Reflectable>(type: U.Type, subbuilder: (includeIf: PredicateSubqueryBuilder<U>) -> SubqueryMatch) -> FinalizedPredicateQuery<T> {
         let subBuilder = PredicateSubqueryBuilder(type: type)
         let subqueryMatch = subbuilder(includeIf: subBuilder)
 
@@ -429,6 +743,7 @@ public final class PredicateSequenceQuery<T: Reflectable>: PredicateQueryBuilder
     }
 }
 
+// MARK: PredicateSubqueryBuilder
 public final class PredicateSubqueryBuilder<T: Reflectable>: PredicateBuilder<T> {
     private override init(type: T.Type) {
         super.init(type: type)
@@ -440,6 +755,7 @@ public final class PredicateSubqueryBuilder<T: Reflectable>: PredicateBuilder<T>
     }
 }
 
+// MARK: FinalizedPredicateQuery
 public final class FinalizedPredicateQuery<T: Reflectable> {
     private let builder: PredicateBuilder<T>
     private let finalizedPredicateString: String
@@ -491,6 +807,7 @@ public final class FinalizedPredicateQuery<T: Reflectable> {
     }
 }
 
+// MARK: NSPredicate Convenience Combinators
 public func && (lhs: NSPredicate, rhs: NSPredicate) -> NSPredicate {
     return NSCompoundPredicate(andPredicateWithSubpredicates: [lhs, rhs])
 }
@@ -499,6 +816,7 @@ public func || (lhs: NSPredicate, rhs: NSPredicate) -> NSPredicate {
     return NSCompoundPredicate(orPredicateWithSubpredicates: [lhs, rhs])
 }
 
+// MARK: Query Includer Operators
 public func && <T>(lhs: FinalizedPredicateQuery<T>, rhs: FinalizedPredicateQuery<T>) -> FinalizedPredicateQuery<T> {
     return .combine(lhs, rhs: rhs, logicalAND: true)
 }

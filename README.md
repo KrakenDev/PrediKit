@@ -149,7 +149,7 @@ let predicate = NSPredicate(ManagedLegend.self) { includeIf in
     //Only include Krakens that have more than three hungry cerberus friends
     includeIf.collection("cerberusFriends").subquery(ManagedCerberus.self) {
         $0.bool("isHungry").isTrue
-        return .MatchElementAmount(.GreaterThan(3))
+        return .IncludeIfMatched(.Amount(.IsGreaterThan(3)))
     }
 }
 ```
