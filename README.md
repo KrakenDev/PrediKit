@@ -158,5 +158,47 @@ let predicate = NSPredicate(ManagedLegend.self) { includeIf in
 }
 ```
 
+#Selector Extension Pattern
+Personally, I love using a variation of the [Selector Extension Pattern](https://medium.com/swift-programming/swift-selector-syntax-sugar-81c8a8b10df3#.bypt7blba) when using PrediKit. It allows you to avoid misspelling your property names when using the API. By creating a Selector extension like so:
+
+```swift
+import Foundation
+
+extension Selector {
+    private enum Names: String {
+        case title
+        case birthdate
+        case age
+        case friends
+        case isAwesome
+        case isHungry
+    }
+
+    private init(_ name: Names) {
+        self.init(name.rawValue)
+    }
+
+    static let title = Selector(.title)
+    static let birthdate = Selector(.birthdate)
+    static let age = Selector(.age)
+    static let friends = Selector(.friends)
+    static let isAwesome = Selector(.isAwesome)
+    static let isHungry = Selector(.isHungry)
+}
+```
+
+PrediKit becomes a lot more expressive now:
+
+```swift
+//BEFORE
+let predicate = NSPredicate(ManagedLegend.self) { includeIf in
+    includeIf.string("title").equals("The Almighty Kraken")
+}
+//AFTER
+let predicate = NSPredicate(ManagedLegend.self) { includeIf in
+    includeIf.string(.title).equals("The Almighty Kraken")
+}
+```
+
 #LICENSE
 PrediKit is licensed under the `MIT` license. Check out the `LICENSE` file to learn more.
