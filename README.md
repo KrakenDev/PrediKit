@@ -1,6 +1,6 @@
 ![Pretty Banner](https://github.com/TheKrakenDev/PrediKit/wiki/Sources/Banner.jpg)
 [![Travis Build Status](http://img.shields.io/travis/TheKrakenDev/PrediKit.svg?style=flat-square)](https://travis-ci.org/TheKrakenDev/PrediKit)
-[![Coveralls](https://img.shields.io/coveralls/TheKrakenDev/PrediKit/master.svg?maxAge=60)](https://coveralls.io/github/TheKrakenDev/PrediKit?branch=master)
+[![Coveralls](https://img.shields.io/coveralls/TheKrakenDev/PrediKit/master.svg?style=flat-square?maxAge=60)](https://coveralls.io/github/TheKrakenDev/PrediKit?branch=master)
 [![Swift Version Compatibility](https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat-square)](https://developer.apple.com/swift)
 [![Cocoapods Version](https://img.shields.io/badge/pod-1.0.1-blue.svg?style=flat-square)](https://cocoapods.org/pods/PrediKit)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
