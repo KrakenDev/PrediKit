@@ -5,7 +5,12 @@ env:
     - LC_CTYPE=en_US.UTF-8 LANG=en_US.UTF-8
 before_install:
     - gem install xcpretty -N
+    - rvm use $RVM_RUBY_VERSION
+install:
+    - bundle install --without=documentation --path ../travis_bundle_dir
 script:
     - set -o pipefail
     - xcodebuild -project PrediKit.xcodeproj -scheme "PrediKit" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO  test | xcpretty -c
     - pod lib lint --quick
+after_success:
+    - slather

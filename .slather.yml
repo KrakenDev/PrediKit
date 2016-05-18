@@ -1,0 +1,5 @@
+coverage_service: coveralls
+xcodeproj: PrediKit.xcodeproj
+scheme: PrediKit
+ignore:
+  - Tests/*
