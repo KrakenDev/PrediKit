@@ -43,7 +43,7 @@ $ gem install cocoapods
 
 > CocoaPods 0.39.0+ is required to build PrediKit
 
-To integrate PrediKit through Cocoapods, make sure the `use_frameworks!` line is included in your Podfile (PrediKit is written in Swift so it needs to be brought in as a framework). Make sure these lines are somewhere in your `Podfile`:
+To integrate PrediKit through CocoaPods, make sure the `use_frameworks!` line is included in your Podfile (PrediKit is written in Swift so it needs to be brought in as a framework). Make sure these lines are somewhere in your `Podfile`:
 
 ```ruby
 use_frameworks!
