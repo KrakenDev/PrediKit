@@ -30,11 +30,9 @@ extension NSObject: Reflectable {
         let properties = class_copyPropertyList(self, &count)
         var propertyNames: [Selector] = []
         for i in 0..<Int(count) {
-            guard let propertyName = String(UTF8String: property_getName(properties[i])) else {
-                continue
+            if let propertyName = String(UTF8String: property_getName(properties[i])) {
+                propertyNames.append(Selector(propertyName))
             }
-            
-            propertyNames.append(Selector(propertyName))
         }
         
         free(properties)
@@ -43,10 +41,6 @@ extension NSObject: Reflectable {
 }
 
 public extension NSPredicate {
-    convenience init(file: String = #file, line: Int = #line, @noescape builder: ((include: PredicateBuilder<NSObject>) -> Void)) {
-        self.init(NSObject.self, file: file, line: line, builder: builder)
-    }
-    
     convenience init<T: Reflectable>(_ type: T.Type, file: String = #file, line: Int = #line, @noescape builder: ((include: PredicateBuilder<T>) -> Void)) {
         let predicateBuilder = PredicateBuilder(type: type)
         builder(include: predicateBuilder)
@@ -55,7 +49,11 @@ public extension NSPredicate {
         if let prettyFile = file.componentsSeparatedByString("/").last {
             print("Predicate created in \(prettyFile) at line \(line):\n\(predicateFormat)")
         }
-        self.init(format: predicateFormat)
+        if predicateFormat.isEmpty {
+            self.init(value: false)
+        } else {
+            self.init(format: predicateFormat)
+        }
     }
 }
 
@@ -203,37 +201,15 @@ public class PredicateQueryBuilder<T: Reflectable>: NilComparator {
     }
     
     /**
-     Equivalent to the SQL-like `IN` operator where a predicate is created to match if a class' property matches ANY value in an `Array`.
+     Equivalent to the SQL-like `IN` operator where a predicate is created to match if a class' property matches ANY value in an CollectionType.
      
      - Parameters:
      - array: An array of objects to match against. The array must only contain objects that conform to the `AnyObject` protocol. (All swift classes conform to this implicitly.)
      */
-    public final func matchesAnyValueInArray<U: AnyObject>(array: Array<U>) -> FinalizedPredicateQuery<T> {
-        return matchesAnyValueIn(array)
-    }
-    
-    /**
-     Equivalent to the SQL-like `IN` operator where a predicate is created to match if a class' property matches ANY value in a `Set`.
-     
-     - Parameters:
-     - set: A set of objects to match against. The set must only contain objects that conform to the `AnyObject` protocol. (All swift classes conform to this implicitly.)
-     */
-    public final func matchesAnyValueInSet<U: AnyObject>(set: Set<U>) -> FinalizedPredicateQuery<T> {
-        return matchesAnyValueIn(set)
-    }
-    
-    /**
-     Equivalent to the SQL-like `IN` operator where a predicate is created to match if a class' property matches ANY value in a dictionary's `values` array.
-     
-     - Parameters:
-     - set: A dictionary of objects to match against. The dictionary must only contain keys and values that conform to the `AnyObject` protocol. (All swift classes conform to this implicitly.)
-     */
-    public final func matchesAnyValueInDictionary<U: AnyObject, V: AnyObject>(dictionary: Dictionary<U, V>) -> FinalizedPredicateQuery<T> {
-        return matchesAnyValueIn(dictionary)
-    }
-    
-    private final func matchesAnyValueIn(collection: CVarArgType) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) IN %@", collection).predicateFormat
+    public final func matchesAnyValueIn<U: CollectionType>(collection: U) -> FinalizedPredicateQuery<T> {
+        if let collection = collection as? NSObject {
+            builder.predicateString = NSPredicate(format: "\(property) IN %@", collection).predicateFormat
+        }
         return FinalizedPredicateQuery(builder: builder)
     }
 }
@@ -250,8 +226,9 @@ public struct PredicateOptions: OptionSetType {
         self.rawValue = rawValue
     }
     
-    public static let CaseInsensitive = PredicateOptions(rawValue: 1<<0)
-    public static let DiacriticInsensitive = PredicateOptions(rawValue: 1<<1)
+    public static let None =                 PredicateOptions(rawValue: 1<<0)
+    public static let CaseInsensitive =      PredicateOptions(rawValue: 1<<1)
+    public static let DiacriticInsensitive = PredicateOptions(rawValue: 1<<2)
 }
 
 public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T> {
@@ -263,33 +240,33 @@ public final class PredicateStringQuery<T: Reflectable>: PredicateQueryBuilder<T
         super.init(builder: builder, property: property)
     }
     
-    public func beginsWith(string: String, options: PredicateOptions = [.CaseInsensitive, .DiacriticInsensitive]) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property) BEGINSWITH\(optionsString(options)) '\(string)'"
+    public func beginsWith(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
+        builder.predicateString = "\(property) BEGINSWITH\(optionsString(options)) \"\(string)\""
         return FinalizedPredicateQuery(builder: builder)
     }
     
-    public func endsWith(string: String, options: PredicateOptions = [.CaseInsensitive, .DiacriticInsensitive]) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property) ENDSWITH\(optionsString(options)) '\(string)'"
+    public func endsWith(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
+        builder.predicateString = "\(property) ENDSWITH\(optionsString(options)) \"\(string)\""
         return FinalizedPredicateQuery(builder: builder)
     }
     
-    public func contains(string: String, options: PredicateOptions = [.CaseInsensitive, .DiacriticInsensitive]) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property) CONTAINS\(optionsString(options)) '\(string)'"
+    public func contains(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
+        builder.predicateString = "\(property) CONTAINS\(optionsString(options)) \"\(string)\""
         return FinalizedPredicateQuery(builder: builder)
     }
     
-    public func matches(string: String, options: PredicateOptions = [.CaseInsensitive, .DiacriticInsensitive]) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property) MATCHES\(optionsString(options)) '\(string)'"
+    public func matches(string: String, options: PredicateOptions = .None) -> FinalizedPredicateQuery<T> {
+        builder.predicateString = "\(property) MATCHES\(optionsString(options)) \"\(string)\""
         return FinalizedPredicateQuery(builder: builder)
     }
     
     public func equals(string: String) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property) == '\(string)'"
+        builder.predicateString = "\(property) == \"\(string)\""
         return FinalizedPredicateQuery(builder: builder)
     }
     
     private func optionsString(options: PredicateOptions) -> String {
-        if !options.isEmpty {
+        if !options.isEmpty && !options.contains(.None) {
             var string = "["
             if options.contains(.CaseInsensitive) {
                 string = "\(string)c"
@@ -309,32 +286,32 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
     }
     
     public func isGreaterThan(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property) > '\(number)'"
+        builder.predicateString = NSPredicate(format: "\(property) > %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
     public func isLessThan(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property) < '\(number)'"
+        builder.predicateString = NSPredicate(format: "\(property) < %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
     public func isGreaterThanOrEqualTo(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property) >= '\(number)'"
+        builder.predicateString = NSPredicate(format: "\(property) >= %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
     public func isLessThanOrEqualTo(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property) <= '\(number)'"
+        builder.predicateString = NSPredicate(format: "\(property) <= %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
     public func doesNotEqual(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property) != '\(number)'"
+        builder.predicateString = NSPredicate(format: "\(property) != %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
     
     public func equals(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property) == '\(number)'"
+        builder.predicateString = NSPredicate(format: "\(property) == %@", number).predicateFormat
         return FinalizedPredicateQuery(builder: builder)
     }
 }
@@ -386,17 +363,47 @@ public final class PredicateBooleanQuery<T: Reflectable>: PredicateQueryBuilder<
     }
 }
 
-public enum SubqueryMatchContainedType {
-    case MatchAnyOfTheAbove
-    case NoneOfTheAbove
-    case MatchElementAmount(MatchedElementAmount)
-    
-    public enum MatchedElementAmount {
-        case Equals(Int64)
-        case GreaterThan(Int64)
-        case GreaterThanOrEqualTo(Int64)
-        case LessThan(Int64)
-        case LessThanOrEqualTo(Int64)
+public enum SubqueryMatch {
+    case IncludeIfMatched(MatchType)
+    var collectionQuery: String {
+        switch self {
+        case .IncludeIfMatched(let matchType):
+            return matchType.matchTypeString
+        }
+    }
+
+    public enum MatchType {
+        case Amount(CompareType)
+        case CountMin(CompareType)
+        case CountMax(CompareType)
+        case CountAverage(CompareType)
+        
+        var matchTypeString: String {
+            switch self {
+            case .Amount(let compare): return "@count \(compare.compareString)"
+            case .CountMin(let compare): return "@min \(compare.compareString)"
+            case .CountMax(let compare): return "@max \(compare.compareString)"
+            case .CountAverage(let compare): return "@avg \(compare.compareString)"
+            }
+        }
+
+        public enum CompareType {
+            case Equals(Int64)
+            case GreaterThan(Int64)
+            case GreaterThanOrEqualTo(Int64)
+            case LessThan(Int64)
+            case LessThanOrEqualTo(Int64)
+            
+            var compareString: String {
+                switch self {
+                case .Equals(let amount): return "== \(amount)"
+                case .GreaterThan(let amount): return "> \(amount)"
+                case .GreaterThanOrEqualTo(let amount): return ">= \(amount)"
+                case .LessThan(let amount): return "< \(amount)"
+                case .LessThanOrEqualTo(let amount): return "<= \(amount)"
+                }
+            }
+        }
     }
 }
 
@@ -406,40 +413,19 @@ public final class PredicateSequenceQuery<T: Reflectable>: PredicateQueryBuilder
     }
     
     public var isEmpty: FinalizedPredicateQuery<T> {
-        builder.predicateString = "\(property).count == 0"
+        builder.predicateString = "\(property).@count == 0"
         return FinalizedPredicateQuery(builder: builder)
     }
     
-    public func subquery<U: NSObject where U: Reflectable>(type: U.Type, line: Int = #line, builder: (include: PredicateSubqueryBuilder<U>) -> SubqueryMatchContainedType) -> FinalizedPredicateQuery<T> {
+    public func subquery<U: NSObject where U: Reflectable>(type: U.Type, line: Int = #line, subbuilder: (includeIf: PredicateSubqueryBuilder<U>) -> SubqueryMatch) -> FinalizedPredicateQuery<T> {
         let subBuilder = PredicateSubqueryBuilder(type: type)
-        let matchType = builder(include: subBuilder)
-        
-        let containsCheck: String
-        switch matchType {
-        case .MatchAnyOfTheAbove: containsCheck = "@count > 0"
-        case .NoneOfTheAbove: containsCheck = "@count == 0"
-        case .MatchElementAmount(let matchElementAmount):
-            switch matchElementAmount {
-            case .Equals(let amount): containsCheck = "@count == \(amount)"
-            case .GreaterThan(let amount): containsCheck = "@count > \(amount)"
-            case .GreaterThanOrEqualTo(let amount): containsCheck = "@count >= \(amount)"
-            case .LessThan(let amount): containsCheck = "@count < \(amount)"
-            case .LessThanOrEqualTo(let amount): containsCheck = "@count <= \(amount)"
-            }
-        }
-        
-        let itemQueryName = "$\(String(subBuilder.type))Item"
-        let currentPredicate = subBuilder.currentPredicate?.predicateFormat ?? subBuilder.predicateString
-        let subqueryPredicate = NSPredicate(format: "(SUBQUERY(\(property), \(itemQueryName), \(currentPredicate)).\(containsCheck))")
-        let finalizedBuilder = FinalizedPredicateQuery(builder: self.builder)
-        
-        if let currentPredicate = self.builder.currentPredicate {
-            self.builder.currentPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [currentPredicate, subqueryPredicate])
-        } else {
-            self.builder.currentPredicate = subqueryPredicate
-        }
-        finalizedBuilder.finalPredicate = self.builder.currentPredicate
-        return finalizedBuilder
+        let subqueryMatch = subbuilder(includeIf: subBuilder)
+
+        let item = "$\(String(subBuilder.type))Item"
+        let subqueryPredicate = NSPredicate(format: "(SUBQUERY(\(property), \(item), \(subBuilder.predicateString)).\(subqueryMatch.collectionQuery))")
+
+        self.builder.predicateString = subqueryPredicate.predicateFormat
+        return FinalizedPredicateQuery(builder: self.builder)
     }
 }
 
@@ -457,52 +443,50 @@ public final class PredicateSubqueryBuilder<T: Reflectable>: PredicateBuilder<T>
 public final class FinalizedPredicateQuery<T: Reflectable> {
     private let builder: PredicateBuilder<T>
     private let finalizedPredicateString: String
-    private(set) var finalPredicate: NSPredicate?
+    private(set) var finalPredicate: NSPredicate
     private(set) var ANDPredicatesToCombine: [NSPredicate] = []
     private(set) var ORPredicatesToCombine: [NSPredicate] = []
     
     init(builder: PredicateBuilder<T>) {
         self.builder = builder
-        self.finalPredicate = builder.predicateString.isEmpty ? nil : NSPredicate(format: builder.predicateString)
+        self.finalPredicate = NSPredicate(format: builder.predicateString)
         self.finalizedPredicateString = builder.predicateString
     }
    
     private static func combine<T>(lhs: FinalizedPredicateQuery<T>, rhs: FinalizedPredicateQuery<T>, logicalAND: Bool) -> FinalizedPredicateQuery<T> {
-        if let lhsPredicate = lhs.finalPredicate, rhsPredicate = rhs.finalPredicate {
-            let predicate: NSCompoundPredicate
-            
-            var lhsPredicatesToCombine = logicalAND ? lhs.ANDPredicatesToCombine : lhs.ORPredicatesToCombine
-            var rhsPredicatesToCombine = logicalAND ? rhs.ANDPredicatesToCombine : rhs.ORPredicatesToCombine
-            if lhsPredicatesToCombine.isEmpty && rhsPredicatesToCombine.isEmpty {
-                rhsPredicatesToCombine = [lhsPredicate, rhsPredicate]
-                lhsPredicatesToCombine = rhsPredicatesToCombine
-            } else if lhsPredicatesToCombine.isEmpty {
-                rhsPredicatesToCombine.append(lhsPredicate)
-                lhsPredicatesToCombine = rhsPredicatesToCombine
-            } else if rhsPredicatesToCombine.isEmpty {
-                lhsPredicatesToCombine.append(rhsPredicate)
-                rhsPredicatesToCombine = lhsPredicatesToCombine
-            } else {
-                lhsPredicatesToCombine += rhsPredicatesToCombine
-                rhsPredicatesToCombine = lhsPredicatesToCombine
-            }
-            
-            if logicalAND {
-                lhs.ANDPredicatesToCombine = lhsPredicatesToCombine
-                rhs.ANDPredicatesToCombine = rhsPredicatesToCombine
-                predicate = NSCompoundPredicate(andPredicateWithSubpredicates: lhsPredicatesToCombine)
-            } else {
-                lhs.ORPredicatesToCombine = lhsPredicatesToCombine
-                rhs.ORPredicatesToCombine = rhsPredicatesToCombine
-                predicate = NSCompoundPredicate(orPredicateWithSubpredicates: lhs.ORPredicatesToCombine)
-            }
-            
-            lhs.builder.predicateString = ""
-            lhs.builder.currentPredicate = predicate
-            lhs.finalPredicate = predicate
-            rhs.finalPredicate = predicate
-            return lhs
+        let lhsPredicate = lhs.finalPredicate
+        let rhsPredicate = rhs.finalPredicate
+        let predicate: NSCompoundPredicate
+        
+        var lhsPredicatesToCombine = logicalAND ? lhs.ANDPredicatesToCombine : lhs.ORPredicatesToCombine
+        var rhsPredicatesToCombine = logicalAND ? rhs.ANDPredicatesToCombine : rhs.ORPredicatesToCombine
+
+        if lhsPredicatesToCombine.isEmpty && rhsPredicatesToCombine.isEmpty {
+            rhsPredicatesToCombine = [lhsPredicate, rhsPredicate]
+            lhsPredicatesToCombine = rhsPredicatesToCombine
+        } else if rhsPredicatesToCombine.isEmpty {
+            //Operators associate to the left so there's no need to check if the lhs combination predicate array is empty since it will always have something if it gets here by failing the first check.
+            lhsPredicatesToCombine.append(rhsPredicate)
+            rhsPredicatesToCombine = lhsPredicatesToCombine
+        } else {
+            lhsPredicatesToCombine += rhsPredicatesToCombine
+            rhsPredicatesToCombine = lhsPredicatesToCombine
         }
+        
+        if logicalAND {
+            lhs.ANDPredicatesToCombine = lhsPredicatesToCombine
+            rhs.ANDPredicatesToCombine = rhsPredicatesToCombine
+            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: lhsPredicatesToCombine)
+        } else {
+            lhs.ORPredicatesToCombine = lhsPredicatesToCombine
+            rhs.ORPredicatesToCombine = rhsPredicatesToCombine
+            predicate = NSCompoundPredicate(orPredicateWithSubpredicates: lhs.ORPredicatesToCombine)
+        }
+        
+        lhs.builder.predicateString = predicate.predicateFormat
+        lhs.builder.currentPredicate = predicate
+        lhs.finalPredicate = predicate
+        rhs.finalPredicate = predicate
         return lhs
     }
 }
@@ -524,7 +508,7 @@ public func || <T>(lhs: FinalizedPredicateQuery<T>, rhs: FinalizedPredicateQuery
 }
 
 public prefix func ! <T>(rhs: FinalizedPredicateQuery<T>) -> FinalizedPredicateQuery<T> {
-    guard let predicate = rhs.finalPredicate else { return rhs }
-    rhs.finalPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: predicate)
+    rhs.finalPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: rhs.finalPredicate)
+    rhs.builder.predicateString = rhs.finalPredicate.predicateFormat
     return rhs
 }

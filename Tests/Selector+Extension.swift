@@ -12,6 +12,8 @@ extension Selector {
     private enum Names: String {
         case title
         case birthdate
+        case age
+        case friends
         case isAwesome
         case isHungry
     }
@@ -22,6 +24,8 @@ extension Selector {
     
     static let title = Selector(.title)
     static let birthdate = Selector(.birthdate)
+    static let age = Selector(.age)
+    static let friends = Selector(.friends)
     static let isAwesome = Selector(.isAwesome)
     static let isHungry = Selector(.isHungry)
 }
