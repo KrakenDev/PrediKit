@@ -29,7 +29,7 @@ Well, hopefully it fixes all of the above and more. Currently, it:
 * It also, through the magic of Xcode, gives you a way to autocomplete your queries. No more referencing a cheatsheet. Just hit the dot button and enjoy the autocomplete.
 * I also carefully constructed the API to read as much like a book as possible. Matching strings even have a redundant API just to be grammatically correct when specifying if a string `matches` or `doesNot.match` another value.
 * Through a little runtime-magic/reflection, PrediKit will crash at runtime if you misspell a property key or supply a property key that does not exist in a specific class' property list.
-* All predicate `builder` closures do not need capture semantics as each closure is a `@noescape` closure. [Read here is you don't know what that means](http://krakendev.io/blog/hipster-swift#noescape) 🤓.
+* All predicate `builder` closures do not need capture semantics as each closure is a `@noescape` closure. [Read here if you don't know what that means](http://krakendev.io/blog/hipster-swift#noescape) 🤓.
 
 #Installation
 PrediKit can be included in your project through any of these methods:
