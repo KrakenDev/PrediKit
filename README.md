@@ -6,7 +6,7 @@
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
 [![LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/KrakenDev/PrediKit/master/LICENSE)
 
-#PREDIKIT
+#PrediKit
 A Swift `NSPredicate` DSL for iOS &amp; OS X inspired by [SnapKit](https://github.com/SnapKit/SnapKit), lovingly written in Swift, and created by that weird dude at [KrakenDev](https://krakendev.io).
 
 If you're familiar with the intuitive feel of the [SnapKit](https://github.com/SnapKit/SnapKit) API, then you'll feel right at home with PrediKit! 💖
