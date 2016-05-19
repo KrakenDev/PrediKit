@@ -2,7 +2,7 @@
 //  PrediKit.h
 //  PrediKit
 //
-//  Copyright © 2016 TheKrakenDev. All rights reserved.
+//  Copyright © 2016 KrakenDev. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

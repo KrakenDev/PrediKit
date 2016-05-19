@@ -9,10 +9,10 @@ We do not use github issues for general library support. We think this questions
 
 ### Reporting issues
 
-* Use [github issues](https://github.com/TheKrakenDev/PrediKit/issues) to report a bug.
+* Use [github issues](https://github.com/KrakenDev/PrediKit/issues) to report a bug.
 * Before creating a new issue:
-  * Make sure you are using the [latest release](https://github.com/TheKrakenDev/PrediKit/releases).
-  * Check if the issue was [already reported or fixed](https://github.com/TheKrakenDev/PrediKit/issues?utf8=%E2%9C%93&q=is%3Aissue). Notice that it may not be released yet.
+  * Make sure you are using the [latest release](https://github.com/KrakenDev/PrediKit/releases).
+  * Check if the issue was [already reported or fixed](https://github.com/KrakenDev/PrediKit/issues?utf8=%E2%9C%93&q=is%3Aissue). Notice that it may not be released yet.
   * If you found a match add a brief comment "I have the same problem" or "+1". This helps prioritize the issues addressing the most common and critical first. If possible add additional information to help us reproduce and fix the issue. Please use your best judgement.    
 * Reporting issues:
   * Please include the following information to help maintainers to fix the problem faster:

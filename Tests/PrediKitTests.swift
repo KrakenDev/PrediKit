@@ -2,7 +2,7 @@
 //  PrediKitTests.swift
 //  PrediKitTests
 //
-//  Copyright © 2016 TheKrakenDev. All rights reserved.
+//  Copyright © 2016 KrakenDev. All rights reserved.
 //
 
 import XCTest
