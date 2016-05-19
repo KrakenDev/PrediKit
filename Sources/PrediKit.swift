@@ -187,6 +187,7 @@ public extension NSPredicate {
 public class PredicateBuilder<T: Reflectable> {
     private let type: T.Type
     private(set) var predicateString: String = ""
+    private(set) var arguments: [NSObject] = []
     private(set) var currentPredicate: NSPredicate?
     
     /**
@@ -349,7 +350,8 @@ public class PredicateQueryBuilder<T: Reflectable> {
      */
     public final func matchesAnyValueIn<U: CollectionType>(collection: U) -> FinalizedPredicateQuery<T> {
         if let collection = collection as? NSObject {
-            builder.predicateString = NSPredicate(format: "\(property) IN %@", collection).predicateFormat
+            builder.predicateString = "\(property) IN %@"
+            builder.arguments.append(collection)
         }
         return FinalizedPredicateQuery(builder: builder)
     }
@@ -514,7 +516,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isGreaterThan(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) > %@", number).predicateFormat
+        builder.predicateString = "\(property) > %@"
+        builder.arguments.append(number)
         return FinalizedPredicateQuery(builder: builder)
     }
     
@@ -535,7 +538,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isLessThan(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) < %@", number).predicateFormat
+        builder.predicateString = "\(property) < %@"
+        builder.arguments.append(number)
         return FinalizedPredicateQuery(builder: builder)
     }
     
@@ -556,7 +560,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isGreaterThanOrEqualTo(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) >= %@", number).predicateFormat
+        builder.predicateString = "\(property) >= %@"
+        builder.arguments.append(number)
         return FinalizedPredicateQuery(builder: builder)
     }
     
@@ -577,7 +582,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isLessThanOrEqualTo(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) <= %@", number).predicateFormat
+        builder.predicateString = "\(property) <= %@"
+        builder.arguments.append(number)
         return FinalizedPredicateQuery(builder: builder)
     }
     
@@ -598,7 +604,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func doesNotEqual(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) != %@", number).predicateFormat
+        builder.predicateString = "\(property) != %@"
+        builder.arguments.append(number)
         return FinalizedPredicateQuery(builder: builder)
     }
     
@@ -619,7 +626,8 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func equals(number: NSNumber) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) == %@", number).predicateFormat
+        builder.predicateString = "\(property) == %@"
+        builder.arguments.append(number)
         return FinalizedPredicateQuery(builder: builder)
     }
 }
@@ -649,7 +657,8 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isLaterThan(date: NSDate) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) > %@", date).predicateFormat
+        builder.predicateString = "\(property) > %@"
+        builder.arguments.append(date)
         return FinalizedPredicateQuery(builder: builder)
     }
     
@@ -669,7 +678,8 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isEarlierThan(date: NSDate) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) < %@", date).predicateFormat
+        builder.predicateString = "\(property) < %@"
+        builder.arguments.append(date)
         return FinalizedPredicateQuery(builder: builder)
     }
     
@@ -689,7 +699,8 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isLaterThanOrOn(date: NSDate) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) >= %@", date).predicateFormat
+        builder.predicateString = "\(property) >= %@"
+        builder.arguments.append(date)
         return FinalizedPredicateQuery(builder: builder)
     }
     
@@ -709,7 +720,8 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func isEarlierThanOrOn(date: NSDate) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) <= %@", date).predicateFormat
+        builder.predicateString = "\(property) <= %@"
+        builder.arguments.append(date)
         return FinalizedPredicateQuery(builder: builder)
     }
     
@@ -729,7 +741,8 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
     public func equals(date: NSDate) -> FinalizedPredicateQuery<T> {
-        builder.predicateString = NSPredicate(format: "\(property) == %@", date).predicateFormat
+        builder.predicateString = "\(property) == %@"
+        builder.arguments.append(date)
         return FinalizedPredicateQuery(builder: builder)
     }
 }
@@ -817,9 +830,9 @@ public final class PredicateSequenceQuery<T: Reflectable>: PredicateQueryBuilder
         let subqueryMatch = subbuilder(includeIf: subBuilder)
 
         let item = "$\(String(subBuilder.type))Item"
-        let subqueryPredicate = NSPredicate(format: "(SUBQUERY(\(property), \(item), \(subBuilder.predicateString)).\(subqueryMatch.collectionQuery))")
+        let subqueryPredicate = "SUBQUERY(\(property), \(item), \(subBuilder.predicateString)).\(subqueryMatch.collectionQuery)"
 
-        self.builder.predicateString = subqueryPredicate.predicateFormat
+        self.builder.predicateString = subqueryPredicate
         return FinalizedPredicateQuery(builder: self.builder)
     }
 }
@@ -852,8 +865,9 @@ public final class FinalizedPredicateQuery<T: Reflectable> {
     
     init(builder: PredicateBuilder<T>) {
         self.builder = builder
-        self.finalPredicate = NSPredicate(format: builder.predicateString)
+        self.finalPredicate = NSPredicate(format: builder.predicateString, argumentArray: builder.arguments)
         self.finalizedPredicateString = builder.predicateString
+        self.builder.arguments.removeAll()
     }
    
     private static func combine<T>(lhs: FinalizedPredicateQuery<T>, rhs: FinalizedPredicateQuery<T>, logicalAND: Bool) -> FinalizedPredicateQuery<T> {
