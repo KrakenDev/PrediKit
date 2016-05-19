@@ -170,12 +170,10 @@ public extension NSPredicate {
         let predicateBuilder = PredicateBuilder(type: type)
         builder(includeIf: predicateBuilder)
         
-        let predicateFormat = predicateBuilder.currentPredicate?.predicateFormat ?? predicateBuilder.predicateString
-
-        if predicateFormat.isEmpty {
+        if predicateBuilder.predicateString.isEmpty {
             self.init(value: false)
         } else {
-            self.init(format: predicateFormat)
+            self.init(format: predicateBuilder.predicateString, argumentArray: predicateBuilder.arguments)
         }
     }
 }
@@ -188,7 +186,6 @@ public class PredicateBuilder<T: Reflectable> {
     private let type: T.Type
     private(set) var predicateString: String = ""
     private(set) var arguments: [NSObject] = []
-    private(set) var currentPredicate: NSPredicate?
     
     /**
      Used to indicate that you want to query the actual object checked when the predicate is run. Behaves like the `SELF` in the SQL-like query:
@@ -833,6 +830,7 @@ public final class PredicateSequenceQuery<T: Reflectable>: PredicateQueryBuilder
         let subqueryPredicate = "SUBQUERY(\(property), \(item), \(subBuilder.predicateString)).\(subqueryMatch.collectionQuery)"
 
         self.builder.predicateString = subqueryPredicate
+        self.builder.arguments += subBuilder.arguments
         return FinalizedPredicateQuery(builder: self.builder)
     }
 }
@@ -858,29 +856,27 @@ public final class PredicateSubqueryBuilder<T: Reflectable>: PredicateBuilder<T>
  */
 public final class FinalizedPredicateQuery<T: Reflectable> {
     private let builder: PredicateBuilder<T>
-    private let finalizedPredicateString: String
-    private(set) var finalPredicate: NSPredicate
-    private(set) var ANDPredicatesToCombine: [NSPredicate] = []
-    private(set) var ORPredicatesToCombine: [NSPredicate] = []
+
+    private(set) var finalPredicateString: String
+    private(set) var ANDPredicatesToCombine: [String] = []
+    private(set) var ORPredicatesToCombine: [String] = []
     
     init(builder: PredicateBuilder<T>) {
         self.builder = builder
-        self.finalPredicate = NSPredicate(format: builder.predicateString, argumentArray: builder.arguments)
-        self.finalizedPredicateString = builder.predicateString
-        self.builder.arguments.removeAll()
+        self.finalPredicateString = builder.predicateString
     }
    
     private static func combine<T>(lhs: FinalizedPredicateQuery<T>, rhs: FinalizedPredicateQuery<T>, logicalAND: Bool) -> FinalizedPredicateQuery<T> {
-        let lhsPredicate = lhs.finalPredicate
-        let rhsPredicate = rhs.finalPredicate
-        let predicate: NSCompoundPredicate
+        let lhsPredicate = lhs.finalPredicateString
+        let rhsPredicate = rhs.finalPredicateString
+        let predicateFormat: String
         
         var lhsPredicatesToCombine = logicalAND ? lhs.ANDPredicatesToCombine : lhs.ORPredicatesToCombine
         var rhsPredicatesToCombine = logicalAND ? rhs.ANDPredicatesToCombine : rhs.ORPredicatesToCombine
 
         if lhsPredicatesToCombine.isEmpty && rhsPredicatesToCombine.isEmpty {
-            rhsPredicatesToCombine = [lhsPredicate, rhsPredicate]
-            lhsPredicatesToCombine = rhsPredicatesToCombine
+            lhsPredicatesToCombine = [lhsPredicate, rhsPredicate]
+            rhsPredicatesToCombine = lhsPredicatesToCombine
         } else if rhsPredicatesToCombine.isEmpty {
             //Operators associate to the left so there's no need to check if the lhs combination predicate array is empty since it will always have something if it gets here by failing the first check.
             lhsPredicatesToCombine.append(rhsPredicate)
@@ -892,18 +888,21 @@ public final class FinalizedPredicateQuery<T: Reflectable> {
         
         if logicalAND {
             lhs.ANDPredicatesToCombine = lhsPredicatesToCombine
-            rhs.ANDPredicatesToCombine = rhsPredicatesToCombine
-            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: lhsPredicatesToCombine)
+            rhs.ANDPredicatesToCombine = lhsPredicatesToCombine
+            
+            predicateFormat = "(\(lhsPredicatesToCombine.joinWithSeparator(" && ")))"
         } else {
             lhs.ORPredicatesToCombine = lhsPredicatesToCombine
-            rhs.ORPredicatesToCombine = rhsPredicatesToCombine
-            predicate = NSCompoundPredicate(orPredicateWithSubpredicates: lhsPredicatesToCombine)
+            rhs.ORPredicatesToCombine = lhsPredicatesToCombine
+
+            predicateFormat = "(\(lhsPredicatesToCombine.joinWithSeparator(" || ")))"
         }
         
-        lhs.builder.predicateString = predicate.predicateFormat
-        lhs.builder.currentPredicate = predicate
-        lhs.finalPredicate = predicate
-        rhs.finalPredicate = predicate
+
+        lhs.finalPredicateString = predicateFormat
+        lhs.builder.predicateString = lhs.finalPredicateString
+        rhs.builder.predicateString = lhs.builder.predicateString
+
         return lhs
     }
 }
@@ -948,7 +947,7 @@ public func || <T>(lhs: FinalizedPredicateQuery<T>, rhs: FinalizedPredicateQuery
  Essentially, you use this operator to indicate the opposite of an includer.
  */
 public prefix func ! <T>(rhs: FinalizedPredicateQuery<T>) -> FinalizedPredicateQuery<T> {
-    rhs.finalPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: rhs.finalPredicate)
-    rhs.builder.predicateString = rhs.finalPredicate.predicateFormat
+    rhs.finalPredicateString = "!(\(rhs.finalPredicateString))"
+    rhs.builder.predicateString = rhs.finalPredicateString
     return rhs
 }
