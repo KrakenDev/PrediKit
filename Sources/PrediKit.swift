@@ -166,14 +166,12 @@ public extension NSPredicate {
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      - builder: A closure that you use to generate includers that construct each subpredicate in the created `NSPredicate`
      */
-    convenience init<T: Reflectable>(_ type: T.Type, file: String = __FILE__, line: Int = __LINE__, @noescape builder: ((includeIf: PredicateBuilder<T>) -> Void)) {
+    convenience init<T: Reflectable>(_ type: T.Type, @noescape builder: ((includeIf: PredicateBuilder<T>) -> Void)) {
         let predicateBuilder = PredicateBuilder(type: type)
         builder(includeIf: predicateBuilder)
         
         let predicateFormat = predicateBuilder.currentPredicate?.predicateFormat ?? predicateBuilder.predicateString
-        if let prettyFile = file.componentsSeparatedByString("/").last {
-            print("Predicate created in \(prettyFile) at line \(line):\n\(predicateFormat)")
-        }
+
         if predicateFormat.isEmpty {
             self.init(value: false)
         } else {
