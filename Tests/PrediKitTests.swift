@@ -30,7 +30,7 @@ class PrediKitTests: XCTestCase {
             includeIf.string(.title).equalsNil
             XCTAssertEqual(includeIf.predicateString, "title == nil")
             !includeIf.string(.title).equalsNil
-            XCTAssertEqual(includeIf.predicateString, "NOT title == nil")
+            XCTAssertEqual(includeIf.predicateString, "!(title == nil)")
             includeIf.SELF.matchesAnyValueIn(legendaryArray)
             XCTAssertEqual(includeIf.predicateString, "SELF IN %@")
             includeIf.SELF.matchesAnyValueIn(legendarySet)
@@ -144,14 +144,14 @@ class PrediKitTests: XCTestCase {
     }
     
     func testSubqueryIncluders() {
-        let _ = NSPredicate(Kraken.self) { includeIf in
+        let predicate = NSPredicate(Kraken.self) { includeIf in
             includeIf.collection(.friends).subquery(Cerberus.self) { includeIf in
                 includeIf.bool(.isHungry).isTrue &&
                 includeIf.bool(.isAwesome).isTrue
                 return .IncludeIfMatched(.Amount(.Equals(0)))
             }
-            XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "SUBQUERY(friends, $CerberusItem, $CerberusItem.isHungry == true && $CerberusItem.isAwesome == true).@count == 0").predicateFormat)
         }
+        XCTAssertEqual(predicate.predicateFormat, NSPredicate(format: "SUBQUERY(friends, $CerberusItem, $CerberusItem.isHungry == true && $CerberusItem.isAwesome == true).@count == 0").predicateFormat)
     }
     
     func testSubqueryReturnTypeStrings() {
@@ -277,6 +277,12 @@ class PrediKitTests: XCTestCase {
         XCTAssertEqual(predicate.predicateFormat, expectedPredicate.predicateFormat)
     }
 
+    
+    //("Optional("title == \"The Almighty Kraken\" OR title == \"The Almighty Kraken\" OR (title == \"The Almighty Kraken\" AND birthdate == CAST(485387331.646675, \"NSDate\")) OR (isAwesome == 1 AND birthdate == CAST(485387331.646675, \"NSDate\")) OR isAwesome == 1")")
+    //("Optional("(title == \"The Almighty Kraken\" OR title == \"The Almighty Kraken\" OR title == \"The Almighty Kraken\") AND (birthdate == CAST(485387331.646675, \"NSDate\") OR isAwesome == 1) AND (birthdate == CAST(485387331.646675, \"NSDate\") OR isAwesome == 1)")")
+    
+    
+    
     func testComplexIncluderCombinationsWithSubquery() {
         let theKrakensTitle = "The Almighty Kraken"
         let theElfTitle = "The Lowly Elf"
