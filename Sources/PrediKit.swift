@@ -895,7 +895,7 @@ public final class FinalizedPredicateQuery<T: Reflectable> {
         } else {
             lhs.ORPredicatesToCombine = lhsPredicatesToCombine
             rhs.ORPredicatesToCombine = rhsPredicatesToCombine
-            predicate = NSCompoundPredicate(orPredicateWithSubpredicates: lhs.ORPredicatesToCombine)
+            predicate = NSCompoundPredicate(orPredicateWithSubpredicates: lhsPredicatesToCombine)
         }
         
         lhs.builder.predicateString = predicate.predicateFormat
