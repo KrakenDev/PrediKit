@@ -277,12 +277,6 @@ class PrediKitTests: XCTestCase {
         XCTAssertEqual(predicate.predicateFormat, expectedPredicate.predicateFormat)
     }
 
-    
-    //("Optional("title == \"The Almighty Kraken\" OR title == \"The Almighty Kraken\" OR (title == \"The Almighty Kraken\" AND birthdate == CAST(485387331.646675, \"NSDate\")) OR (isAwesome == 1 AND birthdate == CAST(485387331.646675, \"NSDate\")) OR isAwesome == 1")")
-    //("Optional("(title == \"The Almighty Kraken\" OR title == \"The Almighty Kraken\" OR title == \"The Almighty Kraken\") AND (birthdate == CAST(485387331.646675, \"NSDate\") OR isAwesome == 1) AND (birthdate == CAST(485387331.646675, \"NSDate\") OR isAwesome == 1)")")
-    
-    
-    
     func testComplexIncluderCombinationsWithSubquery() {
         let theKrakensTitle = "The Almighty Kraken"
         let theElfTitle = "The Lowly Elf"
