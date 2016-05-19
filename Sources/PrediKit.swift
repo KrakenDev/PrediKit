@@ -121,6 +121,8 @@ public protocol Reflectable: class {
     static func properties() -> [Selector]
 }
 
+private var reflectedClasses: [String : [Selector]] = [:]
+
 // MARK: NSObject Reflectable Extension
 /**
  PrediKit is best used with CoreData `ManagedObject`s. Since each ManagedObject is an NSObject, PrediKit's `NSPredicate` creation works out of the box for all of your `ManagedObject` subclasses.
@@ -132,17 +134,21 @@ extension NSObject: Reflectable {
      - Returns: An `Array` of `Selector`s whose string values are equal to the names of each property in the NSObject subclass.
      */
     public static func properties() -> [Selector] {
-        var count: UInt32 = 0
-        let properties = class_copyPropertyList(self, &count)
-        var propertyNames: [Selector] = []
-        for i in 0..<Int(count) {
-            if let propertyName = String(UTF8String: property_getName(properties[i])) {
-                propertyNames.append(Selector(propertyName))
+        guard let savedPropertyList = reflectedClasses[String(self)] else {
+            var count: UInt32 = 0
+            let properties = class_copyPropertyList(self, &count)
+            var propertyNames: [Selector] = []
+            for i in 0..<Int(count) {
+                if let propertyName = String(UTF8String: property_getName(properties[i])) {
+                    propertyNames.append(Selector(propertyName))
+                }
             }
+            free(properties)
+
+            reflectedClasses[String(self)] = propertyNames
+            return propertyNames
         }
-        
-        free(properties)
-        return propertyNames
+        return savedPropertyList
     }
 }
 
