@@ -162,18 +162,14 @@ public extension NSPredicate {
 
      - Parameters:
      - type: The `Reflectable` class type that you'll be querying against. The type you supply here is what PrediKit will inspect to ensure the property names you specify in your includers are contained in that class' property list.
-     - file: Name of the file the function is being called from. Defaults to `#file`
-     - line: Number of the line the function is being called from. Defaults to `#line`
      - builder: A closure that you use to generate includers that construct each subpredicate in the created `NSPredicate`
      */
-    convenience init<T: Reflectable>(_ type: T.Type, file: String = #file, line: Int = #line, @noescape builder: ((includeIf: PredicateBuilder<T>) -> Void)) {
+    convenience init<T: Reflectable>(_ type: T.Type, @noescape builder: ((includeIf: PredicateBuilder<T>) -> Void)) {
         let predicateBuilder = PredicateBuilder(type: type)
         builder(includeIf: predicateBuilder)
         
         let predicateFormat = predicateBuilder.currentPredicate?.predicateFormat ?? predicateBuilder.predicateString
-        if let prettyFile = file.componentsSeparatedByString("/").last {
-            print("Predicate created in \(prettyFile) at line \(line):\n\(predicateFormat)")
-        }
+
         if predicateFormat.isEmpty {
             self.init(value: false)
         } else {
