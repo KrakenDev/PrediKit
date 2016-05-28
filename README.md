@@ -132,8 +132,9 @@ Creating the above with PrediKit is easy and expressive:
 ```swift
 let someCaptain = Captain()
 let predicate = NSPredicate(Ship.self) { includeIf
-    includeIf.member("captain", ofType: Captain.self).equals(someCaptain) &&
-    includeIf.member("captain", ofType: Captain.self).string("name").equals("Chief Supreme")
+    let includeIfShipCaptain = includeIf.member("captain", ofType: Captain.self)
+    includeIfShipCaptain.equals(someCaptain) &&
+    includeIfShipCaptain.string("name").equals("Chief Supreme")
 }
 ```
 
