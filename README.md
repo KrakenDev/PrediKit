@@ -191,7 +191,7 @@ let predicate = NSPredicate(ManagedLegend.self) { includeIf in
 ```
 
 #Selector Extension Pattern
-Personally, I love using a variation of the [Selector Extension Pattern](https://medium.com/swift-programming/swift-selector-syntax-sugar-81c8a8b10df3#.bypt7blba) when using PrediKit. It allows you to avoid misspelling your property names when using the API. By creating a Selector extension like so:
+Personally, I love using a variation of the [Selector Extension Pattern](https://medium.com/swift-programming/swift-selector-syntax-sugar-81c8a8b10df3#.bypt7blba) when using PrediKit. It allows you to avoid misspelling your property names when using the API. It also allows you to rename your selector properties at will. By renaming, every instance of that selector used by PrediKit should give you a compiler error so you don't miss a beat and can feel safe knowing you haven't missed any property names in a name change refactor. By creating a Selector extension like so:
 
 ```swift
 import Foundation
