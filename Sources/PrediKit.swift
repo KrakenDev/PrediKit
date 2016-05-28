@@ -309,7 +309,7 @@ public class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `__FILE__`
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
-    public func member<U: protocol<Reflectable, AnyObject>>(property: Selector, ofType memberType: U.Type, file: String = __FILE__, line: Int = __LINE__) -> PredicateMemberQuery<T, U> {
+    public func member<U: protocol<Reflectable, AnyObject>>(property: Selector, ofType memberType: U.Type, file: String = #file, line: Int = #line) -> PredicateMemberQuery<T, U> {
         return PredicateMemberQuery(builder: self, property: validatedProperty(property), memberType: memberType)
     }
     

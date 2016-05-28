@@ -191,14 +191,14 @@ class PrediKitTests: XCTestCase {
         let enemyBirthdate = NSDate()
         let predicate = NSPredicate(Kraken.self) { includeIf in
             let bestElfFriend = includeIf.member(.bestElfFriend, ofType: Elf.self)
-            let bestElfFriendsMortalEnemy = bestElfFriend.member("enemyYo", ofType: Cerberus.self)
+            let bestElfFriendsMortalEnemy = bestElfFriend.member(.birthdate, ofType: Cerberus.self)
 
             !bestElfFriend.equalsNil &&
             bestElfFriend.equals(elf) &&
             bestElfFriendsMortalEnemy.date(.birthdate).equals(enemyBirthdate) &&
             bestElfFriend.string(.title).equals(elfName)
         }
-        XCTAssertEqual(predicate.predicateFormat, NSPredicate(format: "!(bestElfFriend == nil) && bestElfFriend == %@ && bestElfFriend.enemyYo.birthdate == %@ && bestElfFriend.title == %@", elf, enemyBirthdate, elfName).predicateFormat)
+        XCTAssertEqual(predicate.predicateFormat, NSPredicate(format: "!(bestElfFriend == nil) && bestElfFriend == %@ && bestElfFriend.birthdate.birthdate == %@ && bestElfFriend.title == %@", elf, enemyBirthdate, elfName).predicateFormat)
     }
     
     func testSimpleANDIncluderCombination() {
