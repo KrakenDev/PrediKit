@@ -13,6 +13,7 @@ extension Selector {
         case title
         case birthdate
         case age
+        case bestElfFriend
         case friends
         case subordinates
         case isAwesome
@@ -28,6 +29,7 @@ extension Selector {
     static let age = Selector(.age)
     static let subordinates = Selector(.subordinates)
     static let friends = Selector(.friends)
+    static let bestElfFriend = Selector(.bestElfFriend)
     static let isAwesome = Selector(.isAwesome)
     static let isHungry = Selector(.isHungry)
 }
