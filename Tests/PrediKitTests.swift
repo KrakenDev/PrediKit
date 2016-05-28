@@ -185,6 +185,22 @@ class PrediKitTests: XCTestCase {
         XCTAssertEqual(match(avg(.IsGreaterThanOrEqualTo(0))).collectionQuery, "@avg >= 0")
     }
     
+    func testMemberIncluders() {
+        let elf = Elf()
+        let elfName = "Aragorn"
+        let enemyBirthdate = NSDate()
+        let predicate = NSPredicate(Kraken.self) { includeIf in
+            let bestElfFriend = includeIf.member(.bestElfFriend, ofType: Elf.self)
+            let bestElfFriendsMortalEnemy = bestElfFriend.member("enemyYo", ofType: Cerberus.self)
+
+            !bestElfFriend.equalsNil &&
+            bestElfFriend.equals(elf) &&
+            bestElfFriendsMortalEnemy.date(.birthdate).equals(enemyBirthdate) &&
+            bestElfFriend.string(.title).equals(elfName)
+        }
+        XCTAssertEqual(predicate.predicateFormat, NSPredicate(format: "!(bestElfFriend == nil) && bestElfFriend == %@ && bestElfFriend.enemyYo.birthdate == %@ && bestElfFriend.title == %@", elf, enemyBirthdate, elfName).predicateFormat)
+    }
+    
     func testSimpleANDIncluderCombination() {
         let theKrakensTitle = "The Almighty Kraken"
         let rightNow = NSDate()
@@ -321,6 +337,7 @@ class Kraken: NSObject {
     var age: Int64?
     var birthdate: NSDate?
     var isAwesome: Bool?
+    var bestElfFriend: Elf?
     var friends: [Cerberus]?
 }
 
@@ -334,4 +351,5 @@ class Cerberus: NSObject {
 
 class Elf: NSObject {
     var title: String?
+    var enemy: Cerberus?
 }

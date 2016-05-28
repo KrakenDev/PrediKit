@@ -183,7 +183,7 @@ public extension NSPredicate {
 public class PredicateBuilder<T: Reflectable> {
     private let type: T.Type
     private(set) var predicateString: String = ""
-    private(set) var arguments: [NSObject] = []
+    private(set) var arguments: [AnyObject] = []
     
     /**
      Used to indicate that you want to query the actual object checked when the predicate is run. Behaves like the `SELF` in the SQL-like query:
@@ -194,7 +194,7 @@ public class PredicateBuilder<T: Reflectable> {
         return PredicateQueryBuilder(builder: self, property: "SELF")
     }
     
-    init(type: T.Type) {
+    private init(type: T.Type) {
         self.type = type
     }
     
@@ -291,6 +291,26 @@ public class PredicateBuilder<T: Reflectable> {
      */
     public func collection(property: Selector, file: String = #file, line: Int = #line) -> PredicateSequenceQuery<T> {
         return PredicateSequenceQuery(builder: self, property: validatedProperty(property, file: file, line: line))
+    }
+    
+    /**
+     Describes a member with a custom type that belongs to class `T` that you want to query. Recursive since it returns an instance of PredicateMemberQuery that is a subclass of PredicateBuilder. For example, when creating a predicate for a specific custom type member:
+     
+         class Kraken: NSObject {
+             var friend: LegendaryCreature
+         }
+         NSPredicate(format: "friend == %@", legendaryCreature)
+     
+     The `property` parameter would be the "friend" in the example predicate format.
+     
+     - Parameters:
+     - property: The name of the property member in the class of type `T`
+     - memberType: The Reflectable type of the property member
+     - file: Name of the file the function is being called from. Defaults to `__FILE__`
+     - line: Number of the line the function is being called from. Defaults to `__LINE__`
+     */
+    public func member<U: protocol<Reflectable, AnyObject>>(property: Selector, ofType memberType: U.Type, file: String = __FILE__, line: Int = __LINE__) -> PredicateMemberQuery<T, U> {
+        return PredicateMemberQuery(builder: self, property: validatedProperty(property), memberType: memberType)
     }
     
     private func validatedProperty(property: Selector, file: String = #file, line: Int = #line) -> String {
@@ -845,6 +865,59 @@ public final class PredicateSubqueryBuilder<T: Reflectable>: PredicateBuilder<T>
     private override func validatedProperty(property: Selector, file: String, line: Int) -> String {
         let subqueryProperty = super.validatedProperty(property, file: file, line: line)
         return "$\(String(type))Item.\(subqueryProperty)"
+    }
+}
+
+// MARK: PredicateMemberBuilder
+/**
+A class that facilitates the creation of subqueries against `T`'s custom member properties.
+*/
+public final class PredicateMemberQuery<T: Reflectable, MemberType: protocol<Reflectable, AnyObject>>: PredicateBuilder<T> {
+    let builder: PredicateBuilder<T>
+    let memberType: MemberType.Type
+    let property: String
+    
+    override var predicateString: String {
+        didSet { builder.predicateString = predicateString }
+    }
+
+    override var arguments: [AnyObject] {
+        didSet { builder.arguments.appendContentsOf(arguments) }
+    }
+    
+    /**
+     Creates an includer that determines if the property being queried is nil.
+     */
+    public var equalsNil: FinalizedPredicateQuery<T> {
+        builder.predicateString = "\(property) == nil"
+        return FinalizedPredicateQuery(builder: builder)
+    }
+
+    private init(builder: PredicateBuilder<T>, property: String, memberType: MemberType.Type) {
+        self.builder = builder
+        self.memberType = memberType
+        self.property = property
+
+        super.init(type: builder.type)
+    }
+    
+    /**
+     Creates an includer that determines if the property being queried is equivalent to an object of the same type as the property queried.
+     */
+    public func equals(object: MemberType) -> FinalizedPredicateQuery<T> {
+        builder.predicateString = "\(property) == %@"
+        builder.arguments.append(object)
+        return FinalizedPredicateQuery(builder: builder)
+    }
+
+    private override func validatedProperty(property: Selector, file: String = #file, line: Int = #line) -> String {
+        if !memberType.properties().contains(property) && self.memberType != NSObject.self {
+            #if DEBUG
+                print("\(String(type)) does not seem to contain property \"\(property)\". This could be due to the optionality of a value type. Possible property key values:\n\(type.properties()).\nWarning in file:\(file) at line \(line)")
+            #endif
+        }
+        
+        return "\(self.property).\(String(property))"
     }
 }
 
