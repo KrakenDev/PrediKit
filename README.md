@@ -100,10 +100,40 @@ let predicate = NSPredicate(ManagedLegend.self) { includeIf in
     includeIf.string("title").equals("The Almighty Kraken")
 }
 ```
+
 To check if a property is nil:
+
 ```swift
 let predicate = NSPredicate(ManagedLegend.self) { includeIf in
     includeIf.string("title").equalsNil
+}
+```
+
+PrediKit can also query member properties. Say you have a class structure like this:
+
+```swift
+class Captain: NSObject {
+    var name: String
+}
+class Ship: NSObject {
+    var captain: Captain
+}
+```
+
+And you want to create these predicates:
+
+```swift
+let someCaptain = Captain()
+NSPredicate(format: "captain == %@ && captain.name == 'Chief Supreme'", someCaptain)
+```
+
+Creating the above with PrediKit is easy and expressive:
+
+```swift
+let someCaptain = Captain()
+let predicate = NSPredicate(Ship.self) { includeIf
+    includeIf.member("captain", ofType: Captain.self).equals(someCaptain) &&
+    includeIf.member("captain", ofType: Captain.self).string("name").equals("Chief Supreme")
 }
 ```
 
