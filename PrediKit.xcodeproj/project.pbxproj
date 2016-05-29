@@ -8,8 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		287D0A6E1C4B73BD004566D6 /* PrediKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */; };
-		28F828811C494B2C00330CF4 /* PrediKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 28F828801C494B2C00330CF4 /* PrediKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		28F828811C494B2C00330CF4 /* PrediKit-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 28F828801C494B2C00330CF4 /* PrediKit-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28F828881C494B2C00330CF4 /* PrediKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* PrediKit.framework */; };
+		5DAF1EAE1CFA9619006BAD71 /* PrediKit-OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DAF1EAD1CFA9619006BAD71 /* PrediKit-OSX.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5DAF1EB51CFA9619006BAD71 /* PrediKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAF1EAB1CFA9619006BAD71 /* PrediKit.framework */; };
+		5DAF1EC21CFA97C9006BAD71 /* PrediKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */; };
+		5DAF1EC31CFA97C9006BAD71 /* Selector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */; };
+		5DAF1EC41CFA97CE006BAD71 /* PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95B1CEA6D9D00C01903 /* PrediKit.swift */; };
 		5DDAE95C1CEA6D9D00C01903 /* PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95B1CEA6D9D00C01903 /* PrediKit.swift */; };
 		5DDAE95E1CEA6F1100C01903 /* Selector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */; };
 /* End PBXBuildFile section */
@@ -22,15 +27,27 @@
 			remoteGlobalIDString = 28F8287C1C494B2C00330CF4;
 			remoteInfo = PrediKit;
 		};
+		5DAF1EB61CFA9619006BAD71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28F828741C494B2C00330CF4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DAF1EAA1CFA9619006BAD71;
+			remoteInfo = "PrediKit-OSX";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrediKitTests.swift; path = Tests/PrediKitTests.swift; sourceTree = SOURCE_ROOT; };
 		28F8287D1C494B2C00330CF4 /* PrediKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrediKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		28F828801C494B2C00330CF4 /* PrediKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrediKit.h; sourceTree = "<group>"; };
-		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		28F828871C494B2C00330CF4 /* PrediKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrediKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		28F8288E1C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = "<group>"; };
+		28F828801C494B2C00330CF4 /* PrediKit-iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PrediKit-iOS.h"; path = "../PrediKit-iOS/PrediKit-iOS.h"; sourceTree = "<group>"; };
+		28F828821C494B2C00330CF4 /* iOSInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = iOSInfo.plist; path = "../PrediKit-iOS/iOSInfo.plist"; sourceTree = "<group>"; };
+		28F828871C494B2C00330CF4 /* PrediKit-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrediKit-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		28F8288E1C494B2C00330CF4 /* iOSTestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = iOSTestsInfo.plist; path = "PrediKit-iOS/iOSTestsInfo.plist"; sourceTree = SOURCE_ROOT; };
+		5DAF1EAB1CFA9619006BAD71 /* PrediKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrediKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAF1EAD1CFA9619006BAD71 /* PrediKit-OSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PrediKit-OSX.h"; sourceTree = "<group>"; };
+		5DAF1EAF1CFA9619006BAD71 /* OSXInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = OSXInfo.plist; sourceTree = "<group>"; };
+		5DAF1EB41CFA9619006BAD71 /* PrediKit-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrediKit-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAF1EBB1CFA9619006BAD71 /* OSXTestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = OSXTestsInfo.plist; sourceTree = "<group>"; };
 		5DDAE95B1CEA6D9D00C01903 /* PrediKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrediKit.swift; sourceTree = "<group>"; };
 		5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Selector+Extension.swift"; path = "Tests/Selector+Extension.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -51,6 +68,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5DAF1EA71CFA9619006BAD71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EB11CFA9619006BAD71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAF1EB51CFA9619006BAD71 /* PrediKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -58,8 +90,9 @@
 			isa = PBXGroup;
 			children = (
 				28F828971C494B4200330CF4 /* Sources */,
-				28F8287F1C494B2C00330CF4 /* PrediKit */,
 				28F8288B1C494B2C00330CF4 /* Tests */,
+				28F8287F1C494B2C00330CF4 /* PrediKit-iOS */,
+				5DAF1EAC1CFA9619006BAD71 /* PrediKit-OSX */,
 				28F8287E1C494B2C00330CF4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,24 +101,27 @@
 			isa = PBXGroup;
 			children = (
 				28F8287D1C494B2C00330CF4 /* PrediKit.framework */,
-				28F828871C494B2C00330CF4 /* PrediKitTests.xctest */,
+				28F828871C494B2C00330CF4 /* PrediKit-iOSTests.xctest */,
+				5DAF1EAB1CFA9619006BAD71 /* PrediKit.framework */,
+				5DAF1EB41CFA9619006BAD71 /* PrediKit-OSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		28F8287F1C494B2C00330CF4 /* PrediKit */ = {
+		28F8287F1C494B2C00330CF4 /* PrediKit-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				28F828801C494B2C00330CF4 /* PrediKit.h */,
-				28F828821C494B2C00330CF4 /* Info.plist */,
+				28F828801C494B2C00330CF4 /* PrediKit-iOS.h */,
+				28F828821C494B2C00330CF4 /* iOSInfo.plist */,
+				28F8288E1C494B2C00330CF4 /* iOSTestsInfo.plist */,
 			);
+			name = "PrediKit-iOS";
 			path = PrediKit;
 			sourceTree = "<group>";
 		};
 		28F8288B1C494B2C00330CF4 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				28F8288E1C494B2C00330CF4 /* Info.plist */,
 				287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */,
 				5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */,
 			);
@@ -101,6 +137,16 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		5DAF1EAC1CFA9619006BAD71 /* PrediKit-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				5DAF1EAD1CFA9619006BAD71 /* PrediKit-OSX.h */,
+				5DAF1EAF1CFA9619006BAD71 /* OSXInfo.plist */,
+				5DAF1EBB1CFA9619006BAD71 /* OSXTestsInfo.plist */,
+			);
+			path = "PrediKit-OSX";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -108,16 +154,24 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28F828811C494B2C00330CF4 /* PrediKit.h in Headers */,
+				28F828811C494B2C00330CF4 /* PrediKit-iOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EA81CFA9619006BAD71 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAF1EAE1CFA9619006BAD71 /* PrediKit-OSX.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		28F8287C1C494B2C00330CF4 /* PrediKit */ = {
+		28F8287C1C494B2C00330CF4 /* PrediKit-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28F828911C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit" */;
+			buildConfigurationList = 28F828911C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit-iOS" */;
 			buildPhases = (
 				28F828781C494B2C00330CF4 /* Sources */,
 				28F828791C494B2C00330CF4 /* Frameworks */,
@@ -128,14 +182,14 @@
 			);
 			dependencies = (
 			);
-			name = PrediKit;
+			name = "PrediKit-iOS";
 			productName = PrediKit;
 			productReference = 28F8287D1C494B2C00330CF4 /* PrediKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		28F828861C494B2C00330CF4 /* PrediKitTests */ = {
+		28F828861C494B2C00330CF4 /* PrediKit-iOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28F828941C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKitTests" */;
+			buildConfigurationList = 28F828941C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit-iOSTests" */;
 			buildPhases = (
 				28F828831C494B2C00330CF4 /* Sources */,
 				28F828841C494B2C00330CF4 /* Frameworks */,
@@ -146,9 +200,45 @@
 			dependencies = (
 				28F8288A1C494B2C00330CF4 /* PBXTargetDependency */,
 			);
-			name = PrediKitTests;
+			name = "PrediKit-iOSTests";
 			productName = PrediKitTests;
-			productReference = 28F828871C494B2C00330CF4 /* PrediKitTests.xctest */;
+			productReference = 28F828871C494B2C00330CF4 /* PrediKit-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5DAF1EAA1CFA9619006BAD71 /* PrediKit-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DAF1EBC1CFA9619006BAD71 /* Build configuration list for PBXNativeTarget "PrediKit-OSX" */;
+			buildPhases = (
+				5DAF1EA61CFA9619006BAD71 /* Sources */,
+				5DAF1EA71CFA9619006BAD71 /* Frameworks */,
+				5DAF1EA81CFA9619006BAD71 /* Headers */,
+				5DAF1EA91CFA9619006BAD71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PrediKit-OSX";
+			productName = "PrediKit-OSX";
+			productReference = 5DAF1EAB1CFA9619006BAD71 /* PrediKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5DAF1EB31CFA9619006BAD71 /* PrediKit-OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DAF1EBF1CFA9619006BAD71 /* Build configuration list for PBXNativeTarget "PrediKit-OSXTests" */;
+			buildPhases = (
+				5DAF1EB01CFA9619006BAD71 /* Sources */,
+				5DAF1EB11CFA9619006BAD71 /* Frameworks */,
+				5DAF1EB21CFA9619006BAD71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5DAF1EB71CFA9619006BAD71 /* PBXTargetDependency */,
+			);
+			name = "PrediKit-OSXTests";
+			productName = "PrediKit-OSXTests";
+			productReference = 5DAF1EB41CFA9619006BAD71 /* PrediKit-OSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -166,6 +256,12 @@
 					28F828861C494B2C00330CF4 = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					5DAF1EAA1CFA9619006BAD71 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					5DAF1EB31CFA9619006BAD71 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 28F828771C494B2C00330CF4 /* Build configuration list for PBXProject "PrediKit" */;
@@ -180,8 +276,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				28F8287C1C494B2C00330CF4 /* PrediKit */,
-				28F828861C494B2C00330CF4 /* PrediKitTests */,
+				28F8287C1C494B2C00330CF4 /* PrediKit-iOS */,
+				28F828861C494B2C00330CF4 /* PrediKit-iOSTests */,
+				5DAF1EAA1CFA9619006BAD71 /* PrediKit-OSX */,
+				5DAF1EB31CFA9619006BAD71 /* PrediKit-OSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -195,6 +293,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		28F828851C494B2C00330CF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EA91CFA9619006BAD71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EB21CFA9619006BAD71 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -221,13 +333,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5DAF1EA61CFA9619006BAD71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAF1EC41CFA97CE006BAD71 /* PrediKit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EB01CFA9619006BAD71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAF1EC31CFA97C9006BAD71 /* Selector+Extension.swift in Sources */,
+				5DAF1EC21CFA97C9006BAD71 /* PrediKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		28F8288A1C494B2C00330CF4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 28F8287C1C494B2C00330CF4 /* PrediKit */;
+			target = 28F8287C1C494B2C00330CF4 /* PrediKit-iOS */;
 			targetProxy = 28F828891C494B2C00330CF4 /* PBXContainerItemProxy */;
+		};
+		5DAF1EB71CFA9619006BAD71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DAF1EAA1CFA9619006BAD71 /* PrediKit-OSX */;
+			targetProxy = 5DAF1EB61CFA9619006BAD71 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -330,13 +464,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = PrediKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PrediKit-iOS/iOSInfo.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.KrakenDev.PrediKit.PrediKit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-iOS";
+				PRODUCT_NAME = PrediKit;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -351,13 +485,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = PrediKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PrediKit-iOS/iOSInfo.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.KrakenDev.PrediKit.PrediKit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-iOS";
+				PRODUCT_NAME = PrediKit;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -366,7 +500,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PrediKit-iOS/iOSTestsInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KrakenDev.PrediKit.PrediKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -378,10 +512,84 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PrediKit-iOS/iOSTestsInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KrakenDev.PrediKit.PrediKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5DAF1EBD1CFA9619006BAD71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/PrediKit-OSX/OSXInfo.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSX";
+				PRODUCT_NAME = PrediKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		5DAF1EBE1CFA9619006BAD71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/PrediKit-OSX/OSXInfo.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSX";
+				PRODUCT_NAME = PrediKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		5DAF1EC01CFA9619006BAD71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/PrediKit-OSX/OSXTestsInfo.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSXTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5DAF1EC11CFA9619006BAD71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/PrediKit-OSX/OSXTestsInfo.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSXTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -397,7 +605,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		28F828911C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit" */ = {
+		28F828911C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28F828921C494B2C00330CF4 /* Debug */,
@@ -406,7 +614,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		28F828941C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKitTests" */ = {
+		28F828941C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit-iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28F828951C494B2C00330CF4 /* Debug */,
@@ -414,6 +622,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		5DAF1EBC1CFA9619006BAD71 /* Build configuration list for PBXNativeTarget "PrediKit-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAF1EBD1CFA9619006BAD71 /* Debug */,
+				5DAF1EBE1CFA9619006BAD71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5DAF1EBF1CFA9619006BAD71 /* Build configuration list for PBXNativeTarget "PrediKit-OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAF1EC01CFA9619006BAD71 /* Debug */,
+				5DAF1EC11CFA9619006BAD71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

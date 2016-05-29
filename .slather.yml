@@ -1,5 +1,7 @@
 coverage_service: coveralls
 xcodeproj: PrediKit.xcodeproj
-scheme: PrediKit
+source_directory: Sources
 ignore:
   - Tests/*
+  - PrediKit-iOS/*
+  - PrediKit-OSX/*
