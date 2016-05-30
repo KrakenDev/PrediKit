@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- A class that facilitates the creation of subqueries against `T`'s `CollectionType` properties. Used in tandem with the `PredicateSequenceQuery<T>` class.
+ A class that facilitates the creation of subqueries against `T`'s `CollectionType` properties. Used in tandem with the `SequenceQuery<T>` class.
  */
 public final class PredicateSubqueryBuilder<T: Reflectable>: PredicateBuilder<T> {
     override init(type: T.Type) {
