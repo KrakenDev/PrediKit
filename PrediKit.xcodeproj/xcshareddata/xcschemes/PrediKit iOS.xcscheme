@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
                BuildableName = "PrediKit.framework"
-               BlueprintName = "PrediKit"
+               BlueprintName = "PrediKit iOS"
                ReferencedContainer = "container:PrediKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,8 +34,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "28F828861C494B2C00330CF4"
-               BuildableName = "PrediKitTests.xctest"
-               BlueprintName = "PrediKitTests"
+               BuildableName = "PrediKit iOSTests.xctest"
+               BlueprintName = "PrediKit iOSTests"
                ReferencedContainer = "container:PrediKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -45,7 +45,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
             BuildableName = "PrediKit.framework"
-            BlueprintName = "PrediKit"
+            BlueprintName = "PrediKit iOS"
             ReferencedContainer = "container:PrediKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -67,7 +67,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
             BuildableName = "PrediKit.framework"
-            BlueprintName = "PrediKit"
+            BlueprintName = "PrediKit iOS"
             ReferencedContainer = "container:PrediKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -85,7 +85,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
             BuildableName = "PrediKit.framework"
-            BlueprintName = "PrediKit"
+            BlueprintName = "PrediKit iOS"
             ReferencedContainer = "container:PrediKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

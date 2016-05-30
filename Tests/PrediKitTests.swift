@@ -23,6 +23,7 @@ class PrediKitTests: XCTestCase {
     func testCommonIncluders() {
         let legendaryArray = ["Kraken", "Kraken", "Kraken", "Kraken", "Cthulhu", "Voldemort", "Ember", "Umber", "Voldemort"]
         let legendarySet: Set<String> = ["Kraken", "Kraken", "Kraken", "Kraken", "Cthulhu", "Voldemort", "Ember", "Umber", "Voldemort"]
+        let foundationArray: NSArray = ["Kraken", "Kraken", "Kraken", "Kraken", "Cthulhu", "Voldemort", "Ember", "Umber", "Voldemort"]
         
         let _ = NSPredicate(Kraken.self) { includeIf in
             includeIf.SELF.equalsNil
@@ -35,7 +36,11 @@ class PrediKitTests: XCTestCase {
             XCTAssertEqual(includeIf.predicateString, "SELF IN %@")
             includeIf.SELF.matchesAnyValueIn(legendarySet)
             XCTAssertEqual(includeIf.predicateString, "SELF IN %@")
+            includeIf.member(.bestElfFriend, ofType: Elf.self).matchesAnyValueIn(legendaryArray)
+            XCTAssertEqual(includeIf.predicateString, "bestElfFriend IN %@")
             includeIf.string(.title).matchesAnyValueIn(legendaryArray)
+            XCTAssertEqual(includeIf.predicateString, "title IN %@")
+            includeIf.string(.title).matchesAnyValueIn(foundationArray)
             XCTAssertEqual(includeIf.predicateString, "title IN %@")
         }
     }
@@ -155,29 +160,29 @@ class PrediKitTests: XCTestCase {
     }
     
     func testSubqueryReturnTypeStrings() {
-        let match = SubqueryMatch.IncludeIfMatched
-        let amount = SubqueryMatch.MatchType.Amount
+        let match = MatchType.IncludeIfMatched
+        let amount = MatchType.FunctionType.Amount
         XCTAssertEqual(match(amount(.Equals(0))).collectionQuery, "@count == 0")
         XCTAssertEqual(match(amount(.IsLessThan(0))).collectionQuery, "@count < 0")
         XCTAssertEqual(match(amount(.IsLessThanOrEqualTo(0))).collectionQuery, "@count <= 0")
         XCTAssertEqual(match(amount(.IsGreaterThan(0))).collectionQuery, "@count > 0")
         XCTAssertEqual(match(amount(.IsGreaterThanOrEqualTo(0))).collectionQuery, "@count >= 0")
 
-        let min = SubqueryMatch.MatchType.MinValue
+        let min = MatchType.FunctionType.MinValue
         XCTAssertEqual(match(min(.Equals(0))).collectionQuery, "@min == 0")
         XCTAssertEqual(match(min(.IsLessThan(0))).collectionQuery, "@min < 0")
         XCTAssertEqual(match(min(.IsLessThanOrEqualTo(0))).collectionQuery, "@min <= 0")
         XCTAssertEqual(match(min(.IsGreaterThan(0))).collectionQuery, "@min > 0")
         XCTAssertEqual(match(min(.IsGreaterThanOrEqualTo(0))).collectionQuery, "@min >= 0")
 
-        let max = SubqueryMatch.MatchType.MaxValue
+        let max = MatchType.FunctionType.MaxValue
         XCTAssertEqual(match(max(.Equals(0))).collectionQuery, "@max == 0")
         XCTAssertEqual(match(max(.IsLessThan(0))).collectionQuery, "@max < 0")
         XCTAssertEqual(match(max(.IsLessThanOrEqualTo(0))).collectionQuery, "@max <= 0")
         XCTAssertEqual(match(max(.IsGreaterThan(0))).collectionQuery, "@max > 0")
         XCTAssertEqual(match(max(.IsGreaterThanOrEqualTo(0))).collectionQuery, "@max >= 0")
 
-        let avg = SubqueryMatch.MatchType.AverageValue
+        let avg = MatchType.FunctionType.AverageValue
         XCTAssertEqual(match(avg(.Equals(0))).collectionQuery, "@avg == 0")
         XCTAssertEqual(match(avg(.IsLessThan(0))).collectionQuery, "@avg < 0")
         XCTAssertEqual(match(avg(.IsLessThanOrEqualTo(0))).collectionQuery, "@avg <= 0")
@@ -191,14 +196,14 @@ class PrediKitTests: XCTestCase {
         let enemyBirthdate = NSDate()
         let predicate = NSPredicate(Kraken.self) { includeIf in
             let bestElfFriend = includeIf.member(.bestElfFriend, ofType: Elf.self)
-            let bestElfFriendsMortalEnemy = bestElfFriend.member("enemyYo", ofType: Cerberus.self)
+            let bestElfFriendsMortalEnemy = bestElfFriend.member(.birthdate, ofType: Cerberus.self)
 
             !bestElfFriend.equalsNil &&
             bestElfFriend.equals(elf) &&
             bestElfFriendsMortalEnemy.date(.birthdate).equals(enemyBirthdate) &&
             bestElfFriend.string(.title).equals(elfName)
         }
-        XCTAssertEqual(predicate.predicateFormat, NSPredicate(format: "!(bestElfFriend == nil) && bestElfFriend == %@ && bestElfFriend.enemyYo.birthdate == %@ && bestElfFriend.title == %@", elf, enemyBirthdate, elfName).predicateFormat)
+        XCTAssertEqual(predicate.predicateFormat, NSPredicate(format: "!(bestElfFriend == nil) && bestElfFriend == %@ && bestElfFriend.birthdate.birthdate == %@ && bestElfFriend.title == %@", elf, enemyBirthdate, elfName).predicateFormat)
     }
     
     func testSimpleANDIncluderCombination() {
@@ -309,13 +314,20 @@ class PrediKitTests: XCTestCase {
                     includeIf.string(.title).equals(theElfTitle)
                     return .IncludeIfMatched(.Amount(.IsGreaterThan(0)))
                 }
+                let hasCerberusSubordinates = includeIf.collection(.subordinates).subquery(Cerberus.self) { includeIf in
+                    let age = includeIf.number(.age).equals(age)
+                    let birthdate = includeIf.date(.birthdate).equals(rightNow)
+                    
+                    birthdate || age
+                    return .IncludeIfMatched(.Amount(.IsGreaterThan(0)))
+                }
                 
-                isTheKraken || isBirthedToday || isHungry || (isOlderThan5AndAHalf && !hasElfSubordinates)
+                isTheKraken || isOlderThan5AndAHalf || isHungry || (isBirthedToday && !hasElfSubordinates && hasCerberusSubordinates)
                 
                 return .IncludeIfMatched(.Amount(.Equals(0)))
             }
         }
-        let expectedPredicate = NSPredicate(format: "SUBQUERY(friends, $CerberusItem, $CerberusItem.title == \"The Almighty Kraken\" OR $CerberusItem.birthdate == %@ OR $CerberusItem.isHungry == true OR ($CerberusItem.age > \(age) AND (NOT SUBQUERY($CerberusItem.subordinates, $ElfItem, $ElfItem.title == \"The Lowly Elf\").@count > 0))).@count == 0", rightNow)
+        let expectedPredicate = NSPredicate(format: "SUBQUERY(friends, $CerberusItem, $CerberusItem.title == \"The Almighty Kraken\" OR $CerberusItem.age > \(age) OR $CerberusItem.isHungry == true OR ($CerberusItem.birthdate == %@ AND (NOT SUBQUERY($CerberusItem.subordinates, $ElfItem, $ElfItem.title == \"The Lowly Elf\").@count > 0) && SUBQUERY($CerberusItem.subordinates, $CerberusItem, $CerberusItem.birthdate == %@ || $CerberusItem.age == \(age)).@count > 0)).@count == 0", rightNow, rightNow)
         XCTAssertEqual(predicate.predicateFormat, expectedPredicate.predicateFormat)
     }
     
@@ -328,6 +340,19 @@ class PrediKitTests: XCTestCase {
         let combinedORPredicate = firstPredicate || secondPredicate
         XCTAssertEqual(combinedANDPredicate.predicateFormat, "(title == \"The Almighty Kraken\" AND birthdate == \"October 4\") AND (isAwesome == 1 AND isHungry == 1)")
         XCTAssertEqual(combinedORPredicate.predicateFormat, "(title == \"The Almighty Kraken\" AND birthdate == \"October 4\") OR (isAwesome == 1 AND isHungry == 1)")
+    }
+    
+    func testNSArrayCollectionTypeConformance() {
+        let foundationArray: NSArray = ["Kraken", "Cthulhu", "Voldemort", "Ember", "Umber", "Aslan"]
+        let arraySliceIndex0To1: NSArray = ["Kraken", "Cthulhu"]
+        let arraySliceIndex1ToLessThan4: NSArray = ["Cthulhu", "Voldemort", "Ember"]
+        let arraySliceIndex2To5: NSArray = ["Voldemort", "Ember", "Umber", "Aslan"]
+
+        XCTAssertEqual(foundationArray.startIndex, 0)
+        XCTAssertEqual(foundationArray.endIndex, 6)
+        XCTAssertEqual(foundationArray[0...1], arraySliceIndex0To1)
+        XCTAssertEqual(foundationArray[1..<4], arraySliceIndex1ToLessThan4)
+        XCTAssertEqual(foundationArray[2...5], arraySliceIndex2To5)
     }
 }
 

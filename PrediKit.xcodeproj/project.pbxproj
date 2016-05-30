@@ -8,9 +8,95 @@
 
 /* Begin PBXBuildFile section */
 		287D0A6E1C4B73BD004566D6 /* PrediKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */; };
-		28F828811C494B2C00330CF4 /* PrediKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 28F828801C494B2C00330CF4 /* PrediKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28F828881C494B2C00330CF4 /* PrediKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* PrediKit.framework */; };
-		5DDAE95C1CEA6D9D00C01903 /* PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95B1CEA6D9D00C01903 /* PrediKit.swift */; };
+		5DAE5D451CFC6D130029355E /* PrediKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DAE5D3E1CFC6D130029355E /* PrediKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5DAE5D491CFC6EE60029355E /* PrediKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DAE5D421CFC6D130029355E /* PrediKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5DAE5D871CFC7D590029355E /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7B1CFC7D590029355E /* Matchable.swift */; };
+		5DAE5D881CFC7D590029355E /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7B1CFC7D590029355E /* Matchable.swift */; };
+		5DAE5D891CFC7D590029355E /* NilComparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7C1CFC7D590029355E /* NilComparable.swift */; };
+		5DAE5D8A1CFC7D590029355E /* NilComparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7C1CFC7D590029355E /* NilComparable.swift */; };
+		5DAE5D8B1CFC7D590029355E /* Queryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7D1CFC7D590029355E /* Queryable.swift */; };
+		5DAE5D8C1CFC7D590029355E /* Queryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7D1CFC7D590029355E /* Queryable.swift */; };
+		5DAE5D8D1CFC7D590029355E /* Reflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7E1CFC7D590029355E /* Reflectable.swift */; };
+		5DAE5D8E1CFC7D590029355E /* Reflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7E1CFC7D590029355E /* Reflectable.swift */; };
+		5DAE5D8F1CFC7D590029355E /* BasicQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D801CFC7D590029355E /* BasicQuery.swift */; };
+		5DAE5D901CFC7D590029355E /* BasicQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D801CFC7D590029355E /* BasicQuery.swift */; };
+		5DAE5D911CFC7D590029355E /* BooleanQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D811CFC7D590029355E /* BooleanQuery.swift */; };
+		5DAE5D921CFC7D590029355E /* BooleanQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D811CFC7D590029355E /* BooleanQuery.swift */; };
+		5DAE5D931CFC7D590029355E /* DateQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D821CFC7D590029355E /* DateQuery.swift */; };
+		5DAE5D941CFC7D590029355E /* DateQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D821CFC7D590029355E /* DateQuery.swift */; };
+		5DAE5D951CFC7D590029355E /* MemberQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D831CFC7D590029355E /* MemberQuery.swift */; };
+		5DAE5D961CFC7D590029355E /* MemberQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D831CFC7D590029355E /* MemberQuery.swift */; };
+		5DAE5D971CFC7D590029355E /* NumberQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D841CFC7D590029355E /* NumberQuery.swift */; };
+		5DAE5D981CFC7D590029355E /* NumberQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D841CFC7D590029355E /* NumberQuery.swift */; };
+		5DAE5D991CFC7D590029355E /* SequenceQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D851CFC7D590029355E /* SequenceQuery.swift */; };
+		5DAE5D9A1CFC7D590029355E /* SequenceQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D851CFC7D590029355E /* SequenceQuery.swift */; };
+		5DAE5D9B1CFC7D590029355E /* StringQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D861CFC7D590029355E /* StringQuery.swift */; };
+		5DAE5D9C1CFC7D590029355E /* StringQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D861CFC7D590029355E /* StringQuery.swift */; };
+		5DAE5DA11CFC7DAE0029355E /* FinalizedIncluder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D9E1CFC7DAE0029355E /* FinalizedIncluder.swift */; };
+		5DAE5DA21CFC7DAE0029355E /* FinalizedIncluder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D9E1CFC7DAE0029355E /* FinalizedIncluder.swift */; };
+		5DAE5DA31CFC7DAE0029355E /* PredicateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D9F1CFC7DAE0029355E /* PredicateBuilder.swift */; };
+		5DAE5DA41CFC7DAE0029355E /* PredicateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D9F1CFC7DAE0029355E /* PredicateBuilder.swift */; };
+		5DAE5DA51CFC7DAE0029355E /* PredicateSubqueryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DA01CFC7DAE0029355E /* PredicateSubqueryBuilder.swift */; };
+		5DAE5DA61CFC7DAE0029355E /* PredicateSubqueryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DA01CFC7DAE0029355E /* PredicateSubqueryBuilder.swift */; };
+		5DAE5DA91CFC7DDA0029355E /* NSPredicate+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DA81CFC7DDA0029355E /* NSPredicate+PrediKit.swift */; };
+		5DAE5DAA1CFC7DDA0029355E /* NSPredicate+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DA81CFC7DDA0029355E /* NSPredicate+PrediKit.swift */; };
+		5DAE5DAE1CFC7E1E0029355E /* PredicateOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAC1CFC7E1E0029355E /* PredicateOptions.swift */; };
+		5DAE5DAF1CFC7E1E0029355E /* PredicateOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAC1CFC7E1E0029355E /* PredicateOptions.swift */; };
+		5DAE5DB01CFC7E1E0029355E /* SubqueryMatchTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */; };
+		5DAE5DB11CFC7E1E0029355E /* SubqueryMatchTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */; };
+		5DAE5DB31CFC80260029355E /* NSArray+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */; };
+		5DAE5DB41CFC80260029355E /* NSArray+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */; };
+		5DAE5DD51CFC909D0029355E /* PrediKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAE5DCB1CFC909C0029355E /* PrediKit.framework */; };
+		5DAE5DE91CFC91440029355E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE31CFC91440029355E /* Info.plist */; };
+		5DAE5DEA1CFC91440029355E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE31CFC91440029355E /* Info.plist */; };
+		5DAE5DED1CFC91440029355E /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE51CFC91440029355E /* TestsInfo.plist */; };
+		5DAE5DEE1CFC91440029355E /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE51CFC91440029355E /* TestsInfo.plist */; };
+		5DAE5DEF1CFC91440029355E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE71CFC91440029355E /* Info.plist */; };
+		5DAE5DF01CFC91440029355E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE71CFC91440029355E /* Info.plist */; };
+		5DAE5DF31CFC917D0029355E /* PrediKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DAE5DE81CFC91440029355E /* PrediKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5DAE5DF41CFC918C0029355E /* PrediKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DAE5DE41CFC91440029355E /* PrediKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5DAE5DF51CFC91D50029355E /* PrediKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */; };
+		5DAE5DF61CFC91D50029355E /* Selector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */; };
+		5DAE5DF71CFC91E40029355E /* NSPredicate+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DA81CFC7DDA0029355E /* NSPredicate+PrediKit.swift */; };
+		5DAE5DF81CFC91E40029355E /* NSArray+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */; };
+		5DAE5DF91CFC91E40029355E /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7B1CFC7D590029355E /* Matchable.swift */; };
+		5DAE5DFA1CFC91E40029355E /* NilComparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7C1CFC7D590029355E /* NilComparable.swift */; };
+		5DAE5DFB1CFC91E40029355E /* Queryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7D1CFC7D590029355E /* Queryable.swift */; };
+		5DAE5DFC1CFC91E40029355E /* Reflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7E1CFC7D590029355E /* Reflectable.swift */; };
+		5DAE5DFD1CFC91E40029355E /* FinalizedIncluder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D9E1CFC7DAE0029355E /* FinalizedIncluder.swift */; };
+		5DAE5DFE1CFC91E40029355E /* PredicateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D9F1CFC7DAE0029355E /* PredicateBuilder.swift */; };
+		5DAE5DFF1CFC91E40029355E /* PredicateSubqueryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DA01CFC7DAE0029355E /* PredicateSubqueryBuilder.swift */; };
+		5DAE5E001CFC91E40029355E /* BasicQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D801CFC7D590029355E /* BasicQuery.swift */; };
+		5DAE5E011CFC91E40029355E /* BooleanQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D811CFC7D590029355E /* BooleanQuery.swift */; };
+		5DAE5E021CFC91E40029355E /* DateQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D821CFC7D590029355E /* DateQuery.swift */; };
+		5DAE5E031CFC91E40029355E /* MemberQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D831CFC7D590029355E /* MemberQuery.swift */; };
+		5DAE5E041CFC91E40029355E /* NumberQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D841CFC7D590029355E /* NumberQuery.swift */; };
+		5DAE5E051CFC91E40029355E /* SequenceQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D851CFC7D590029355E /* SequenceQuery.swift */; };
+		5DAE5E061CFC91E40029355E /* StringQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D861CFC7D590029355E /* StringQuery.swift */; };
+		5DAE5E071CFC91E40029355E /* PredicateOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAC1CFC7E1E0029355E /* PredicateOptions.swift */; };
+		5DAE5E081CFC91E40029355E /* SubqueryMatchTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */; };
+		5DAE5E091CFC91E50029355E /* NSPredicate+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DA81CFC7DDA0029355E /* NSPredicate+PrediKit.swift */; };
+		5DAE5E0A1CFC91E50029355E /* NSArray+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */; };
+		5DAE5E0B1CFC91E50029355E /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7B1CFC7D590029355E /* Matchable.swift */; };
+		5DAE5E0C1CFC91E50029355E /* NilComparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7C1CFC7D590029355E /* NilComparable.swift */; };
+		5DAE5E0D1CFC91E50029355E /* Queryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7D1CFC7D590029355E /* Queryable.swift */; };
+		5DAE5E0E1CFC91E50029355E /* Reflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7E1CFC7D590029355E /* Reflectable.swift */; };
+		5DAE5E0F1CFC91E50029355E /* FinalizedIncluder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D9E1CFC7DAE0029355E /* FinalizedIncluder.swift */; };
+		5DAE5E101CFC91E50029355E /* PredicateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D9F1CFC7DAE0029355E /* PredicateBuilder.swift */; };
+		5DAE5E111CFC91E50029355E /* PredicateSubqueryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DA01CFC7DAE0029355E /* PredicateSubqueryBuilder.swift */; };
+		5DAE5E121CFC91E50029355E /* BasicQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D801CFC7D590029355E /* BasicQuery.swift */; };
+		5DAE5E131CFC91E50029355E /* BooleanQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D811CFC7D590029355E /* BooleanQuery.swift */; };
+		5DAE5E141CFC91E50029355E /* DateQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D821CFC7D590029355E /* DateQuery.swift */; };
+		5DAE5E151CFC91E50029355E /* MemberQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D831CFC7D590029355E /* MemberQuery.swift */; };
+		5DAE5E161CFC91E50029355E /* NumberQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D841CFC7D590029355E /* NumberQuery.swift */; };
+		5DAE5E171CFC91E50029355E /* SequenceQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D851CFC7D590029355E /* SequenceQuery.swift */; };
+		5DAE5E181CFC91E50029355E /* StringQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D861CFC7D590029355E /* StringQuery.swift */; };
+		5DAE5E191CFC91E50029355E /* PredicateOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAC1CFC7E1E0029355E /* PredicateOptions.swift */; };
+		5DAE5E1A1CFC91E50029355E /* SubqueryMatchTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */; };
+		5DAF1EB51CFA9619006BAD71 /* PrediKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAF1EAB1CFA9619006BAD71 /* PrediKit.framework */; };
+		5DAF1EC21CFA97C9006BAD71 /* PrediKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */; };
+		5DAF1EC31CFA97C9006BAD71 /* Selector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */; };
 		5DDAE95E1CEA6F1100C01903 /* Selector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,16 +108,60 @@
 			remoteGlobalIDString = 28F8287C1C494B2C00330CF4;
 			remoteInfo = PrediKit;
 		};
+		5DAE5DD61CFC909D0029355E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28F828741C494B2C00330CF4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DAE5DCA1CFC909C0029355E;
+			remoteInfo = "PrediKit-tvOS";
+		};
+		5DAF1EB61CFA9619006BAD71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28F828741C494B2C00330CF4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DAF1EAA1CFA9619006BAD71;
+			remoteInfo = "PrediKit-OSX";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrediKitTests.swift; path = Tests/PrediKitTests.swift; sourceTree = SOURCE_ROOT; };
 		28F8287D1C494B2C00330CF4 /* PrediKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrediKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		28F828801C494B2C00330CF4 /* PrediKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrediKit.h; sourceTree = "<group>"; };
-		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		28F828871C494B2C00330CF4 /* PrediKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrediKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		28F8288E1C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = "<group>"; };
-		5DDAE95B1CEA6D9D00C01903 /* PrediKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrediKit.swift; sourceTree = "<group>"; };
+		28F828871C494B2C00330CF4 /* PrediKit iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrediKit iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAE5D3C1CFC6D130029355E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DAE5D3D1CFC6D130029355E /* TestsInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestsInfo.plist; sourceTree = "<group>"; };
+		5DAE5D3E1CFC6D130029355E /* PrediKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrediKit.h; sourceTree = "<group>"; };
+		5DAE5D401CFC6D130029355E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DAE5D411CFC6D130029355E /* TestsInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestsInfo.plist; sourceTree = "<group>"; };
+		5DAE5D421CFC6D130029355E /* PrediKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrediKit.h; sourceTree = "<group>"; };
+		5DAE5D7B1CFC7D590029355E /* Matchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matchable.swift; sourceTree = "<group>"; };
+		5DAE5D7C1CFC7D590029355E /* NilComparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NilComparable.swift; sourceTree = "<group>"; };
+		5DAE5D7D1CFC7D590029355E /* Queryable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queryable.swift; sourceTree = "<group>"; };
+		5DAE5D7E1CFC7D590029355E /* Reflectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reflectable.swift; sourceTree = "<group>"; };
+		5DAE5D801CFC7D590029355E /* BasicQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicQuery.swift; sourceTree = "<group>"; };
+		5DAE5D811CFC7D590029355E /* BooleanQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanQuery.swift; sourceTree = "<group>"; };
+		5DAE5D821CFC7D590029355E /* DateQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateQuery.swift; sourceTree = "<group>"; };
+		5DAE5D831CFC7D590029355E /* MemberQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberQuery.swift; sourceTree = "<group>"; };
+		5DAE5D841CFC7D590029355E /* NumberQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberQuery.swift; sourceTree = "<group>"; };
+		5DAE5D851CFC7D590029355E /* SequenceQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceQuery.swift; sourceTree = "<group>"; };
+		5DAE5D861CFC7D590029355E /* StringQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringQuery.swift; sourceTree = "<group>"; };
+		5DAE5D9E1CFC7DAE0029355E /* FinalizedIncluder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalizedIncluder.swift; sourceTree = "<group>"; };
+		5DAE5D9F1CFC7DAE0029355E /* PredicateBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredicateBuilder.swift; sourceTree = "<group>"; };
+		5DAE5DA01CFC7DAE0029355E /* PredicateSubqueryBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredicateSubqueryBuilder.swift; sourceTree = "<group>"; };
+		5DAE5DA81CFC7DDA0029355E /* NSPredicate+PrediKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPredicate+PrediKit.swift"; sourceTree = "<group>"; };
+		5DAE5DAC1CFC7E1E0029355E /* PredicateOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredicateOptions.swift; sourceTree = "<group>"; };
+		5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubqueryMatchTypes.swift; sourceTree = "<group>"; };
+		5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+PrediKit.swift"; sourceTree = "<group>"; };
+		5DAE5DBE1CFC90430029355E /* PrediKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrediKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAE5DCB1CFC909C0029355E /* PrediKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrediKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAE5DD41CFC909D0029355E /* PrediKit tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrediKit tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAE5DE31CFC91440029355E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DAE5DE41CFC91440029355E /* PrediKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrediKit.h; sourceTree = "<group>"; };
+		5DAE5DE51CFC91440029355E /* TestsInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestsInfo.plist; sourceTree = "<group>"; };
+		5DAE5DE71CFC91440029355E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DAE5DE81CFC91440029355E /* PrediKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrediKit.h; sourceTree = "<group>"; };
+		5DAF1EAB1CFA9619006BAD71 /* PrediKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrediKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAF1EB41CFA9619006BAD71 /* PrediKit OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrediKit OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Selector+Extension.swift"; path = "Tests/Selector+Extension.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -51,6 +181,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5DAE5DBA1CFC90430029355E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAE5DC71CFC909C0029355E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAE5DD11CFC909D0029355E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAE5DD51CFC909D0029355E /* PrediKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EA71CFA9619006BAD71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EB11CFA9619006BAD71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAF1EB51CFA9619006BAD71 /* PrediKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -58,8 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				28F828971C494B4200330CF4 /* Sources */,
-				28F8287F1C494B2C00330CF4 /* PrediKit */,
 				28F8288B1C494B2C00330CF4 /* Tests */,
+				5DAE5D3A1CFC6D130029355E /* Supporting Files */,
 				28F8287E1C494B2C00330CF4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,24 +235,19 @@
 			isa = PBXGroup;
 			children = (
 				28F8287D1C494B2C00330CF4 /* PrediKit.framework */,
-				28F828871C494B2C00330CF4 /* PrediKitTests.xctest */,
+				28F828871C494B2C00330CF4 /* PrediKit iOSTests.xctest */,
+				5DAF1EAB1CFA9619006BAD71 /* PrediKit.framework */,
+				5DAF1EB41CFA9619006BAD71 /* PrediKit OSXTests.xctest */,
+				5DAE5DBE1CFC90430029355E /* PrediKit.framework */,
+				5DAE5DCB1CFC909C0029355E /* PrediKit.framework */,
+				5DAE5DD41CFC909D0029355E /* PrediKit tvOSTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		28F8287F1C494B2C00330CF4 /* PrediKit */ = {
-			isa = PBXGroup;
-			children = (
-				28F828801C494B2C00330CF4 /* PrediKit.h */,
-				28F828821C494B2C00330CF4 /* Info.plist */,
-			);
-			path = PrediKit;
 			sourceTree = "<group>";
 		};
 		28F8288B1C494B2C00330CF4 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				28F8288E1C494B2C00330CF4 /* Info.plist */,
 				287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */,
 				5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */,
 			);
@@ -96,9 +258,116 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				5DDAE95B1CEA6D9D00C01903 /* PrediKit.swift */,
+				5DAE5DA71CFC7DDA0029355E /* Extensions */,
+				5DAE5D7A1CFC7D590029355E /* Protocols */,
+				5DAE5D9D1CFC7DAE0029355E /* Builders */,
+				5DAE5D7F1CFC7D590029355E /* Queries */,
+				5DAE5DAB1CFC7E1E0029355E /* Value Types */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		5DAE5D3A1CFC6D130029355E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DAE5D3B1CFC6D130029355E /* iOS */,
+				5DAE5D3F1CFC6D130029355E /* OSX */,
+				5DAE5DE21CFC91440029355E /* tvOS */,
+				5DAE5DE61CFC91440029355E /* watchOS */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5DAE5D3B1CFC6D130029355E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				5DAE5D3E1CFC6D130029355E /* PrediKit.h */,
+				5DAE5D3C1CFC6D130029355E /* Info.plist */,
+				5DAE5D3D1CFC6D130029355E /* TestsInfo.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		5DAE5D3F1CFC6D130029355E /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				5DAE5D421CFC6D130029355E /* PrediKit.h */,
+				5DAE5D401CFC6D130029355E /* Info.plist */,
+				5DAE5D411CFC6D130029355E /* TestsInfo.plist */,
+			);
+			path = OSX;
+			sourceTree = "<group>";
+		};
+		5DAE5D7A1CFC7D590029355E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5DAE5D7B1CFC7D590029355E /* Matchable.swift */,
+				5DAE5D7C1CFC7D590029355E /* NilComparable.swift */,
+				5DAE5D7D1CFC7D590029355E /* Queryable.swift */,
+				5DAE5D7E1CFC7D590029355E /* Reflectable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5DAE5D7F1CFC7D590029355E /* Queries */ = {
+			isa = PBXGroup;
+			children = (
+				5DAE5D801CFC7D590029355E /* BasicQuery.swift */,
+				5DAE5D811CFC7D590029355E /* BooleanQuery.swift */,
+				5DAE5D821CFC7D590029355E /* DateQuery.swift */,
+				5DAE5D831CFC7D590029355E /* MemberQuery.swift */,
+				5DAE5D841CFC7D590029355E /* NumberQuery.swift */,
+				5DAE5D851CFC7D590029355E /* SequenceQuery.swift */,
+				5DAE5D861CFC7D590029355E /* StringQuery.swift */,
+			);
+			path = Queries;
+			sourceTree = "<group>";
+		};
+		5DAE5D9D1CFC7DAE0029355E /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				5DAE5D9E1CFC7DAE0029355E /* FinalizedIncluder.swift */,
+				5DAE5D9F1CFC7DAE0029355E /* PredicateBuilder.swift */,
+				5DAE5DA01CFC7DAE0029355E /* PredicateSubqueryBuilder.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		5DAE5DA71CFC7DDA0029355E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5DAE5DA81CFC7DDA0029355E /* NSPredicate+PrediKit.swift */,
+				5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5DAE5DAB1CFC7E1E0029355E /* Value Types */ = {
+			isa = PBXGroup;
+			children = (
+				5DAE5DAC1CFC7E1E0029355E /* PredicateOptions.swift */,
+				5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */,
+			);
+			path = "Value Types";
+			sourceTree = "<group>";
+		};
+		5DAE5DE21CFC91440029355E /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				5DAE5DE41CFC91440029355E /* PrediKit.h */,
+				5DAE5DE31CFC91440029355E /* Info.plist */,
+				5DAE5DE51CFC91440029355E /* TestsInfo.plist */,
+			);
+			path = tvOS;
+			sourceTree = "<group>";
+		};
+		5DAE5DE61CFC91440029355E /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				5DAE5DE81CFC91440029355E /* PrediKit.h */,
+				5DAE5DE71CFC91440029355E /* Info.plist */,
+			);
+			path = watchOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,16 +377,40 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28F828811C494B2C00330CF4 /* PrediKit.h in Headers */,
+				5DAE5D451CFC6D130029355E /* PrediKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAE5DBB1CFC90430029355E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAE5DF31CFC917D0029355E /* PrediKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAE5DC81CFC909C0029355E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAE5DF41CFC918C0029355E /* PrediKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EA81CFA9619006BAD71 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAE5D491CFC6EE60029355E /* PrediKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		28F8287C1C494B2C00330CF4 /* PrediKit */ = {
+		28F8287C1C494B2C00330CF4 /* PrediKit iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28F828911C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit" */;
+			buildConfigurationList = 28F828911C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit iOS" */;
 			buildPhases = (
 				28F828781C494B2C00330CF4 /* Sources */,
 				28F828791C494B2C00330CF4 /* Frameworks */,
@@ -128,14 +421,14 @@
 			);
 			dependencies = (
 			);
-			name = PrediKit;
+			name = "PrediKit iOS";
 			productName = PrediKit;
 			productReference = 28F8287D1C494B2C00330CF4 /* PrediKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		28F828861C494B2C00330CF4 /* PrediKitTests */ = {
+		28F828861C494B2C00330CF4 /* PrediKit iOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28F828941C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKitTests" */;
+			buildConfigurationList = 28F828941C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit iOSTests" */;
 			buildPhases = (
 				28F828831C494B2C00330CF4 /* Sources */,
 				28F828841C494B2C00330CF4 /* Frameworks */,
@@ -146,9 +439,99 @@
 			dependencies = (
 				28F8288A1C494B2C00330CF4 /* PBXTargetDependency */,
 			);
-			name = PrediKitTests;
+			name = "PrediKit iOSTests";
 			productName = PrediKitTests;
-			productReference = 28F828871C494B2C00330CF4 /* PrediKitTests.xctest */;
+			productReference = 28F828871C494B2C00330CF4 /* PrediKit iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5DAE5DBD1CFC90430029355E /* PrediKit watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DAE5DC31CFC90430029355E /* Build configuration list for PBXNativeTarget "PrediKit watchOS" */;
+			buildPhases = (
+				5DAE5DB91CFC90430029355E /* Sources */,
+				5DAE5DBA1CFC90430029355E /* Frameworks */,
+				5DAE5DBB1CFC90430029355E /* Headers */,
+				5DAE5DBC1CFC90430029355E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PrediKit watchOS";
+			productName = "PrediKit-watchOS";
+			productReference = 5DAE5DBE1CFC90430029355E /* PrediKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5DAE5DCA1CFC909C0029355E /* PrediKit tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DAE5DDC1CFC909D0029355E /* Build configuration list for PBXNativeTarget "PrediKit tvOS" */;
+			buildPhases = (
+				5DAE5DC61CFC909C0029355E /* Sources */,
+				5DAE5DC71CFC909C0029355E /* Frameworks */,
+				5DAE5DC81CFC909C0029355E /* Headers */,
+				5DAE5DC91CFC909C0029355E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PrediKit tvOS";
+			productName = "PrediKit-tvOS";
+			productReference = 5DAE5DCB1CFC909C0029355E /* PrediKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5DAE5DD31CFC909D0029355E /* PrediKit tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DAE5DDF1CFC909D0029355E /* Build configuration list for PBXNativeTarget "PrediKit tvOSTests" */;
+			buildPhases = (
+				5DAE5DD01CFC909D0029355E /* Sources */,
+				5DAE5DD11CFC909D0029355E /* Frameworks */,
+				5DAE5DD21CFC909D0029355E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5DAE5DD71CFC909D0029355E /* PBXTargetDependency */,
+			);
+			name = "PrediKit tvOSTests";
+			productName = "PrediKit-tvOSTests";
+			productReference = 5DAE5DD41CFC909D0029355E /* PrediKit tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5DAF1EAA1CFA9619006BAD71 /* PrediKit OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DAF1EBC1CFA9619006BAD71 /* Build configuration list for PBXNativeTarget "PrediKit OSX" */;
+			buildPhases = (
+				5DAF1EA61CFA9619006BAD71 /* Sources */,
+				5DAF1EA71CFA9619006BAD71 /* Frameworks */,
+				5DAF1EA81CFA9619006BAD71 /* Headers */,
+				5DAF1EA91CFA9619006BAD71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PrediKit OSX";
+			productName = "PrediKit-OSX";
+			productReference = 5DAF1EAB1CFA9619006BAD71 /* PrediKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5DAF1EB31CFA9619006BAD71 /* PrediKit OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DAF1EBF1CFA9619006BAD71 /* Build configuration list for PBXNativeTarget "PrediKit OSXTests" */;
+			buildPhases = (
+				5DAF1EB01CFA9619006BAD71 /* Sources */,
+				5DAF1EB11CFA9619006BAD71 /* Frameworks */,
+				5DAF1EB21CFA9619006BAD71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5DAF1EB71CFA9619006BAD71 /* PBXTargetDependency */,
+			);
+			name = "PrediKit OSXTests";
+			productName = "PrediKit-OSXTests";
+			productReference = 5DAF1EB41CFA9619006BAD71 /* PrediKit OSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -166,6 +549,21 @@
 					28F828861C494B2C00330CF4 = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					5DAE5DBD1CFC90430029355E = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					5DAE5DCA1CFC909C0029355E = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					5DAE5DD31CFC909D0029355E = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					5DAF1EAA1CFA9619006BAD71 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					5DAF1EB31CFA9619006BAD71 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 28F828771C494B2C00330CF4 /* Build configuration list for PBXProject "PrediKit" */;
@@ -180,8 +578,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				28F8287C1C494B2C00330CF4 /* PrediKit */,
-				28F828861C494B2C00330CF4 /* PrediKitTests */,
+				28F8287C1C494B2C00330CF4 /* PrediKit iOS */,
+				28F828861C494B2C00330CF4 /* PrediKit iOSTests */,
+				5DAF1EAA1CFA9619006BAD71 /* PrediKit OSX */,
+				5DAF1EB31CFA9619006BAD71 /* PrediKit OSXTests */,
+				5DAE5DCA1CFC909C0029355E /* PrediKit tvOS */,
+				5DAE5DD31CFC909D0029355E /* PrediKit tvOSTests */,
+				5DAE5DBD1CFC90430029355E /* PrediKit watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -191,10 +594,51 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DAE5DED1CFC91440029355E /* TestsInfo.plist in Resources */,
+				5DAE5DE91CFC91440029355E /* Info.plist in Resources */,
+				5DAE5DEF1CFC91440029355E /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		28F828851C494B2C00330CF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAE5DBC1CFC90430029355E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAE5DC91CFC909C0029355E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAE5DD21CFC909D0029355E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EA91CFA9619006BAD71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAE5DEE1CFC91440029355E /* TestsInfo.plist in Resources */,
+				5DAE5DEA1CFC91440029355E /* Info.plist in Resources */,
+				5DAE5DF01CFC91440029355E /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EB21CFA9619006BAD71 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -208,7 +652,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DDAE95C1CEA6D9D00C01903 /* PrediKit.swift in Sources */,
+				5DAE5D9B1CFC7D590029355E /* StringQuery.swift in Sources */,
+				5DAE5D951CFC7D590029355E /* MemberQuery.swift in Sources */,
+				5DAE5D971CFC7D590029355E /* NumberQuery.swift in Sources */,
+				5DAE5D8F1CFC7D590029355E /* BasicQuery.swift in Sources */,
+				5DAE5DA51CFC7DAE0029355E /* PredicateSubqueryBuilder.swift in Sources */,
+				5DAE5D931CFC7D590029355E /* DateQuery.swift in Sources */,
+				5DAE5D8B1CFC7D590029355E /* Queryable.swift in Sources */,
+				5DAE5D8D1CFC7D590029355E /* Reflectable.swift in Sources */,
+				5DAE5DB01CFC7E1E0029355E /* SubqueryMatchTypes.swift in Sources */,
+				5DAE5DA91CFC7DDA0029355E /* NSPredicate+PrediKit.swift in Sources */,
+				5DAE5D871CFC7D590029355E /* Matchable.swift in Sources */,
+				5DAE5DA31CFC7DAE0029355E /* PredicateBuilder.swift in Sources */,
+				5DAE5D911CFC7D590029355E /* BooleanQuery.swift in Sources */,
+				5DAE5DA11CFC7DAE0029355E /* FinalizedIncluder.swift in Sources */,
+				5DAE5DB31CFC80260029355E /* NSArray+PrediKit.swift in Sources */,
+				5DAE5D991CFC7D590029355E /* SequenceQuery.swift in Sources */,
+				5DAE5DAE1CFC7E1E0029355E /* PredicateOptions.swift in Sources */,
+				5DAE5D891CFC7D590029355E /* NilComparable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,13 +682,116 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5DAE5DB91CFC90430029355E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAE5E0D1CFC91E50029355E /* Queryable.swift in Sources */,
+				5DAE5E121CFC91E50029355E /* BasicQuery.swift in Sources */,
+				5DAE5E101CFC91E50029355E /* PredicateBuilder.swift in Sources */,
+				5DAE5E1A1CFC91E50029355E /* SubqueryMatchTypes.swift in Sources */,
+				5DAE5E161CFC91E50029355E /* NumberQuery.swift in Sources */,
+				5DAE5E0A1CFC91E50029355E /* NSArray+PrediKit.swift in Sources */,
+				5DAE5E151CFC91E50029355E /* MemberQuery.swift in Sources */,
+				5DAE5E091CFC91E50029355E /* NSPredicate+PrediKit.swift in Sources */,
+				5DAE5E0E1CFC91E50029355E /* Reflectable.swift in Sources */,
+				5DAE5E141CFC91E50029355E /* DateQuery.swift in Sources */,
+				5DAE5E181CFC91E50029355E /* StringQuery.swift in Sources */,
+				5DAE5E171CFC91E50029355E /* SequenceQuery.swift in Sources */,
+				5DAE5E0B1CFC91E50029355E /* Matchable.swift in Sources */,
+				5DAE5E111CFC91E50029355E /* PredicateSubqueryBuilder.swift in Sources */,
+				5DAE5E131CFC91E50029355E /* BooleanQuery.swift in Sources */,
+				5DAE5E0F1CFC91E50029355E /* FinalizedIncluder.swift in Sources */,
+				5DAE5E0C1CFC91E50029355E /* NilComparable.swift in Sources */,
+				5DAE5E191CFC91E50029355E /* PredicateOptions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAE5DC61CFC909C0029355E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAE5DFB1CFC91E40029355E /* Queryable.swift in Sources */,
+				5DAE5E001CFC91E40029355E /* BasicQuery.swift in Sources */,
+				5DAE5DFE1CFC91E40029355E /* PredicateBuilder.swift in Sources */,
+				5DAE5E081CFC91E40029355E /* SubqueryMatchTypes.swift in Sources */,
+				5DAE5E041CFC91E40029355E /* NumberQuery.swift in Sources */,
+				5DAE5DF81CFC91E40029355E /* NSArray+PrediKit.swift in Sources */,
+				5DAE5E031CFC91E40029355E /* MemberQuery.swift in Sources */,
+				5DAE5DF71CFC91E40029355E /* NSPredicate+PrediKit.swift in Sources */,
+				5DAE5DFC1CFC91E40029355E /* Reflectable.swift in Sources */,
+				5DAE5E021CFC91E40029355E /* DateQuery.swift in Sources */,
+				5DAE5E061CFC91E40029355E /* StringQuery.swift in Sources */,
+				5DAE5E051CFC91E40029355E /* SequenceQuery.swift in Sources */,
+				5DAE5DF91CFC91E40029355E /* Matchable.swift in Sources */,
+				5DAE5DFF1CFC91E40029355E /* PredicateSubqueryBuilder.swift in Sources */,
+				5DAE5E011CFC91E40029355E /* BooleanQuery.swift in Sources */,
+				5DAE5DFD1CFC91E40029355E /* FinalizedIncluder.swift in Sources */,
+				5DAE5DFA1CFC91E40029355E /* NilComparable.swift in Sources */,
+				5DAE5E071CFC91E40029355E /* PredicateOptions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAE5DD01CFC909D0029355E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAE5DF61CFC91D50029355E /* Selector+Extension.swift in Sources */,
+				5DAE5DF51CFC91D50029355E /* PrediKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EA61CFA9619006BAD71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAE5D9C1CFC7D590029355E /* StringQuery.swift in Sources */,
+				5DAE5D961CFC7D590029355E /* MemberQuery.swift in Sources */,
+				5DAE5D981CFC7D590029355E /* NumberQuery.swift in Sources */,
+				5DAE5D901CFC7D590029355E /* BasicQuery.swift in Sources */,
+				5DAE5DA61CFC7DAE0029355E /* PredicateSubqueryBuilder.swift in Sources */,
+				5DAE5D941CFC7D590029355E /* DateQuery.swift in Sources */,
+				5DAE5D8C1CFC7D590029355E /* Queryable.swift in Sources */,
+				5DAE5D8E1CFC7D590029355E /* Reflectable.swift in Sources */,
+				5DAE5DB11CFC7E1E0029355E /* SubqueryMatchTypes.swift in Sources */,
+				5DAE5DAA1CFC7DDA0029355E /* NSPredicate+PrediKit.swift in Sources */,
+				5DAE5D881CFC7D590029355E /* Matchable.swift in Sources */,
+				5DAE5DA41CFC7DAE0029355E /* PredicateBuilder.swift in Sources */,
+				5DAE5D921CFC7D590029355E /* BooleanQuery.swift in Sources */,
+				5DAE5DA21CFC7DAE0029355E /* FinalizedIncluder.swift in Sources */,
+				5DAE5DB41CFC80260029355E /* NSArray+PrediKit.swift in Sources */,
+				5DAE5D9A1CFC7D590029355E /* SequenceQuery.swift in Sources */,
+				5DAE5DAF1CFC7E1E0029355E /* PredicateOptions.swift in Sources */,
+				5DAE5D8A1CFC7D590029355E /* NilComparable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAF1EB01CFA9619006BAD71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAF1EC31CFA97C9006BAD71 /* Selector+Extension.swift in Sources */,
+				5DAF1EC21CFA97C9006BAD71 /* PrediKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		28F8288A1C494B2C00330CF4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 28F8287C1C494B2C00330CF4 /* PrediKit */;
+			target = 28F8287C1C494B2C00330CF4 /* PrediKit iOS */;
 			targetProxy = 28F828891C494B2C00330CF4 /* PBXContainerItemProxy */;
+		};
+		5DAE5DD71CFC909D0029355E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DAE5DCA1CFC909C0029355E /* PrediKit tvOS */;
+			targetProxy = 5DAE5DD61CFC909D0029355E /* PBXContainerItemProxy */;
+		};
+		5DAF1EB71CFA9619006BAD71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DAF1EAA1CFA9619006BAD71 /* PrediKit OSX */;
+			targetProxy = 5DAF1EB61CFA9619006BAD71 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -330,13 +894,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = PrediKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.KrakenDev.PrediKit.PrediKit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-iOS";
+				PRODUCT_NAME = PrediKit;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -351,13 +915,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = PrediKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.KrakenDev.PrediKit.PrediKit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-iOS";
+				PRODUCT_NAME = PrediKit;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -366,7 +930,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS/TestsInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KrakenDev.PrediKit.PrediKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -378,10 +942,192 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS/TestsInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KrakenDev.PrediKit.PrediKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5DAE5DC41CFC90430029355E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/watchOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-watchOS";
+				PRODUCT_NAME = PrediKit;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		5DAE5DC51CFC90430029355E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/watchOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-watchOS";
+				PRODUCT_NAME = PrediKit;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		5DAE5DDD1CFC909D0029355E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-tvOS";
+				PRODUCT_NAME = PrediKit;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		5DAE5DDE1CFC909D0029355E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-tvOS";
+				PRODUCT_NAME = PrediKit;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		5DAE5DE01CFC909D0029355E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/tvOS/TestsInfo.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		5DAE5DE11CFC909D0029355E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/tvOS/TestsInfo.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		5DAF1EBD1CFA9619006BAD71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/OSX/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSX";
+				PRODUCT_NAME = PrediKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		5DAF1EBE1CFA9619006BAD71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/OSX/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSX";
+				PRODUCT_NAME = PrediKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		5DAF1EC01CFA9619006BAD71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/OSX/TestsInfo.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSXTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5DAF1EC11CFA9619006BAD71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/OSX/TestsInfo.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSXTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -397,7 +1143,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		28F828911C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit" */ = {
+		28F828911C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28F828921C494B2C00330CF4 /* Debug */,
@@ -406,11 +1152,53 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		28F828941C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKitTests" */ = {
+		28F828941C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "PrediKit iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28F828951C494B2C00330CF4 /* Debug */,
 				28F828961C494B2C00330CF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DAE5DC31CFC90430029355E /* Build configuration list for PBXNativeTarget "PrediKit watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAE5DC41CFC90430029355E /* Debug */,
+				5DAE5DC51CFC90430029355E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5DAE5DDC1CFC909D0029355E /* Build configuration list for PBXNativeTarget "PrediKit tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAE5DDD1CFC909D0029355E /* Debug */,
+				5DAE5DDE1CFC909D0029355E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5DAE5DDF1CFC909D0029355E /* Build configuration list for PBXNativeTarget "PrediKit tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAE5DE01CFC909D0029355E /* Debug */,
+				5DAE5DE11CFC909D0029355E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5DAF1EBC1CFA9619006BAD71 /* Build configuration list for PBXNativeTarget "PrediKit OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAF1EBD1CFA9619006BAD71 /* Debug */,
+				5DAF1EBE1CFA9619006BAD71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DAF1EBF1CFA9619006BAD71 /* Build configuration list for PBXNativeTarget "PrediKit OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAF1EC01CFA9619006BAD71 /* Debug */,
+				5DAF1EC11CFA9619006BAD71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
