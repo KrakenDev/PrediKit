@@ -363,10 +363,7 @@ public class PredicateQueryBuilder<T: Reflectable> {
      - Parameters:
      - collection: An `Array` or `Set` of objects to match against.
      */
-    public final func matchesAnyValueIn<U: CollectionType>(collection: U) -> FinalizedPredicateQuery<T> {
-        guard let collection = collection as? NSObject else {
-            return FinalizedPredicateQuery(builder: builder)
-        }
+    public final func matchesAnyValueIn<U: protocol<CollectionType, AnyObject>>(collection: U) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) IN %@"
         builder.arguments.append(collection)
         return FinalizedPredicateQuery(builder: builder, arguments: [collection])
