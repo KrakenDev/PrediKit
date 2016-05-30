@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5DAF1EAA1CFA9619006BAD71"
                BuildableName = "PrediKit.framework"
-               BlueprintName = "PrediKit-OSX"
+               BlueprintName = "PrediKit OSX"
                ReferencedContainer = "container:PrediKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,8 +34,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5DAF1EB31CFA9619006BAD71"
-               BuildableName = "PrediKit-OSXTests.xctest"
-               BlueprintName = "PrediKit-OSXTests"
+               BuildableName = "PrediKit OSXTests.xctest"
+               BlueprintName = "PrediKit OSXTests"
                ReferencedContainer = "container:PrediKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -45,7 +45,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5DAF1EAA1CFA9619006BAD71"
             BuildableName = "PrediKit.framework"
-            BlueprintName = "PrediKit-OSX"
+            BlueprintName = "PrediKit OSX"
             ReferencedContainer = "container:PrediKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -67,7 +67,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5DAF1EAA1CFA9619006BAD71"
             BuildableName = "PrediKit.framework"
-            BlueprintName = "PrediKit-OSX"
+            BlueprintName = "PrediKit OSX"
             ReferencedContainer = "container:PrediKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -85,7 +85,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5DAF1EAA1CFA9619006BAD71"
             BuildableName = "PrediKit.framework"
-            BlueprintName = "PrediKit-OSX"
+            BlueprintName = "PrediKit OSX"
             ReferencedContainer = "container:PrediKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
