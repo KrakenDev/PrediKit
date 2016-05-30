@@ -977,14 +977,10 @@ public final class FinalizedPredicateQuery<T: Reflectable> {
         lhs.builder.predicateString = lhs.finalPredicateString
         rhs.builder.predicateString = lhs.builder.predicateString
 
-        print("LHS: ", lhs.finalArguments, "RHS: ", rhs.finalArguments)
-        
         lhs.finalArguments = lhs.finalArguments + rhs.finalArguments
         rhs.finalArguments = lhs.finalArguments
         lhs.builder.arguments = lhs.finalArguments
         rhs.builder.arguments = lhs.finalArguments
-
-        print("Final: ", lhs.builder.arguments)
 
         return lhs
     }
