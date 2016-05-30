@@ -309,13 +309,20 @@ class PrediKitTests: XCTestCase {
                     includeIf.string(.title).equals(theElfTitle)
                     return .IncludeIfMatched(.Amount(.IsGreaterThan(0)))
                 }
+                let hasCerberusSubordinates = includeIf.collection(.subordinates).subquery(Cerberus.self) { includeIf in
+                    let age = includeIf.number(.age).equals(age)
+                    let birthdate = includeIf.date(.birthdate).equals(rightNow)
+                    
+                    birthdate || age
+                    return .IncludeIfMatched(.Amount(.IsGreaterThan(0)))
+                }
                 
-                isTheKraken || isBirthedToday || isHungry || (isOlderThan5AndAHalf && !hasElfSubordinates)
+                isTheKraken || isOlderThan5AndAHalf || isHungry || (isBirthedToday && !hasElfSubordinates && hasCerberusSubordinates)
                 
                 return .IncludeIfMatched(.Amount(.Equals(0)))
             }
         }
-        let expectedPredicate = NSPredicate(format: "SUBQUERY(friends, $CerberusItem, $CerberusItem.title == \"The Almighty Kraken\" OR $CerberusItem.birthdate == %@ OR $CerberusItem.isHungry == true OR ($CerberusItem.age > \(age) AND (NOT SUBQUERY($CerberusItem.subordinates, $ElfItem, $ElfItem.title == \"The Lowly Elf\").@count > 0))).@count == 0", rightNow)
+        let expectedPredicate = NSPredicate(format: "SUBQUERY(friends, $CerberusItem, $CerberusItem.title == \"The Almighty Kraken\" OR $CerberusItem.age > \(age) OR $CerberusItem.isHungry == true OR ($CerberusItem.birthdate == %@ AND (NOT SUBQUERY($CerberusItem.subordinates, $ElfItem, $ElfItem.title == \"The Lowly Elf\").@count > 0) && SUBQUERY($CerberusItem.subordinates, $CerberusItem, $CerberusItem.birthdate == %@ || $CerberusItem.age == \(age)).@count > 0)).@count == 0", rightNow, rightNow)
         XCTAssertEqual(predicate.predicateFormat, expectedPredicate.predicateFormat)
     }
     

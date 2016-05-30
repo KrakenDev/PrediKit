@@ -364,11 +364,12 @@ public class PredicateQueryBuilder<T: Reflectable> {
      - collection: An `Array` or `Set` of objects to match against.
      */
     public final func matchesAnyValueIn<U: CollectionType>(collection: U) -> FinalizedPredicateQuery<T> {
-        if let collection = collection as? NSObject {
-            builder.predicateString = "\(property) IN %@"
-            builder.arguments.append(collection)
+        guard let collection = collection as? NSObject else {
+            return FinalizedPredicateQuery(builder: builder)
         }
-        return FinalizedPredicateQuery(builder: builder)
+        builder.predicateString = "\(property) IN %@"
+        builder.arguments.append(collection)
+        return FinalizedPredicateQuery(builder: builder, arguments: [collection])
     }
 }
 
@@ -533,7 +534,7 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
     public func isGreaterThan(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) > %@"
         builder.arguments.append(number)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [number])
     }
     
     /**
@@ -555,7 +556,7 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
     public func isLessThan(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) < %@"
         builder.arguments.append(number)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [number])
     }
     
     /**
@@ -577,7 +578,7 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
     public func isGreaterThanOrEqualTo(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) >= %@"
         builder.arguments.append(number)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [number])
     }
     
     /**
@@ -599,7 +600,7 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
     public func isLessThanOrEqualTo(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) <= %@"
         builder.arguments.append(number)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [number])
     }
     
     /**
@@ -621,7 +622,7 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
     public func doesNotEqual(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) != %@"
         builder.arguments.append(number)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [number])
     }
     
     /**
@@ -643,7 +644,7 @@ public final class PredicateNumberQuery<T: Reflectable>: PredicateQueryBuilder<T
     public func equals(number: NSNumber) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) == %@"
         builder.arguments.append(number)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [number])
     }
 }
 
@@ -674,7 +675,7 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
     public func isLaterThan(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) > %@"
         builder.arguments.append(date)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [date])
     }
     
     /**
@@ -695,7 +696,7 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
     public func isEarlierThan(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) < %@"
         builder.arguments.append(date)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [date])
     }
     
     /**
@@ -716,7 +717,7 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
     public func isLaterThanOrOn(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) >= %@"
         builder.arguments.append(date)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [date])
     }
     
     /**
@@ -737,7 +738,7 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
     public func isEarlierThanOrOn(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) <= %@"
         builder.arguments.append(date)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [date])
     }
     
     /**
@@ -758,7 +759,7 @@ public final class PredicateDateQuery<T: Reflectable>: PredicateQueryBuilder<T> 
     public func equals(date: NSDate) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) == %@"
         builder.arguments.append(date)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [date])
     }
 }
 
@@ -847,9 +848,9 @@ public final class PredicateSequenceQuery<T: Reflectable>: PredicateQueryBuilder
         let item = "$\(String(subBuilder.type))Item"
         let subqueryPredicate = "SUBQUERY(\(property), \(item), \(subBuilder.predicateString)).\(subqueryMatch.collectionQuery)"
 
-        self.builder.predicateString = subqueryPredicate
-        self.builder.arguments += subBuilder.arguments
-        return FinalizedPredicateQuery(builder: self.builder)
+        builder.predicateString = subqueryPredicate
+        builder.arguments += subBuilder.arguments
+        return FinalizedPredicateQuery(builder: builder, arguments: builder.arguments)
     }
 }
 
@@ -907,7 +908,7 @@ public final class PredicateMemberQuery<T: Reflectable, MemberType: protocol<Ref
     public func equals(object: MemberType) -> FinalizedPredicateQuery<T> {
         builder.predicateString = "\(property) == %@"
         builder.arguments.append(object)
-        return FinalizedPredicateQuery(builder: builder)
+        return FinalizedPredicateQuery(builder: builder, arguments: [object])
     }
 
     private override func validatedProperty(property: Selector, file: String = #file, line: Int = #line) -> String {
@@ -927,14 +928,16 @@ public final class PredicateMemberQuery<T: Reflectable, MemberType: protocol<Ref
  */
 public final class FinalizedPredicateQuery<T: Reflectable> {
     private let builder: PredicateBuilder<T>
+    private var finalArguments: [AnyObject]
 
     private(set) var finalPredicateString: String
     private(set) var ANDPredicatesToCombine: [String] = []
     private(set) var ORPredicatesToCombine: [String] = []
     
-    init(builder: PredicateBuilder<T>) {
+    init(builder: PredicateBuilder<T>, arguments: [AnyObject] = []) {
         self.builder = builder
         self.finalPredicateString = builder.predicateString
+        self.finalArguments = arguments
     }
    
     private static func combine<T>(lhs: FinalizedPredicateQuery<T>, rhs: FinalizedPredicateQuery<T>, logicalAND: Bool) -> FinalizedPredicateQuery<T> {
@@ -953,7 +956,7 @@ public final class FinalizedPredicateQuery<T: Reflectable> {
             lhsPredicatesToCombine.append(rhsPredicate)
             rhsPredicatesToCombine = lhsPredicatesToCombine
         } else {
-            lhsPredicatesToCombine += rhsPredicatesToCombine
+            lhsPredicatesToCombine.appendContentsOf(rhsPredicatesToCombine)
             rhsPredicatesToCombine = lhsPredicatesToCombine
         }
         
@@ -968,11 +971,20 @@ public final class FinalizedPredicateQuery<T: Reflectable> {
 
             predicateFormat = "(\(lhsPredicatesToCombine.joinWithSeparator(" || ")))"
         }
-        
 
         lhs.finalPredicateString = predicateFormat
+        
         lhs.builder.predicateString = lhs.finalPredicateString
         rhs.builder.predicateString = lhs.builder.predicateString
+
+        print("LHS: ", lhs.finalArguments, "RHS: ", rhs.finalArguments)
+        
+        lhs.finalArguments = lhs.finalArguments + rhs.finalArguments
+        rhs.finalArguments = lhs.finalArguments
+        lhs.builder.arguments = lhs.finalArguments
+        rhs.builder.arguments = lhs.finalArguments
+
+        print("Final: ", lhs.builder.arguments)
 
         return lhs
     }
