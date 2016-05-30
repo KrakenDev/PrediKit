@@ -1,8 +1,9 @@
 ![Pretty Banner](https://github.com/KrakenDev/PrediKit/wiki/Sources/Banner.jpg)
 [![Travis Build Status](http://img.shields.io/travis/KrakenDev/PrediKit.svg?style=flat-square)](https://travis-ci.org/KrakenDev/PrediKit)
 [![Coveralls](https://img.shields.io/coveralls/KrakenDev/PrediKit/master.svg?style=flat-square)](https://coveralls.io/github/KrakenDev/PrediKit?branch=master)
+[![Supported Platforms](https://img.shields.io/cocoapods/p/PrediKit.svg)]()
 [![Swift Version Compatibility](https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat-square)](https://developer.apple.com/swift)
-[![Cocoapods Version](https://img.shields.io/badge/pod-2.0.6-blue.svg?style=flat-square)](https://cocoapods.org/pods/PrediKit)
+[![Cocoapods Version](https://img.shields.io/badge/pod-3.0-blue.svg?style=flat-square)](https://cocoapods.org/pods/PrediKit)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
 [![LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/KrakenDev/PrediKit/master/LICENSE)
 
@@ -142,11 +143,11 @@ PrediKit also overloads the `&&`, `||`, and `!` operators. This allows you compo
 
 ```swift
 let predicate = NSPredicate(ManagedLegend.self) { includeIf in
-    //Include any ManagedLegend instance if the property named "string" is NOT nil and does NOT equal "The Almighty Kraken" 
+    //Include any ManagedLegend instance if the property named "string" is NOT nil and does NOT equal "The Almighty Kraken"
     !includeIf.string("title").equalsNil &&
     !includeIf.string("title").equals("The Almighty Kraken") &&
     
-    //Also include any ManagedLegend instance if the date property named "birthdate" is in the past or if the bool property "isAwesome" is true. 
+    //Also include any ManagedLegend instance if the date property named "birthdate" is in the past or if the bool property "isAwesome" is true.
     includeIf.date("birthdate").isEarlierThan(NSDate()) ||
     includeIf.bool("isAwesome").isTrue
 }

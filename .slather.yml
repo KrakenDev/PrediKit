@@ -4,5 +4,4 @@ scheme: PrediKit-iOS
 source_directory: Sources
 ignore:
   - Tests/*
-  - PrediKit-iOS/*
-  - PrediKit-OSX/*
+  - Supporting Files/**
