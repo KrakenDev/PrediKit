@@ -89,9 +89,17 @@ import PrediKit
 
 ##Manually
 
-If you prefer not to use either of the aforementioned dependency managers, you can integrate PrediKit into your project manually. I specifically kept all of the code for PrediKit in one file in order to support you peeps who like to integrate manually.
+If you prefer not to use either of the aforementioned dependency managers, you can integrate PrediKit into your project manually.
 
-First, click on the Sources folder link, right click on `PrediKit.swift` and click `Save Link As`. Save the file wherever you'd like and drag the downloaded file into your project. That's it! One and done, folks!
+First, copy and paste these commands into Terminal:
+```bash
+git clone https://github.com/KrakenDev/PrediKit.git
+open PrediKit/Sources/
+```
+
+This should open a Finder window with the important files needed for PrediKit located in the Sources folder of the repo. Drag these folders into your project (preferable in a folder named "PrediKit") and code away! Since you would be copying these files into your project directly, there is no need for the `import PrediKit` line in any of the files that you need it.
+
+The downside to this is that you can not update PrediKit easily. You would need to repeat these steps each time you wanna grab the latest and greatest! 😱
 
 #Usage
 PrediKit tries to make `NSPredicate` creation easy. **Heavily** inspired by [SnapKit's](https://github.com/SnapKit/SnapKit) API, the API for PrediKit is extremely similar for people who love it as much as I do. Check it out. This example creates a predicate used to fetch a `ManagedObject` from `CoreData`:
