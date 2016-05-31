@@ -3,7 +3,7 @@
 [![Coveralls](https://img.shields.io/coveralls/KrakenDev/PrediKit/master.svg?style=flat-square)](https://coveralls.io/github/KrakenDev/PrediKit?branch=master)
 [![Supported Platforms](https://img.shields.io/cocoapods/p/PrediKit.svg?style=flat-square)]()
 [![Swift Version Compatibility](https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat-square)](https://developer.apple.com/swift)
-[![Cocoapods Version](https://img.shields.io/badge/pod-3.0-blue.svg?style=flat-square)](https://cocoapods.org/pods/PrediKit)
+[![Cocoapods Version](https://img.shields.io/badge/pod-3.0.1-blue.svg?style=flat-square)](https://cocoapods.org/pods/PrediKit)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
 [![LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/KrakenDev/PrediKit/master/LICENSE)
 

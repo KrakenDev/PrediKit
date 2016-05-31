@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'PrediKit'
-  s.version = '3.0'
+  s.version = '3.0.1'
   s.license = 'MIT'
   s.summary = 'A Swift NSPredicate DSL for iOS & OS X inspired by SnapKit, lovingly written in Swift, and created by the awesome peeps at KrakenDev.io!'
   s.homepage = 'https://github.com/KrakenDev/PrediKit'
