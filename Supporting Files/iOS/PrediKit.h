@@ -5,7 +5,7 @@
 //  Copyright © 2016 KrakenDev. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for PrediKit.
 FOUNDATION_EXPORT double PrediKitVersionNumber;

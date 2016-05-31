@@ -6,7 +6,7 @@
 //
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for PrediKit-tvOS.
 FOUNDATION_EXPORT double PrediKit_tvOSVersionNumber;

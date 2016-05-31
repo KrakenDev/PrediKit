@@ -6,7 +6,7 @@
 //
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for PrediKit-OSX.
 FOUNDATION_EXPORT double PrediKit_OSXVersionNumber;

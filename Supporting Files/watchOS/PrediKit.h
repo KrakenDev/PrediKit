@@ -6,7 +6,7 @@
 //
 //
 
-#import <WatchKit/WatchKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for PrediKit-watchOS.
 FOUNDATION_EXPORT double PrediKit_watchOSVersionNumber;
