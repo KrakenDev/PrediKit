@@ -30,7 +30,7 @@ public final class SequenceQuery<T: Reflectable>: NilComparable, Matchable {
      
      "Fetch the `Kraken` object if it doesn't have any friends"
      */
-    public var isEmpty: FinalizedIncluder<T> {
+    @discardableResult public func isEmpty() -> FinalizedIncluder<T> {
         builder.predicateString = "\(property).@count == 0"
         return FinalizedIncluder(builder: builder)
     }
@@ -49,11 +49,11 @@ public final class SequenceQuery<T: Reflectable>: NilComparable, Matchable {
      - type: The type of the objects found in the collection property being subqueried.
      - subbuilder: A closure that defines queries that describe each object found in the collection property being subqueried. The closure must return an instance of the `SubqueryMatch` enum.
      */
-    public func subquery<U: NSObject where U: Reflectable>(type: U.Type, subbuilder: (includeIf: PredicateSubqueryBuilder<U>) -> MatchType) -> FinalizedIncluder<T> {
+    @discardableResult public func subquery<U: NSObject>(_ type: U.Type, subbuilder: (_ includeIf: PredicateSubqueryBuilder<U>) -> MatchType) -> FinalizedIncluder<T> where U: Reflectable {
         let subBuilder = PredicateSubqueryBuilder(type: type)
-        let subqueryMatch = subbuilder(includeIf: subBuilder)
+        let subqueryMatch = subbuilder(subBuilder)
         
-        let item = "$\(String(subBuilder.type))Item"
+        let item = "$\(String(describing: subBuilder.type))Item"
         let subqueryPredicate = "SUBQUERY(\(property), \(item), \(subBuilder.predicateString)).\(subqueryMatch.collectionQuery)"
         
         builder.predicateString = subqueryPredicate

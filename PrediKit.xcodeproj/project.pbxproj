@@ -45,8 +45,6 @@
 		5DAE5DAF1CFC7E1E0029355E /* PredicateOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAC1CFC7E1E0029355E /* PredicateOptions.swift */; };
 		5DAE5DB01CFC7E1E0029355E /* SubqueryMatchTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */; };
 		5DAE5DB11CFC7E1E0029355E /* SubqueryMatchTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */; };
-		5DAE5DB31CFC80260029355E /* NSArray+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */; };
-		5DAE5DB41CFC80260029355E /* NSArray+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */; };
 		5DAE5DD51CFC909D0029355E /* PrediKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAE5DCB1CFC909C0029355E /* PrediKit.framework */; };
 		5DAE5DE91CFC91440029355E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE31CFC91440029355E /* Info.plist */; };
 		5DAE5DEA1CFC91440029355E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE31CFC91440029355E /* Info.plist */; };
@@ -59,7 +57,6 @@
 		5DAE5DF51CFC91D50029355E /* PrediKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */; };
 		5DAE5DF61CFC91D50029355E /* Selector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */; };
 		5DAE5DF71CFC91E40029355E /* NSPredicate+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DA81CFC7DDA0029355E /* NSPredicate+PrediKit.swift */; };
-		5DAE5DF81CFC91E40029355E /* NSArray+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */; };
 		5DAE5DF91CFC91E40029355E /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7B1CFC7D590029355E /* Matchable.swift */; };
 		5DAE5DFA1CFC91E40029355E /* NilComparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7C1CFC7D590029355E /* NilComparable.swift */; };
 		5DAE5DFB1CFC91E40029355E /* Queryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7D1CFC7D590029355E /* Queryable.swift */; };
@@ -77,7 +74,6 @@
 		5DAE5E071CFC91E40029355E /* PredicateOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAC1CFC7E1E0029355E /* PredicateOptions.swift */; };
 		5DAE5E081CFC91E40029355E /* SubqueryMatchTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */; };
 		5DAE5E091CFC91E50029355E /* NSPredicate+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DA81CFC7DDA0029355E /* NSPredicate+PrediKit.swift */; };
-		5DAE5E0A1CFC91E50029355E /* NSArray+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */; };
 		5DAE5E0B1CFC91E50029355E /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7B1CFC7D590029355E /* Matchable.swift */; };
 		5DAE5E0C1CFC91E50029355E /* NilComparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7C1CFC7D590029355E /* NilComparable.swift */; };
 		5DAE5E0D1CFC91E50029355E /* Queryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5D7D1CFC7D590029355E /* Queryable.swift */; };
@@ -98,6 +94,10 @@
 		5DAF1EC21CFA97C9006BAD71 /* PrediKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */; };
 		5DAF1EC31CFA97C9006BAD71 /* Selector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */; };
 		5DDAE95E1CEA6F1100C01903 /* Selector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */; };
+		5DDCFE081D8E77CB000DB59C /* Number+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDCFE071D8E77CB000DB59C /* Number+PrediKit.swift */; };
+		5DDCFE091D8E77CB000DB59C /* Number+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDCFE071D8E77CB000DB59C /* Number+PrediKit.swift */; };
+		5DDCFE0A1D8E77CB000DB59C /* Number+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDCFE071D8E77CB000DB59C /* Number+PrediKit.swift */; };
+		5DDCFE0B1D8E77CB000DB59C /* Number+PrediKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDCFE071D8E77CB000DB59C /* Number+PrediKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,7 +151,6 @@
 		5DAE5DA81CFC7DDA0029355E /* NSPredicate+PrediKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPredicate+PrediKit.swift"; sourceTree = "<group>"; };
 		5DAE5DAC1CFC7E1E0029355E /* PredicateOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredicateOptions.swift; sourceTree = "<group>"; };
 		5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubqueryMatchTypes.swift; sourceTree = "<group>"; };
-		5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+PrediKit.swift"; sourceTree = "<group>"; };
 		5DAE5DBE1CFC90430029355E /* PrediKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrediKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DAE5DCB1CFC909C0029355E /* PrediKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrediKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DAE5DD41CFC909D0029355E /* PrediKit tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrediKit tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +162,7 @@
 		5DAF1EAB1CFA9619006BAD71 /* PrediKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrediKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DAF1EB41CFA9619006BAD71 /* PrediKit OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrediKit OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DDAE95D1CEA6F1100C01903 /* Selector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Selector+Extension.swift"; path = "Tests/Selector+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		5DDCFE071D8E77CB000DB59C /* Number+PrediKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Number+PrediKit.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,7 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				5DAE5DA81CFC7DDA0029355E /* NSPredicate+PrediKit.swift */,
-				5DAE5DB21CFC80260029355E /* NSArray+PrediKit.swift */,
+				5DDCFE071D8E77CB000DB59C /* Number+PrediKit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -541,13 +541,15 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				TargetAttributes = {
 					28F8287C1C494B2C00330CF4 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					28F828861C494B2C00330CF4 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					5DAE5DBD1CFC90430029355E = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -666,9 +668,9 @@
 				5DAE5DA31CFC7DAE0029355E /* PredicateBuilder.swift in Sources */,
 				5DAE5D911CFC7D590029355E /* BooleanQuery.swift in Sources */,
 				5DAE5DA11CFC7DAE0029355E /* FinalizedIncluder.swift in Sources */,
-				5DAE5DB31CFC80260029355E /* NSArray+PrediKit.swift in Sources */,
 				5DAE5D991CFC7D590029355E /* SequenceQuery.swift in Sources */,
 				5DAE5DAE1CFC7E1E0029355E /* PredicateOptions.swift in Sources */,
+				5DDCFE081D8E77CB000DB59C /* Number+PrediKit.swift in Sources */,
 				5DAE5D891CFC7D590029355E /* NilComparable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,7 +693,6 @@
 				5DAE5E101CFC91E50029355E /* PredicateBuilder.swift in Sources */,
 				5DAE5E1A1CFC91E50029355E /* SubqueryMatchTypes.swift in Sources */,
 				5DAE5E161CFC91E50029355E /* NumberQuery.swift in Sources */,
-				5DAE5E0A1CFC91E50029355E /* NSArray+PrediKit.swift in Sources */,
 				5DAE5E151CFC91E50029355E /* MemberQuery.swift in Sources */,
 				5DAE5E091CFC91E50029355E /* NSPredicate+PrediKit.swift in Sources */,
 				5DAE5E0E1CFC91E50029355E /* Reflectable.swift in Sources */,
@@ -703,6 +704,7 @@
 				5DAE5E131CFC91E50029355E /* BooleanQuery.swift in Sources */,
 				5DAE5E0F1CFC91E50029355E /* FinalizedIncluder.swift in Sources */,
 				5DAE5E0C1CFC91E50029355E /* NilComparable.swift in Sources */,
+				5DDCFE0B1D8E77CB000DB59C /* Number+PrediKit.swift in Sources */,
 				5DAE5E191CFC91E50029355E /* PredicateOptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -716,7 +718,6 @@
 				5DAE5DFE1CFC91E40029355E /* PredicateBuilder.swift in Sources */,
 				5DAE5E081CFC91E40029355E /* SubqueryMatchTypes.swift in Sources */,
 				5DAE5E041CFC91E40029355E /* NumberQuery.swift in Sources */,
-				5DAE5DF81CFC91E40029355E /* NSArray+PrediKit.swift in Sources */,
 				5DAE5E031CFC91E40029355E /* MemberQuery.swift in Sources */,
 				5DAE5DF71CFC91E40029355E /* NSPredicate+PrediKit.swift in Sources */,
 				5DAE5DFC1CFC91E40029355E /* Reflectable.swift in Sources */,
@@ -728,6 +729,7 @@
 				5DAE5E011CFC91E40029355E /* BooleanQuery.swift in Sources */,
 				5DAE5DFD1CFC91E40029355E /* FinalizedIncluder.swift in Sources */,
 				5DAE5DFA1CFC91E40029355E /* NilComparable.swift in Sources */,
+				5DDCFE0A1D8E77CB000DB59C /* Number+PrediKit.swift in Sources */,
 				5DAE5E071CFC91E40029355E /* PredicateOptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -759,9 +761,9 @@
 				5DAE5DA41CFC7DAE0029355E /* PredicateBuilder.swift in Sources */,
 				5DAE5D921CFC7D590029355E /* BooleanQuery.swift in Sources */,
 				5DAE5DA21CFC7DAE0029355E /* FinalizedIncluder.swift in Sources */,
-				5DAE5DB41CFC80260029355E /* NSArray+PrediKit.swift in Sources */,
 				5DAE5D9A1CFC7D590029355E /* SequenceQuery.swift in Sources */,
 				5DAE5DAF1CFC7E1E0029355E /* PredicateOptions.swift in Sources */,
+				5DDCFE091D8E77CB000DB59C /* Number+PrediKit.swift in Sources */,
 				5DAE5D8A1CFC7D590029355E /* NilComparable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -810,8 +812,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -860,8 +864,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -882,6 +888,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -894,6 +901,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -907,6 +915,7 @@
 				PRODUCT_NAME = PrediKit;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -915,6 +924,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -927,29 +937,34 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-iOS";
 				PRODUCT_NAME = PrediKit;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		28F828951C494B2C00330CF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS/TestsInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KrakenDev.PrediKit.PrediKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		28F828961C494B2C00330CF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS/TestsInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KrakenDev.PrediKit.PrediKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -958,6 +973,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -969,6 +985,7 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -979,6 +996,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -990,6 +1008,7 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -999,6 +1018,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1010,6 +1030,7 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1019,6 +1040,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1030,6 +1052,7 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1038,12 +1061,14 @@
 		5DAE5DE01CFC909D0029355E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/tvOS/TestsInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Debug;
@@ -1051,12 +1076,14 @@
 		5DAE5DE11CFC909D0029355E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/tvOS/TestsInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Release;
@@ -1065,7 +1092,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1080,6 +1107,7 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1087,7 +1115,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1102,12 +1130,14 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		5DAF1EC01CFA9619006BAD71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1117,12 +1147,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		5DAF1EC11CFA9619006BAD71 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1132,6 +1164,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

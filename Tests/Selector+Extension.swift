@@ -9,7 +9,7 @@
 import Foundation
 
 extension Selector {
-    private enum Names: String {
+    fileprivate enum Names: String {
         case title
         case birthdate
         case age
@@ -20,7 +20,7 @@ extension Selector {
         case isHungry
     }
     
-    private init(_ name: Names) {
+    fileprivate init(_ name: Names) {
         self.init(name.rawValue)
     }
     

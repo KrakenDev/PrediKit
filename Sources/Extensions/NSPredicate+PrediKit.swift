@@ -19,9 +19,9 @@ public extension NSPredicate {
      - type: The `Reflectable` class type that you'll be querying against. The type you supply here is what PrediKit will inspect to ensure the property names you specify in your includers are contained in that class' property list.
      - builder: A closure that you use to generate includers that construct each subpredicate in the created `NSPredicate`
      */
-    convenience init<T: Reflectable>(_ type: T.Type, @noescape builder: ((includeIf: PredicateBuilder<T>) -> Void)) {
+    convenience init<T: Reflectable>(_ type: T.Type, builder: ((_ includeIf: PredicateBuilder<T>) -> Void)) {
         let predicateBuilder = PredicateBuilder(type: type)
-        builder(includeIf: predicateBuilder)
+        builder(predicateBuilder)
         
         if predicateBuilder.predicateString.isEmpty {
             self.init(value: false)
@@ -34,14 +34,14 @@ public extension NSPredicate {
 /**
  Convenience infix `&&` operator that combines two `NSPredicate` instances into one ANDed `NSCompoundPredicate`
  */
-public func && (lhs: NSPredicate, rhs: NSPredicate) -> NSPredicate {
+@discardableResult public func && (lhs: NSPredicate, rhs: NSPredicate) -> NSPredicate {
     return NSCompoundPredicate(andPredicateWithSubpredicates: [lhs, rhs])
 }
 
 /**
  Convenience infix `||` operator that combines two `NSPredicate` instances into one ORed `NSCompoundPredicate`
  */
-public func || (lhs: NSPredicate, rhs: NSPredicate) -> NSPredicate {
+@discardableResult public func || (lhs: NSPredicate, rhs: NSPredicate) -> NSPredicate {
     return NSCompoundPredicate(orPredicateWithSubpredicates: [lhs, rhs])
 }
 

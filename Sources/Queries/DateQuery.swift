@@ -35,7 +35,7 @@ public final class DateQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func isLaterThan(date: NSDate) -> FinalizedIncluder<T> {
+    @discardableResult public func isLaterThan(_ date: Date) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) > %@"
         builder.arguments.append(date)
         return FinalizedIncluder(builder: builder, arguments: [date])
@@ -56,7 +56,7 @@ public final class DateQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func isEarlierThan(date: NSDate) -> FinalizedIncluder<T> {
+    @discardableResult public func isEarlierThan(_ date: Date) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) < %@"
         builder.arguments.append(date)
         return FinalizedIncluder(builder: builder, arguments: [date])
@@ -77,7 +77,7 @@ public final class DateQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func isLaterThanOrOn(date: NSDate) -> FinalizedIncluder<T> {
+    @discardableResult public func isLaterThanOrOn(_ date: Date) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) >= %@"
         builder.arguments.append(date)
         return FinalizedIncluder(builder: builder, arguments: [date])
@@ -98,7 +98,7 @@ public final class DateQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func isEarlierThanOrOn(date: NSDate) -> FinalizedIncluder<T> {
+    @discardableResult public func isEarlierThanOrOn(_ date: Date) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) <= %@"
         builder.arguments.append(date)
         return FinalizedIncluder(builder: builder, arguments: [date])
@@ -119,7 +119,7 @@ public final class DateQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func equals(date: NSDate) -> FinalizedIncluder<T> {
+    @discardableResult public func equals(_ date: Date) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) == %@"
         builder.arguments.append(date)
         return FinalizedIncluder(builder: builder, arguments: [date])

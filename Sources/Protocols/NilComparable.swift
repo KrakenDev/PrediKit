@@ -15,11 +15,11 @@ public protocol NilComparable: Queryable {
     /**
      Creates an includer that determines if the property being queried is nil.
      */
-    var equalsNil: FinalizedIncluder<BuilderType> { get }
+    @discardableResult func equalsNil() -> FinalizedIncluder<BuilderType>
 }
 
 public extension NilComparable {
-    var equalsNil: FinalizedIncluder<BuilderType> {
+    @discardableResult func equalsNil() -> FinalizedIncluder<BuilderType> {
         builder.predicateString = "\(property) == nil"
         return FinalizedIncluder(builder: builder)
     }

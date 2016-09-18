@@ -11,7 +11,7 @@ import Foundation
 /**
  An `OptionSetType` that describes the options in which to create a string comparison.
  */
-public struct PredicateOptions: OptionSetType {
+public struct PredicateOptions: OptionSet {
     /**
      The raw value of the given `PredicateOptions` value.
      */

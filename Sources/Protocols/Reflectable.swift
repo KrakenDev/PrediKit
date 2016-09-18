@@ -33,18 +33,18 @@ extension NSObject: Reflectable {
      - Returns: An `Array` of `Selector`s whose string values are equal to the names of each property in the NSObject subclass.
      */
     public static func properties() -> [Selector] {
-        guard let savedPropertyList = reflectedClasses[String(self)] else {
+        guard let savedPropertyList = reflectedClasses[String(describing: self)] else {
             var count: UInt32 = 0
             let properties = class_copyPropertyList(self, &count)
             var propertyNames: [Selector] = []
             for i in 0..<Int(count) {
-                if let propertyName = String(UTF8String: property_getName(properties[i])) {
+                if let propertyName = String(validatingUTF8: property_getName(properties?[i])) {
                     propertyNames.append(Selector(propertyName))
                 }
             }
             free(properties)
             
-            reflectedClasses[String(self)] = propertyNames
+            reflectedClasses[String(describing: self)] = propertyNames
             return propertyNames
         }
         return savedPropertyList

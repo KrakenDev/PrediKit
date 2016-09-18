@@ -12,20 +12,20 @@ import Foundation
  A class that finalizes an includer created within the builder closure of PrediKit's `NSPredicate` convenience initializer. All includers (basically any line of code within that closure) must end in a call to a function that returns an instance or subclassed instance of this class to create a valid `NSPredicate`.
  */
 public final class FinalizedIncluder<T: Reflectable> {
-    private let builder: PredicateBuilder<T>
-    private var finalArguments: [AnyObject?]
+    fileprivate let builder: PredicateBuilder<T>
+    fileprivate var finalArguments: [Any?]
     
-    private(set) var finalPredicateString: String
-    private(set) var ANDPredicatesToCombine: [String] = []
-    private(set) var ORPredicatesToCombine: [String] = []
+    fileprivate(set) var finalPredicateString: String
+    fileprivate(set) var ANDPredicatesToCombine: [String] = []
+    fileprivate(set) var ORPredicatesToCombine: [String] = []
     
-    init(builder: PredicateBuilder<T>, arguments: [AnyObject?] = []) {
+    init(builder: PredicateBuilder<T>, arguments: [Any?] = []) {
         self.builder = builder
         self.finalPredicateString = builder.predicateString
         self.finalArguments = arguments
     }
     
-    private static func combine<T>(lhs: FinalizedIncluder<T>, rhs: FinalizedIncluder<T>, logicalAND: Bool) -> FinalizedIncluder<T> {
+    fileprivate static func combine<T>(_ lhs: FinalizedIncluder<T>, rhs: FinalizedIncluder<T>, logicalAND: Bool) -> FinalizedIncluder<T> {
         let lhsPredicate = lhs.finalPredicateString
         let rhsPredicate = rhs.finalPredicateString
         let predicateFormat: String
@@ -41,7 +41,7 @@ public final class FinalizedIncluder<T: Reflectable> {
             lhsPredicatesToCombine.append(rhsPredicate)
             rhsPredicatesToCombine = lhsPredicatesToCombine
         } else {
-            lhsPredicatesToCombine.appendContentsOf(rhsPredicatesToCombine)
+            lhsPredicatesToCombine.append(contentsOf: rhsPredicatesToCombine)
             rhsPredicatesToCombine = lhsPredicatesToCombine
         }
         
@@ -49,12 +49,12 @@ public final class FinalizedIncluder<T: Reflectable> {
             lhs.ANDPredicatesToCombine = lhsPredicatesToCombine
             rhs.ANDPredicatesToCombine = lhsPredicatesToCombine
             
-            predicateFormat = "(\(lhsPredicatesToCombine.joinWithSeparator(" && ")))"
+            predicateFormat = "(\(lhsPredicatesToCombine.joined(separator: " && ")))"
         } else {
             lhs.ORPredicatesToCombine = lhsPredicatesToCombine
             rhs.ORPredicatesToCombine = lhsPredicatesToCombine
             
-            predicateFormat = "(\(lhsPredicatesToCombine.joinWithSeparator(" || ")))"
+            predicateFormat = "(\(lhsPredicatesToCombine.joined(separator: " || ")))"
         }
         
         lhs.finalPredicateString = predicateFormat
@@ -76,7 +76,7 @@ public final class FinalizedIncluder<T: Reflectable> {
  
  Essentially, you use this operator to join together two includers.
  */
-public func && <T>(lhs: FinalizedIncluder<T>, rhs: FinalizedIncluder<T>) -> FinalizedIncluder<T> {
+@discardableResult public func && <T>(lhs: FinalizedIncluder<T>, rhs: FinalizedIncluder<T>) -> FinalizedIncluder<T> {
     return .combine(lhs, rhs: rhs, logicalAND: true)
 }
 
@@ -85,7 +85,7 @@ public func && <T>(lhs: FinalizedIncluder<T>, rhs: FinalizedIncluder<T>) -> Fina
  
  Essentially, you use this operator to join together two includers.
  */
-public func || <T>(lhs: FinalizedIncluder<T>, rhs: FinalizedIncluder<T>) -> FinalizedIncluder<T> {
+@discardableResult public func || <T>(lhs: FinalizedIncluder<T>, rhs: FinalizedIncluder<T>) -> FinalizedIncluder<T> {
     return .combine(lhs, rhs: rhs, logicalAND: false)
 }
 
@@ -94,7 +94,7 @@ public func || <T>(lhs: FinalizedIncluder<T>, rhs: FinalizedIncluder<T>) -> Fina
  
  Essentially, you use this operator to indicate the opposite of an includer.
  */
-public prefix func ! <T>(rhs: FinalizedIncluder<T>) -> FinalizedIncluder<T> {
+@discardableResult public prefix func ! <T>(rhs: FinalizedIncluder<T>) -> FinalizedIncluder<T> {
     rhs.finalPredicateString = "!(\(rhs.finalPredicateString))"
     rhs.builder.predicateString = rhs.finalPredicateString
     return rhs

@@ -16,8 +16,8 @@ public final class PredicateSubqueryBuilder<T: Reflectable>: PredicateBuilder<T>
         super.init(type: type)
     }
     
-    override func validatedProperty(property: Selector, file: String, line: Int) -> String {
+    override func validatedProperty(_ property: Selector, file: String, line: Int) -> String {
         let subqueryProperty = super.validatedProperty(property, file: file, line: line)
-        return "$\(String(type))Item.\(subqueryProperty)"
+        return "$\(String(describing: type))Item.\(subqueryProperty)"
     }
 }

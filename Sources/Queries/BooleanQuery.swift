@@ -30,7 +30,7 @@ public final class BooleanQuery<T: Reflectable>: NilComparable, Matchable {
      
      "Fetch the `Kraken` object if the value of its `isAwesome` property is true"
      */
-    public var isTrue: FinalizedIncluder<T> {
+    @discardableResult public func isTrue() -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) == true"
         return FinalizedIncluder(builder: builder)
     }
@@ -45,7 +45,7 @@ public final class BooleanQuery<T: Reflectable>: NilComparable, Matchable {
      
      "Fetch the `Kraken` object if the value of its `isAwesome` property is false"
      */
-    public var isFalse: FinalizedIncluder<T> {
+    @discardableResult public func isFalse() -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) == false"
         return FinalizedIncluder(builder: builder)
     }

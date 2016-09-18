@@ -25,12 +25,11 @@ public protocol Matchable: Queryable {
      - Parameters:
      - collection: An `Array` or `Set` of objects to match against.
      */
-    func matchesAnyValueIn<U: CollectionType>(collection: U) -> FinalizedIncluder<BuilderType>
+    @discardableResult func matchesAnyValueIn<U: Collection>(_ collection: U) -> FinalizedIncluder<BuilderType>
 }
 
 public extension Matchable {
-    func matchesAnyValueIn<U: CollectionType>(collection: U) -> FinalizedIncluder<BuilderType> {
-        let collection = collection as? AnyObject
+    @discardableResult func matchesAnyValueIn<U: Collection>(_ collection: U) -> FinalizedIncluder<BuilderType> {
         builder.predicateString = "\(property) IN %@"
         builder.arguments.append(collection)
         return FinalizedIncluder(builder: builder, arguments: [collection])

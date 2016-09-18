@@ -15,13 +15,14 @@ public final class StringQuery<T: Reflectable>: NilComparable, Matchable {
     public let builder: PredicateBuilder<T>
     public let property: String
     
-    public var isEmpty: FinalizedIncluder<T> {
-        return equals("")
-    }
-    
     required public init(builder: PredicateBuilder<T>, property: String) {
         self.builder = builder
         self.property = property
+    }
+
+    /// Convenience function for StringQuery's equals(string:) function where we pass an empty string through.
+    @discardableResult public func isEmpty() -> FinalizedIncluder<T> {
+        return equals("")
     }
     
     /**
@@ -40,7 +41,7 @@ public final class StringQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func beginsWith(string: String, options: PredicateOptions = .None) -> FinalizedIncluder<T> {
+    @discardableResult public func beginsWith(_ string: String, options: PredicateOptions = .None) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) BEGINSWITH\(optionsString(options)) \"\(string)\""
         return FinalizedIncluder(builder: builder)
     }
@@ -61,7 +62,7 @@ public final class StringQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func endsWith(string: String, options: PredicateOptions = .None) -> FinalizedIncluder<T> {
+    @discardableResult public func endsWith(_ string: String, options: PredicateOptions = .None) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) ENDSWITH\(optionsString(options)) \"\(string)\""
         return FinalizedIncluder(builder: builder)
     }
@@ -82,7 +83,7 @@ public final class StringQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func contains(string: String, options: PredicateOptions = .None) -> FinalizedIncluder<T> {
+    @discardableResult public func contains(_ string: String, options: PredicateOptions = .None) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) CONTAINS\(optionsString(options)) \"\(string)\""
         return FinalizedIncluder(builder: builder)
     }
@@ -103,7 +104,7 @@ public final class StringQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func matches(string: String, options: PredicateOptions = .None) -> FinalizedIncluder<T> {
+    @discardableResult public func matches(_ string: String, options: PredicateOptions = .None) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) MATCHES\(optionsString(options)) \"\(string)\""
         return FinalizedIncluder(builder: builder)
     }
@@ -124,12 +125,12 @@ public final class StringQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func equals(string: String) -> FinalizedIncluder<T> {
+    @discardableResult public func equals(_ string: String) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) == \"\(string)\""
         return FinalizedIncluder(builder: builder)
     }
     
-    private func optionsString(options: PredicateOptions) -> String {
+    fileprivate func optionsString(_ options: PredicateOptions) -> String {
         if !options.isEmpty && !options.contains(.None) {
             var string = "["
             if options.contains(.CaseInsensitive) {

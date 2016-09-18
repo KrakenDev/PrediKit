@@ -35,7 +35,7 @@ public final class NumberQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func isGreaterThan(number: NSNumber) -> FinalizedIncluder<T> {
+    @discardableResult public func isGreaterThan(_ number: Number) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) > %@"
         builder.arguments.append(number)
         return FinalizedIncluder(builder: builder, arguments: [number])
@@ -57,7 +57,7 @@ public final class NumberQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func isLessThan(number: NSNumber) -> FinalizedIncluder<T> {
+    @discardableResult public func isLessThan(_ number: Number) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) < %@"
         builder.arguments.append(number)
         return FinalizedIncluder(builder: builder, arguments: [number])
@@ -79,7 +79,7 @@ public final class NumberQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func isGreaterThanOrEqualTo(number: NSNumber) -> FinalizedIncluder<T> {
+    @discardableResult public func isGreaterThanOrEqualTo(_ number: Number) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) >= %@"
         builder.arguments.append(number)
         return FinalizedIncluder(builder: builder, arguments: [number])
@@ -101,7 +101,7 @@ public final class NumberQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func isLessThanOrEqualTo(number: NSNumber) -> FinalizedIncluder<T> {
+    @discardableResult public func isLessThanOrEqualTo(_ number: Number) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) <= %@"
         builder.arguments.append(number)
         return FinalizedIncluder(builder: builder, arguments: [number])
@@ -123,7 +123,7 @@ public final class NumberQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func doesNotEqual(number: NSNumber) -> FinalizedIncluder<T> {
+    @discardableResult public func doesNotEqual(_ number: Number) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) != %@"
         builder.arguments.append(number)
         return FinalizedIncluder(builder: builder, arguments: [number])
@@ -145,7 +145,7 @@ public final class NumberQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func equals(number: NSNumber) -> FinalizedIncluder<T> {
+    @discardableResult public func equals(_ number: Number) -> FinalizedIncluder<T> {
         builder.predicateString = "\(property) == %@"
         builder.arguments.append(number)
         return FinalizedIncluder(builder: builder, arguments: [number])

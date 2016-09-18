@@ -11,17 +11,17 @@ import Foundation
 /**
  The class that gets passed into the builder closure of PrediKit's `NSPredicate` convenience initializer.
  */
-public class PredicateBuilder<T: Reflectable> {
+open class PredicateBuilder<T: Reflectable> {
     let type: T.Type
     var predicateString: String = ""
-    var arguments: [AnyObject?] = []
+    var arguments: [Any?] = []
     
     /**
      Used to indicate that you want to query the actual object checked when the predicate is run. Behaves like the `SELF` in the SQL-like query:
      
          NSPredicate(format: "SELF in names")
      */
-    public var SELF: BasicQuery<T> {
+    open var SELF: BasicQuery<T> {
         return BasicQuery(builder: self, property: "SELF")
     }
     
@@ -44,7 +44,7 @@ public class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func string(property: Selector, file: String = #file, line: Int = #line) -> StringQuery<T> {
+    open func string(_ property: Selector, file: String = #file, line: Int = #line) -> StringQuery<T> {
         return StringQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -63,7 +63,7 @@ public class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func number(property: Selector, file: String = #file, line: Int = #line) -> NumberQuery<T> {
+    open func number(_ property: Selector, file: String = #file, line: Int = #line) -> NumberQuery<T> {
         return NumberQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -82,7 +82,7 @@ public class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func date(property: Selector, file: String = #file, line: Int = #line) -> DateQuery<T> {
+    open func date(_ property: Selector, file: String = #file, line: Int = #line) -> DateQuery<T> {
         return DateQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -101,7 +101,7 @@ public class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func bool(property: Selector, file: String = #file, line: Int = #line) -> BooleanQuery<T> {
+    open func bool(_ property: Selector, file: String = #file, line: Int = #line) -> BooleanQuery<T> {
         return BooleanQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -120,7 +120,7 @@ public class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    public func collection(property: Selector, file: String = #file, line: Int = #line) -> SequenceQuery<T> {
+    open func collection(_ property: Selector, file: String = #file, line: Int = #line) -> SequenceQuery<T> {
         return SequenceQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -140,17 +140,17 @@ public class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `__FILE__`
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
-    public func member<U: protocol<Reflectable, AnyObject>>(property: Selector, ofType memberType: U.Type, file: String = #file, line: Int = #line) -> MemberQuery<T, U> {
+    open func member<U: Reflectable & AnyObject>(_ property: Selector, ofType memberType: U.Type, file: String = #file, line: Int = #line) -> MemberQuery<T, U> {
         return MemberQuery(builder: self, property: validatedProperty(property), memberType: memberType)
     }
     
-    internal func validatedProperty(property: Selector, file: String = #file, line: Int = #line) -> String {
+    internal func validatedProperty(_ property: Selector, file: String = #file, line: Int = #line) -> String {
         if !type.properties().contains(property) && self.type != NSObject.self {
             #if DEBUG
                 print("\(String(type)) does not seem to contain property \"\(property)\". This could be due to the optionality of a value type. Possible property key values:\n\(type.properties()).\nWarning in file:\(file) at line \(line)")
             #endif
         }
         
-        return String(property)
+        return String(describing: property)
     }
 }
