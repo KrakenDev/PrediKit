@@ -14,15 +14,12 @@ env:
   - tvOS_SDK=appletvsimulator10.0
   - watchOS_SDK=watchsimulator3.0
   matrix:
-    - DESTINATION="OS=8.3,name=iPhone 5"           SCHEME="$iOS_FRAMEWORK_SCHEME"     SDK="$iOS_SDK"     RUN_TESTS="YES" POD_LINT="NO"
     - DESTINATION="OS=10.0,name=iPhone 7 Plus"     SCHEME="$iOS_FRAMEWORK_SCHEME"     SDK="$iOS_SDK"     RUN_TESTS="YES" POD_LINT="YES"
 
     - DESTINATION="arch=x86_64"                    SCHEME="$OSX_FRAMEWORK_SCHEME"     SDK="$OSX_SDK"     RUN_TESTS="YES" POD_LINT="NO"
 
-    - DESTINATION="OS=9.2,name=Apple TV 1080p"     SCHEME="$tvOS_FRAMEWORK_SCHEME"    SDK="$tvOS_SDK"    RUN_TESTS="YES" POD_LINT="NO"
-    - DESTINATION="OS=10.0,name=Apple TV 1080p"     SCHEME="$tvOS_FRAMEWORK_SCHEME"    SDK="$tvOS_SDK"    RUN_TESTS="YES" POD_LINT="NO"
+    - DESTINATION="OS=10.0,name=Apple TV 1080p"    SCHEME="$tvOS_FRAMEWORK_SCHEME"    SDK="$tvOS_SDK"    RUN_TESTS="YES" POD_LINT="NO"
 
-    - DESTINATION="OS=2.2,name=Apple Watch - 42mm" SCHEME="$watchOS_FRAMEWORK_SCHEME" SDK="$watchOS_SDK" RUN_TESTS="NO"  POD_LINT="NO"
     - DESTINATION="OS=3.0,name=Apple Watch - 42mm" SCHEME="$watchOS_FRAMEWORK_SCHEME" SDK="$watchOS_SDK" RUN_TESTS="NO"  POD_LINT="NO"
 before_install:
     - gem install xcpretty -N
@@ -32,11 +29,18 @@ script:
   - xcodebuild -version
   - xcodebuild -showsdks
 
-  # Build Framework or Run Tests if specified
+  # Build Framework in Debug and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" ONLY_ACTIVE_ARCH=YES test | xcpretty -c;
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty -c;
     else
-      xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" ONLY_ACTIVE_ARCH=YES build | xcpretty -c;
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
+    fi
+
+  # Build Framework in Release and Run Tests if specified
+  - if [ $RUN_TESTS == "YES" ]; then
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty -c;
+    else
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
     fi
 
   # Run `pod lib lint` if specified

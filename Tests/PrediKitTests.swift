@@ -305,7 +305,7 @@ class PrediKitTests: XCTestCase {
             includeIf.collection(.friends).subquery(Cerberus.self) { includeIf in
                 let isTheKraken = includeIf.string(.title).equals(theKrakensTitle)
                 let isBirthedToday = includeIf.date(.birthdate).equals(rightNow)
-                let isHungry = includeIf.bool(.isHungry).isTrue()
+                let isHungry = includeIf.bool(.isHungry).isTrue
                 let isOlderThan5AndAHalf = includeIf.number(.age).isGreaterThan(age)
                 let hasElfSubordinates = includeIf.collection(.subordinates).subquery(Elf.self) { includeIf in
                     includeIf.string(.title).equals(theElfTitle)
