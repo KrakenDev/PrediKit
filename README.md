@@ -2,8 +2,8 @@
 [![Travis Build Status](http://img.shields.io/travis/KrakenDev/PrediKit.svg?style=flat-square)](https://travis-ci.org/KrakenDev/PrediKit)
 [![Coveralls](https://img.shields.io/coveralls/KrakenDev/PrediKit/master.svg?style=flat-square)](https://coveralls.io/github/KrakenDev/PrediKit?branch=master)
 [![Supported Platforms](https://img.shields.io/cocoapods/p/PrediKit.svg?style=flat-square)]()
-[![Swift Version Compatibility](https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat-square)](https://developer.apple.com/swift)
-[![Cocoapods Version](https://img.shields.io/badge/pod-3.0.1-blue.svg?style=flat-square)](https://cocoapods.org/pods/PrediKit)
+[![Swift Version Compatibility](https://img.shields.io/badge/swift3-compatible-4BC51D.svg?style=flat-square)](https://developer.apple.com/swift)
+[![Cocoapods Version](https://img.shields.io/badge/pod-4.0.0-blue.svg?style=flat-square)](https://cocoapods.org/pods/PrediKit)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
 [![LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/KrakenDev/PrediKit/master/LICENSE)
 
@@ -48,7 +48,12 @@ To integrate PrediKit through CocoaPods, make sure the `use_frameworks!` line is
 
 ```ruby
 use_frameworks!
+#for the latest version that is compatible with Swift 3.0 use:
 pod 'PrediKit'
+#for the latest version that is compatible with legacy Swift 2.3 use this instead:
+pod 'PrediKit', :git => 'https://github.com/KrakenDev/PrediKit.git', :branch => 'swift2.3'
+#for the latest version that is compatible with legacy Swift 2.1 use this instead:
+pod 'PrediKit', :git => 'https://github.com/KrakenDev/PrediKit.git', :branch => 'swift2.1'
 ```
 
 Then, run the following command:
@@ -77,6 +82,13 @@ To integrate PrediKit into your Xcode project using Carthage, specify it in your
 
 ```ogdl
 github "KrakenDev/PrediKit"
+```
+
+For legacy swift versions, I am keeping the swift2.1 && swift2.3 branches open for you. However, no more dev will be done for them (I will however, happily accept pull requests for any feature I happen to add!) If you are using these legacy versions, you should be able to use this instead in your Cartfile:
+
+```ogdl
+github "KrakenDev/PrediKit" "swift2.1"
+github "KrakenDev/PrediKit" "swift2.3"
 ```
 
 Run `carthage update` to build the framework and drag the built `PrediKit.framework` into your Xcode project.
@@ -114,7 +126,7 @@ To check if a property is nil:
 
 ```swift
 let predicate = NSPredicate(ManagedLegend.self) { includeIf in
-    includeIf.string("title").equalsNil
+    includeIf.string("title").equalsNil()
 }
 ```
 
@@ -152,12 +164,12 @@ PrediKit also overloads the `&&`, `||`, and `!` operators. This allows you compo
 ```swift
 let predicate = NSPredicate(ManagedLegend.self) { includeIf in
     //Include any ManagedLegend instance if the property named "string" is NOT nil and does NOT equal "The Almighty Kraken"
-    !includeIf.string("title").equalsNil &&
+    !includeIf.string("title").equalsNil() &&
     !includeIf.string("title").equals("The Almighty Kraken") &&
     
     //Also include any ManagedLegend instance if the date property named "birthdate" is in the past or if the bool property "isAwesome" is true.
     includeIf.date("birthdate").isEarlierThan(NSDate()) ||
-    includeIf.bool("isAwesome").isTrue
+    includeIf.bool("isAwesome").isTrue()
 }
 ```
 
@@ -193,7 +205,7 @@ let predicate = NSPredicate(ManagedLegend.self) { includeIf in
     
     //Only include Krakens that have more than three hungry cerberus friends
     includeIf.collection("cerberusFriends").subquery(ManagedCerberus.self) {
-        $0.bool("isHungry").isTrue
+        $0.bool("isHungry").isTrue()
         return .IncludeIfMatched(.Amount(.IsGreaterThan(3)))
     }
 }
