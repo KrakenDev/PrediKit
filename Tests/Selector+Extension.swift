@@ -8,28 +8,23 @@
 
 import Foundation
 
-extension Selector {
-    fileprivate enum Names: String {
-        case title
-        case birthdate
-        case age
-        case bestElfFriend
-        case friends
-        case subordinates
-        case isAwesome
-        case isHungry
-    }
+extension String {
+    static let krakenTitle = #keyPath(Kraken.title)
+    static let cerberusTitle = #keyPath(Cerberus.title)
+    static let elfTitle = #keyPath(Elf.title)
+
+    static let krakenAge = #keyPath(Kraken.age)
+    static let cerberusAge = #keyPath(Cerberus.age)
+
+    static let krakenBirthdate = #keyPath(Kraken.birthdate)
+    static let cerberusBirthdate = #keyPath(Cerberus.birthdate)
+
+    static let friends = #keyPath(Kraken.friends)
+    static let bestElfFriend = #keyPath(Kraken.bestElfFriend)
+    static let isAwesome = #keyPath(Kraken.isAwesome)
+
+    static let subordinates = #keyPath(Cerberus.subordinates)
+    static let isHungry = #keyPath(Cerberus.isHungry)
     
-    fileprivate init(_ name: Names) {
-        self.init(name.rawValue)
-    }
-    
-    static let title = Selector(.title)
-    static let birthdate = Selector(.birthdate)
-    static let age = Selector(.age)
-    static let subordinates = Selector(.subordinates)
-    static let friends = Selector(.friends)
-    static let bestElfFriend = Selector(.bestElfFriend)
-    static let isAwesome = Selector(.isAwesome)
-    static let isHungry = Selector(.isHungry)
+    static let enemy = #keyPath(Elf.enemy)
 }

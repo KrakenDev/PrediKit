@@ -44,7 +44,7 @@ open class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    open func string(_ property: Selector, file: String = #file, line: Int = #line) -> StringQuery<T> {
+    open func string(_ property: String, file: String = #file, line: Int = #line) -> StringQuery<T> {
         return StringQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -63,7 +63,7 @@ open class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    open func number(_ property: Selector, file: String = #file, line: Int = #line) -> NumberQuery<T> {
+    open func number(_ property: String, file: String = #file, line: Int = #line) -> NumberQuery<T> {
         return NumberQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -82,7 +82,7 @@ open class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    open func date(_ property: Selector, file: String = #file, line: Int = #line) -> DateQuery<T> {
+    open func date(_ property: String, file: String = #file, line: Int = #line) -> DateQuery<T> {
         return DateQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -101,7 +101,7 @@ open class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    open func bool(_ property: Selector, file: String = #file, line: Int = #line) -> BooleanQuery<T> {
+    open func bool(_ property: String, file: String = #file, line: Int = #line) -> BooleanQuery<T> {
         return BooleanQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -120,7 +120,7 @@ open class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    open func collection(_ property: Selector, file: String = #file, line: Int = #line) -> SequenceQuery<T> {
+    open func collection(_ property: String, file: String = #file, line: Int = #line) -> SequenceQuery<T> {
         return SequenceQuery(builder: self, property: validatedProperty(property, file: file, line: line))
     }
     
@@ -140,12 +140,12 @@ open class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `__FILE__`
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
-    open func member<U: Reflectable & AnyObject>(_ property: Selector, ofType memberType: U.Type, file: String = #file, line: Int = #line) -> MemberQuery<T, U> {
+    open func member<U: Reflectable & AnyObject>(_ property: String, ofType memberType: U.Type, file: String = #file, line: Int = #line) -> MemberQuery<T, U> {
         return MemberQuery(builder: self, property: validatedProperty(property), memberType: memberType)
     }
     
-    internal func validatedProperty(_ property: Selector, file: String = #file, line: Int = #line) -> String {
-        if !type.properties().contains(property) && self.type != NSObject.self {
+    internal func validatedProperty(_ property: String, file: String = #file, line: Int = #line) -> String {
+        if !type.properties().contains(Selector(property)) && self.type != NSObject.self {
             #if DEBUG
                 print("\(String(type)) does not seem to contain property \"\(property)\". This could be due to the optionality of a value type. Possible property key values:\n\(type.properties()).\nWarning in file:\(file) at line \(line)")
             #endif

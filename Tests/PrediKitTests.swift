@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import CoreData
 @testable import PrediKit
 
 class PrediKitTests: XCTestCase {
@@ -27,9 +28,9 @@ class PrediKitTests: XCTestCase {
         let _ = NSPredicate(Kraken.self) { includeIf in
             includeIf.SELF.equalsNil()
             XCTAssertEqual(includeIf.predicateString, "SELF == nil")
-            includeIf.string(.title).equalsNil()
+            includeIf.string(.krakenTitle).equalsNil()
             XCTAssertEqual(includeIf.predicateString, "title == nil")
-            !includeIf.string(.title).equalsNil()
+            !includeIf.string(.krakenTitle).equalsNil()
             XCTAssertEqual(includeIf.predicateString, "!(title == nil)")
             includeIf.SELF.matchesAnyValueIn(legendaryArray)
             XCTAssertEqual(includeIf.predicateString, "SELF IN %@")
@@ -37,7 +38,7 @@ class PrediKitTests: XCTestCase {
             XCTAssertEqual(includeIf.predicateString, "SELF IN %@")
             includeIf.member(.bestElfFriend, ofType: Elf.self).matchesAnyValueIn(legendaryArray)
             XCTAssertEqual(includeIf.predicateString, "bestElfFriend IN %@")
-            includeIf.string(.title).matchesAnyValueIn(legendaryArray)
+            includeIf.string(.krakenTitle).matchesAnyValueIn(legendaryArray)
             XCTAssertEqual(includeIf.predicateString, "title IN %@")
         }
     }
@@ -45,17 +46,17 @@ class PrediKitTests: XCTestCase {
     func testStringIncluders() {
         let theKrakensTitle = "The Almighty Kraken"
         let _ = NSPredicate(Kraken.self) { includeIf in
-            includeIf.string(.title).isEmpty()
+            includeIf.string(.krakenTitle).isEmpty()
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title == \"\"", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).beginsWith(theKrakensTitle)
+            includeIf.string(.krakenTitle).beginsWith(theKrakensTitle)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title BEGINSWITH %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).endsWith(theKrakensTitle)
+            includeIf.string(.krakenTitle).endsWith(theKrakensTitle)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title ENDSWITH %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).contains(theKrakensTitle)
+            includeIf.string(.krakenTitle).contains(theKrakensTitle)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title CONTAINS %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).matches(theKrakensTitle)
+            includeIf.string(.krakenTitle).matches(theKrakensTitle)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title MATCHES %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).equals(theKrakensTitle)
+            includeIf.string(.krakenTitle).equals(theKrakensTitle)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title == %@", theKrakensTitle).predicateFormat)
         }
     }
@@ -63,31 +64,31 @@ class PrediKitTests: XCTestCase {
     func testStringIncludersWithOptions() {
         let theKrakensTitle = "The Almighty Kraken"
         let _ = NSPredicate(Kraken.self) { includeIf in
-            includeIf.string(.title).beginsWith(theKrakensTitle, options: .CaseInsensitive)
+            includeIf.string(.krakenTitle).beginsWith(theKrakensTitle, options: .CaseInsensitive)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title BEGINSWITH[c] %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).endsWith(theKrakensTitle, options: .CaseInsensitive)
+            includeIf.string(.krakenTitle).endsWith(theKrakensTitle, options: .CaseInsensitive)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title ENDSWITH[c] %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).contains(theKrakensTitle, options: .CaseInsensitive)
+            includeIf.string(.krakenTitle).contains(theKrakensTitle, options: .CaseInsensitive)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title CONTAINS[c] %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).matches(theKrakensTitle, options: .CaseInsensitive)
+            includeIf.string(.krakenTitle).matches(theKrakensTitle, options: .CaseInsensitive)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title MATCHES[c] %@", theKrakensTitle).predicateFormat)
 
-            includeIf.string(.title).beginsWith(theKrakensTitle, options: .DiacriticInsensitive)
+            includeIf.string(.krakenTitle).beginsWith(theKrakensTitle, options: .DiacriticInsensitive)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title BEGINSWITH[d] %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).endsWith(theKrakensTitle, options: .DiacriticInsensitive)
+            includeIf.string(.krakenTitle).endsWith(theKrakensTitle, options: .DiacriticInsensitive)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title ENDSWITH[d] %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).contains(theKrakensTitle, options: .DiacriticInsensitive)
+            includeIf.string(.krakenTitle).contains(theKrakensTitle, options: .DiacriticInsensitive)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title CONTAINS[d] %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).matches(theKrakensTitle, options: .DiacriticInsensitive)
+            includeIf.string(.krakenTitle).matches(theKrakensTitle, options: .DiacriticInsensitive)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title MATCHES[d] %@", theKrakensTitle).predicateFormat)
 
-            includeIf.string(.title).beginsWith(theKrakensTitle, options: [.CaseInsensitive, .DiacriticInsensitive])
+            includeIf.string(.krakenTitle).beginsWith(theKrakensTitle, options: [.CaseInsensitive, .DiacriticInsensitive])
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title BEGINSWITH[cd] %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).endsWith(theKrakensTitle, options: [.CaseInsensitive, .DiacriticInsensitive])
+            includeIf.string(.krakenTitle).endsWith(theKrakensTitle, options: [.CaseInsensitive, .DiacriticInsensitive])
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title ENDSWITH[cd] %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).contains(theKrakensTitle, options: [.CaseInsensitive, .DiacriticInsensitive])
+            includeIf.string(.krakenTitle).contains(theKrakensTitle, options: [.CaseInsensitive, .DiacriticInsensitive])
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title CONTAINS[cd] %@", theKrakensTitle).predicateFormat)
-            includeIf.string(.title).matches(theKrakensTitle, options: [.CaseInsensitive, .DiacriticInsensitive])
+            includeIf.string(.krakenTitle).matches(theKrakensTitle, options: [.CaseInsensitive, .DiacriticInsensitive])
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title MATCHES[cd] %@", theKrakensTitle).predicateFormat)
         }
     }
@@ -95,17 +96,17 @@ class PrediKitTests: XCTestCase {
     func testNumberIncluders() {
         let testAge = 5
         let _ = NSPredicate(Kraken.self) { includeIf in
-            includeIf.number(.age).doesNotEqual(testAge)
+            includeIf.number(.krakenAge).doesNotEqual(testAge)
             XCTAssertEqual(includeIf.predicateString, "age != %@")
-            includeIf.number(.age).equals(testAge)
+            includeIf.number(.krakenAge).equals(testAge)
             XCTAssertEqual(includeIf.predicateString, "age == %@")
-            includeIf.number(.age).isGreaterThan(testAge)
+            includeIf.number(.krakenAge).isGreaterThan(testAge)
             XCTAssertEqual(includeIf.predicateString, "age > %@")
-            includeIf.number(.age).isGreaterThanOrEqualTo(testAge)
+            includeIf.number(.krakenAge).isGreaterThanOrEqualTo(testAge)
             XCTAssertEqual(includeIf.predicateString, "age >= %@")
-            includeIf.number(.age).isLessThan(testAge)
+            includeIf.number(.krakenAge).isLessThan(testAge)
             XCTAssertEqual(includeIf.predicateString, "age < %@")
-            includeIf.number(.age).isLessThanOrEqualTo(testAge)
+            includeIf.number(.krakenAge).isLessThanOrEqualTo(testAge)
             XCTAssertEqual(includeIf.predicateString, "age <= %@")
         }
     }
@@ -113,15 +114,15 @@ class PrediKitTests: XCTestCase {
     func testDateIncluders() {
         let rightNow = Date()
         let _ = NSPredicate(Kraken.self) { includeIf in
-            includeIf.date(.birthdate).equals(rightNow)
+            includeIf.date(.krakenBirthdate).equals(rightNow)
             XCTAssertEqual(includeIf.predicateString, "birthdate == %@")
-            includeIf.date(.birthdate).isEarlierThan(rightNow)
+            includeIf.date(.krakenBirthdate).isEarlierThan(rightNow)
             XCTAssertEqual(includeIf.predicateString, "birthdate < %@")
-            includeIf.date(.birthdate).isEarlierThanOrOn(rightNow)
+            includeIf.date(.krakenBirthdate).isEarlierThanOrOn(rightNow)
             XCTAssertEqual(includeIf.predicateString, "birthdate <= %@")
-            includeIf.date(.birthdate).isLaterThan(rightNow)
+            includeIf.date(.krakenBirthdate).isLaterThan(rightNow)
             XCTAssertEqual(includeIf.predicateString, "birthdate > %@")
-            includeIf.date(.birthdate).isLaterThanOrOn(rightNow)
+            includeIf.date(.krakenBirthdate).isLaterThanOrOn(rightNow)
             XCTAssertEqual(includeIf.predicateString, "birthdate >= %@")
         }
     }
@@ -193,14 +194,14 @@ class PrediKitTests: XCTestCase {
         let enemyBirthdate = Date()
         let predicate = NSPredicate(Kraken.self) { includeIf in
             let bestElfFriend = includeIf.member(.bestElfFriend, ofType: Elf.self)
-            let bestElfFriendsMortalEnemy = bestElfFriend.member(.birthdate, ofType: Cerberus.self)
+            let bestElfFriendsMortalEnemy = bestElfFriend.member(.enemy, ofType: Cerberus.self)
 
             !bestElfFriend.equalsNil() &&
             bestElfFriend.equals(elf) &&
-            bestElfFriendsMortalEnemy.date(.birthdate).equals(enemyBirthdate) &&
-            bestElfFriend.string(.title).equals(elfName)
+            bestElfFriendsMortalEnemy.date(.cerberusBirthdate).equals(enemyBirthdate) &&
+            bestElfFriend.string(.elfTitle).equals(elfName)
         }
-        XCTAssertEqual(predicate.predicateFormat, NSPredicate(format: "!(bestElfFriend == nil) && bestElfFriend == %@ && bestElfFriend.birthdate.birthdate == %@ && bestElfFriend.title == %@", elf, enemyBirthdate as CVarArg, elfName).predicateFormat)
+        XCTAssertEqual(predicate.predicateFormat, NSPredicate(format: "!(bestElfFriend == nil) && bestElfFriend == %@ && bestElfFriend.enemy.birthdate == %@ && bestElfFriend.title == %@", elf, enemyBirthdate as CVarArg, elfName).predicateFormat)
     }
     
     func testSimpleANDIncluderCombination() {
@@ -208,8 +209,8 @@ class PrediKitTests: XCTestCase {
         let rightNow = Date()
         
         let predicate = NSPredicate(Kraken.self) { includeIf in
-            includeIf.string(.title).equals(theKrakensTitle) &&
-            includeIf.date(.birthdate).isEarlierThan(rightNow)
+            includeIf.string(.krakenTitle).equals(theKrakensTitle) &&
+            includeIf.date(.krakenBirthdate).isEarlierThan(rightNow)
         }
         let expectedPredicate = NSPredicate(format: "title == %@ && birthdate < %@", theKrakensTitle, rightNow as CVarArg)
         XCTAssertEqual(predicate.predicateFormat, expectedPredicate.predicateFormat)
@@ -222,10 +223,10 @@ class PrediKitTests: XCTestCase {
         let age = 5
         
         let predicate = NSPredicate(Kraken.self) { includeIf in
-            includeIf.string(.title).equals(theKrakensTitle) &&
-            includeIf.date(.birthdate).isEarlierThan(rightNow) &&
+            includeIf.string(.krakenTitle).equals(theKrakensTitle) &&
+            includeIf.date(.krakenBirthdate).isEarlierThan(rightNow) &&
             includeIf.bool(.isAwesome).isTrue() &&
-            includeIf.number(.age).equals(age)
+            includeIf.number(.krakenAge).equals(age)
         }
         let expectedPredicate = NSPredicate(format: "title == %@ && birthdate < %@ && isAwesome == %@ && age == \(age)", theKrakensTitle, rightNow as CVarArg, isAwesome as CVarArg)
         XCTAssertEqual(predicate.predicateFormat, expectedPredicate.predicateFormat)
@@ -236,8 +237,8 @@ class PrediKitTests: XCTestCase {
         let rightNow = Date()
         
         let predicate = NSPredicate(Kraken.self) { includeIf in
-            includeIf.string(.title).equals(theKrakensTitle) ||
-            includeIf.date(.birthdate).isEarlierThan(rightNow)
+            includeIf.string(.krakenTitle).equals(theKrakensTitle) ||
+            includeIf.date(.krakenBirthdate).isEarlierThan(rightNow)
         }
         let expectedPredicate = NSPredicate(format: "title == %@ || birthdate < %@", theKrakensTitle, rightNow as CVarArg)
         XCTAssertEqual(predicate.predicateFormat, expectedPredicate.predicateFormat)
@@ -250,10 +251,10 @@ class PrediKitTests: XCTestCase {
         let age = 5
         
         let predicate = NSPredicate(Kraken.self) { includeIf in
-            includeIf.string(.title).equals(theKrakensTitle) ||
-            includeIf.date(.birthdate).isEarlierThan(rightNow) ||
+            includeIf.string(.krakenTitle).equals(theKrakensTitle) ||
+            includeIf.date(.krakenBirthdate).isEarlierThan(rightNow) ||
             includeIf.bool(.isAwesome).isTrue() ||
-            includeIf.number(.age).equals(age)
+            includeIf.number(.krakenAge).equals(age)
         }
         let expectedPredicate = NSPredicate(format: "title == %@ || birthdate < %@ || isAwesome == %@ || age == \(age)", theKrakensTitle, rightNow as CVarArg, isAwesome as CVarArg)
         XCTAssertEqual(predicate.predicateFormat, expectedPredicate.predicateFormat)
@@ -264,12 +265,12 @@ class PrediKitTests: XCTestCase {
         let rightNow = Date()
         
         let predicate = NSPredicate(Kraken.self) { includeIf in
-            includeIf.string(.title).equals(theKrakensTitle) ||
-            includeIf.string(.title).equals(theKrakensTitle) ||
-            includeIf.string(.title).equals(theKrakensTitle) &&
-            includeIf.date(.birthdate).equals(rightNow) ||
+            includeIf.string(.krakenTitle).equals(theKrakensTitle) ||
+            includeIf.string(.krakenTitle).equals(theKrakensTitle) ||
+            includeIf.string(.krakenTitle).equals(theKrakensTitle) &&
+            includeIf.date(.krakenBirthdate).equals(rightNow) ||
             includeIf.bool(.isAwesome).isTrue() &&
-            includeIf.date(.birthdate).equals(rightNow) ||
+            includeIf.date(.krakenBirthdate).equals(rightNow) ||
             includeIf.bool(.isAwesome).isTrue()
         }
         let expectedPredicate = NSPredicate(format: "title == %@ || title == %@ || title == %@ && birthdate == %@ || isAwesome == true && birthdate == %@ || isAwesome == true", theKrakensTitle, theKrakensTitle, theKrakensTitle, rightNow as CVarArg, rightNow as CVarArg)
@@ -281,14 +282,14 @@ class PrediKitTests: XCTestCase {
         let rightNow = Date()
         
         let predicate = NSPredicate(Kraken.self) { includeIf in
-            (includeIf.string(.title).equals(theKrakensTitle) ||
-             includeIf.string(.title).equals(theKrakensTitle) ||
-             includeIf.string(.title).equals(theKrakensTitle))
+            (includeIf.string(.krakenTitle).equals(theKrakensTitle) ||
+             includeIf.string(.krakenTitle).equals(theKrakensTitle) ||
+             includeIf.string(.krakenTitle).equals(theKrakensTitle))
             &&
-            (includeIf.date(.birthdate).equals(rightNow) ||
+            (includeIf.date(.krakenBirthdate).equals(rightNow) ||
              includeIf.bool(.isAwesome).isTrue())
             &&
-            (includeIf.date(.birthdate).equals(rightNow) ||
+            (includeIf.date(.krakenBirthdate).equals(rightNow) ||
              includeIf.bool(.isAwesome).isTrue())
         }
         let expectedPredicate = NSPredicate(format: "(title == %@ || title == %@ || title == %@) && (birthdate == %@ || isAwesome == true) && (birthdate == %@ || isAwesome == true)", theKrakensTitle, theKrakensTitle, theKrakensTitle, rightNow as CVarArg, rightNow as CVarArg)
@@ -303,17 +304,17 @@ class PrediKitTests: XCTestCase {
         
         let predicate = NSPredicate(Kraken.self) { includeIf in
             includeIf.collection(.friends).subquery(Cerberus.self) { includeIf in
-                let isTheKraken = includeIf.string(.title).equals(theKrakensTitle)
-                let isBirthedToday = includeIf.date(.birthdate).equals(rightNow)
+                let isTheKraken = includeIf.string(.krakenTitle).equals(theKrakensTitle)
+                let isBirthedToday = includeIf.date(.krakenBirthdate).equals(rightNow)
                 let isHungry = includeIf.bool(.isHungry).isTrue()
-                let isOlderThan5AndAHalf = includeIf.number(.age).isGreaterThan(age)
+                let isOlderThan5AndAHalf = includeIf.number(.krakenAge).isGreaterThan(age)
                 let hasElfSubordinates = includeIf.collection(.subordinates).subquery(Elf.self) { includeIf in
-                    includeIf.string(.title).equals(theElfTitle)
+                    includeIf.string(.elfTitle).equals(theElfTitle)
                     return .includeIfMatched(.amount(.isGreaterThan(0)))
                 }
                 let hasCerberusSubordinates = includeIf.collection(.subordinates).subquery(Cerberus.self) { includeIf in
-                    let age = includeIf.number(.age).equals(age)
-                    let birthdate = includeIf.date(.birthdate).equals(rightNow)
+                    let age = includeIf.number(.cerberusAge).equals(age)
+                    let birthdate = includeIf.date(.cerberusBirthdate).equals(rightNow)
                     
                     birthdate || age
                     return .includeIfMatched(.amount(.isGreaterThan(0)))
@@ -342,23 +343,23 @@ class PrediKitTests: XCTestCase {
 
 //MARK: Test Classes
 class Kraken: NSObject {
-    var title: String?
-    var age: Int64?
-    var birthdate: Date?
-    var isAwesome: Bool?
-    var bestElfFriend: Elf?
-    var friends: [Cerberus]?
+    @NSManaged var title: String
+    @NSManaged var age: Int64
+    @NSManaged var birthdate: Date
+    @NSManaged var isAwesome: Bool
+    @NSManaged var bestElfFriend: Elf
+    @NSManaged var friends: [Cerberus]
 }
 
 class Cerberus: NSObject {
-    var title: String?
-    var age: Int64?
-    var birthdate: Date?
-    var isHungry: Bool?
-    var subordinates: [Elf]?
+    @NSManaged var title: String
+    @NSManaged var age: Int64
+    @NSManaged var birthdate: Date
+    @NSManaged var isHungry: Bool
+    @NSManaged var subordinates: [Elf]
 }
 
 class Elf: NSObject {
-    var title: String?
-    var enemy: Cerberus?
+    @NSManaged var title: String
+    @NSManaged var enemy: Cerberus
 }
