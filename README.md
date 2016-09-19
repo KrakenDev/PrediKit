@@ -114,6 +114,9 @@ This should open a Finder window with the important files needed for PrediKit lo
 The downside to this is that you can not update PrediKit easily. You would need to repeat these steps each time you wanna grab the latest and greatest! 😱
 
 #Usage
+
+***PSA: IF YOU HATE STRINGLY TYPED APIs LIKE I DO, THEN CHECK OUT THE SECTION ON SWIFT 3's #keyPath() AT THE BOTTOM OF THE README!!!***
+
 PrediKit tries to make `NSPredicate` creation easy. **Heavily** inspired by [SnapKit's](https://github.com/SnapKit/SnapKit) API, the API for PrediKit is extremely similar for people who love it as much as I do. Check it out. This example creates a predicate used to fetch a `ManagedObject` from `CoreData`:
 
 ```swift
@@ -211,32 +214,32 @@ let predicate = NSPredicate(ManagedLegend.self) { includeIf in
 }
 ```
 
-#Selector Extension Pattern
-Personally, I love using a variation of the [Selector Extension Pattern](https://medium.com/swift-programming/swift-selector-syntax-sugar-81c8a8b10df3#.bypt7blba) when using PrediKit. It allows you to avoid misspelling your property names when using the API. It also allows you to rename your selector properties at will. By renaming, every instance of that selector used by PrediKit should give you a compiler error so you don't miss a beat and can feel safe knowing you haven't missed any property names in a name change refactor. By creating a Selector extension like so:
+# #keyPath() + PrediKit = 💖
+PrediKit becomes MUCH more expressive and safer when using Swift 3's #keyPath syntax. I don't know about you but I HATE stringly typed APIs. The best part of #keyPath is that you get autocompletion of your properties and a way to get sub properties without using PrediKit's `.member` functions:
+
+```swift
+let predicate = NSPredicate(ManagedLegend.self) { includeIf in
+    includeIf.string(#keyPath(ManagedLegend.title)).equals("The Almighty Kraken")
+}
+let predicate = NSPredicate(ManagedLegend.self) { includeIf in
+    includeIf.string(#keyPath(ManagedLegend.bestFriend.title)).equals("The Cool Elf")
+}
+```
+
+
+# Selector Extension Pattern Variation
+Personally, I love using a variation of the [Selector Extension Pattern](https://medium.com/swift-programming/swift-selector-syntax-sugar-81c8a8b10df3#.bypt7blba) when using PrediKit. It allows you to avoid misspelling your property names when using the API. It also allows you to rename your keypath properties at will. By renaming, every instance of that keyPath used by PrediKit should give you a compiler error so you don't miss a beat and can feel safe knowing you haven't missed any property names in a name change refactor. By creating a String extension like so:
 
 ```swift
 import Foundation
 
-extension Selector {
-    private enum Names: String {
-        case title
-        case birthdate
-        case age
-        case friends
-        case isAwesome
-        case isHungry
-    }
-
-    private init(_ name: Names) {
-        self.init(name.rawValue)
-    }
-
-    static let title = Selector(.title)
-    static let birthdate = Selector(.birthdate)
-    static let age = Selector(.age)
-    static let friends = Selector(.friends)
-    static let isAwesome = Selector(.isAwesome)
-    static let isHungry = Selector(.isHungry)
+extension String {
+    static let title = #keyPath(Kraken.title)
+    static let birthdate = #keyPath(Kraken.birthdate)
+    static let age = #keyPath(Kraken.age)
+    static let friends = #keyPath(Kraken.friends)
+    static let isAwesome = #keyPath(Kraken.isAwesome)
+    static let isHungry = #keyPath(Kraken.isHungry)
 }
 ```
 
@@ -245,7 +248,7 @@ PrediKit becomes a lot more expressive now:
 ```swift
 //BEFORE
 let predicate = NSPredicate(ManagedLegend.self) { includeIf in
-    includeIf.string("title").equals("The Almighty Kraken")
+    includeIf.string(#keyPath(ManagedLegend.title)).equals("The Almighty Kraken")
 }
 //AFTER
 let predicate = NSPredicate(ManagedLegend.self) { includeIf in
