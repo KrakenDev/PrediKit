@@ -49,7 +49,7 @@ public final class SequenceQuery<T: Reflectable>: NilComparable, Matchable {
      - type: The type of the objects found in the collection property being subqueried.
      - subbuilder: A closure that defines queries that describe each object found in the collection property being subqueried. The closure must return an instance of the `SubqueryMatch` enum.
      */
-    @discardableResult public func subquery<U: NSObject>(_ type: U.Type, subbuilder: (_ includeIf: PredicateSubqueryBuilder<U>) -> MatchType) -> FinalizedIncluder<T> where U: Reflectable {
+    @discardableResult public func subquery<U: NSObject>(_ type: U.Type, subbuilder: (_ includeIf: PredicateSubqueryBuilder<U>) -> MatchType) -> FinalizedIncluder<T> {
         let subBuilder = PredicateSubqueryBuilder(type: type)
         let subqueryMatch = subbuilder(subBuilder)
         
