@@ -38,7 +38,7 @@ extension NSObject: Reflectable {
             let properties = class_copyPropertyList(self, &count)
             var propertyNames: [Selector] = []
             for i in 0..<Int(count) {
-                if let propertyName = String(validatingUTF8: property_getName(properties?[i])) {
+                if let propertyName = String(validatingUTF8: property_getName((properties?[i])!)) {
                     propertyNames.append(Selector(propertyName))
                 }
             }
