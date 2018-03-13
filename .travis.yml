@@ -22,8 +22,9 @@ env:
 
     - DESTINATION="OS=4.2,name=Apple Watch - 42mm" SCHEME="$watchOS_FRAMEWORK_SCHEME" SDK="$watchOS_SDK" RUN_TESTS="NO"  POD_LINT="NO"
 before_install:
+    - 'echo ''gem: --no-ri --no-rdoc'' > ~/.gemrc'
     - gem install xcpretty -N
-    - gem install slather --no-ri --no-rdoc
+    - gem install slather cocoapods
 script:
   - set -o pipefail
   - xcodebuild -version
