@@ -553,18 +553,23 @@
 					};
 					5DAE5DBD1CFC90430029355E = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0920;
 					};
 					5DAE5DCA1CFC909C0029355E = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0920;
 					};
 					5DAE5DD31CFC909D0029355E = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0920;
 					};
 					5DAF1EAA1CFA9619006BAD71 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0920;
 					};
 					5DAF1EB31CFA9619006BAD71 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0920;
 					};
 				};
 			};
@@ -1001,7 +1006,8 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -1024,7 +1030,8 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -1046,7 +1053,8 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1068,7 +1076,8 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1084,7 +1093,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Debug;
@@ -1099,7 +1109,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Release;
@@ -1123,7 +1134,8 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1146,7 +1158,8 @@
 				PRODUCT_NAME = PrediKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1163,7 +1176,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1180,7 +1194,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KrakenDev.PrediKit-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
