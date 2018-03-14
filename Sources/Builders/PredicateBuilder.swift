@@ -140,7 +140,7 @@ open class PredicateBuilder<T: Reflectable> {
      - file: Name of the file the function is being called from. Defaults to `__FILE__`
      - line: Number of the line the function is being called from. Defaults to `__LINE__`
      */
-    open func member<U: Reflectable & AnyObject>(_ property: String, ofType memberType: U.Type, file: String = #file, line: Int = #line) -> MemberQuery<T, U> {
+    open func member<U: Reflectable>(_ property: String, ofType memberType: U.Type, file: String = #file, line: Int = #line) -> MemberQuery<T, U> {
         return MemberQuery(builder: self, property: validatedProperty(property), memberType: memberType)
     }
     

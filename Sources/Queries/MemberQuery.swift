@@ -11,7 +11,7 @@ import Foundation
 /**
  A class that facilitates the creation of subqueries against `T`'s custom member properties. Since the creation of this class is initiated in the `PredicateBuilder<T>` class, and this class inherits from it, then member creation is recursive.
  */
-public final class MemberQuery<T: Reflectable, MemberType: Reflectable & AnyObject>: PredicateBuilder<T>, Matchable, NilComparable {
+public final class MemberQuery<T: Reflectable, MemberType: Reflectable>: PredicateBuilder<T>, Matchable, NilComparable {
     public let builder: PredicateBuilder<T>
     public let property: String
     

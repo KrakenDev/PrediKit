@@ -19,7 +19,7 @@ public extension NSPredicate {
      - type: The `Reflectable` class type that you'll be querying against. The type you supply here is what PrediKit will inspect to ensure the property names you specify in your includers are contained in that class' property list.
      - builder: A closure that you use to generate includers that construct each subpredicate in the created `NSPredicate`
      */
-    convenience init<T: Reflectable>(_ type: T.Type, builder: ((_ includeIf: PredicateBuilder<T>) -> Void)) {
+    convenience init<T>(_ type: T.Type, builder: ((_ includeIf: PredicateBuilder<T>) -> Void)) {
         let predicateBuilder = PredicateBuilder(type: type)
         builder(predicateBuilder)
         
