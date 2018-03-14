@@ -18,7 +18,7 @@ env:
 
     - DESTINATION="arch=x86_64"                    SCHEME="$OSX_FRAMEWORK_SCHEME"     SDK="$OSX_SDK"     RUN_TESTS="YES" POD_LINT="NO"
 
-    - DESTINATION="OS=11.2,name=Apple TV 1080p"    SCHEME="$tvOS_FRAMEWORK_SCHEME"    SDK="$tvOS_SDK"    RUN_TESTS="YES" POD_LINT="NO"
+    - DESTINATION="OS=11.2,name=Apple TV 4K (at 1080p)"    SCHEME="$tvOS_FRAMEWORK_SCHEME"    SDK="$tvOS_SDK"    RUN_TESTS="YES" POD_LINT="NO"
 
     - DESTINATION="OS=4.2,name=Apple Watch - 42mm" SCHEME="$watchOS_FRAMEWORK_SCHEME" SDK="$watchOS_SDK" RUN_TESTS="NO"  POD_LINT="NO"
 before_install:
