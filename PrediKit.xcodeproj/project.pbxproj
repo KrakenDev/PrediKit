@@ -46,12 +46,6 @@
 		5DAE5DB01CFC7E1E0029355E /* SubqueryMatchTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */; };
 		5DAE5DB11CFC7E1E0029355E /* SubqueryMatchTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE5DAD1CFC7E1E0029355E /* SubqueryMatchTypes.swift */; };
 		5DAE5DD51CFC909D0029355E /* PrediKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAE5DCB1CFC909C0029355E /* PrediKit.framework */; };
-		5DAE5DE91CFC91440029355E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE31CFC91440029355E /* Info.plist */; };
-		5DAE5DEA1CFC91440029355E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE31CFC91440029355E /* Info.plist */; };
-		5DAE5DED1CFC91440029355E /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE51CFC91440029355E /* TestsInfo.plist */; };
-		5DAE5DEE1CFC91440029355E /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE51CFC91440029355E /* TestsInfo.plist */; };
-		5DAE5DEF1CFC91440029355E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE71CFC91440029355E /* Info.plist */; };
-		5DAE5DF01CFC91440029355E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAE5DE71CFC91440029355E /* Info.plist */; };
 		5DAE5DF31CFC917D0029355E /* PrediKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DAE5DE81CFC91440029355E /* PrediKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DAE5DF41CFC918C0029355E /* PrediKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DAE5DE41CFC91440029355E /* PrediKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DAE5DF51CFC91D50029355E /* PrediKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* PrediKitTests.swift */; };
@@ -415,7 +409,6 @@
 				28F828781C494B2C00330CF4 /* Sources */,
 				28F828791C494B2C00330CF4 /* Frameworks */,
 				28F8287A1C494B2C00330CF4 /* Headers */,
-				28F8287B1C494B2C00330CF4 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -505,7 +498,6 @@
 				5DAF1EA61CFA9619006BAD71 /* Sources */,
 				5DAF1EA71CFA9619006BAD71 /* Frameworks */,
 				5DAF1EA81CFA9619006BAD71 /* Headers */,
-				5DAF1EA91CFA9619006BAD71 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -597,16 +589,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		28F8287B1C494B2C00330CF4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5DAE5DED1CFC91440029355E /* TestsInfo.plist in Resources */,
-				5DAE5DE91CFC91440029355E /* Info.plist in Resources */,
-				5DAE5DEF1CFC91440029355E /* Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		28F828851C494B2C00330CF4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -632,16 +614,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5DAF1EA91CFA9619006BAD71 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5DAE5DEE1CFC91440029355E /* TestsInfo.plist in Resources */,
-				5DAE5DEA1CFC91440029355E /* Info.plist in Resources */,
-				5DAE5DF01CFC91440029355E /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
