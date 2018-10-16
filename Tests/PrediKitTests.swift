@@ -228,7 +228,7 @@ class PrediKitTests: XCTestCase {
             includeIf.bool(.isAwesome).isTrue() &&
             includeIf.number(.krakenAge).equals(age)
         }
-        let expectedPredicate = NSPredicate(format: "title == %@ && birthdate < %@ && isAwesome == %@ && age == \(age)", theKrakensTitle, rightNow as CVarArg, isAwesome as CVarArg)
+        let expectedPredicate = NSPredicate(format: "title == %@ && birthdate < %@ && isAwesome == %@ && age == \(age)", theKrakensTitle, rightNow as CVarArg, NSNumber(value: isAwesome))
         XCTAssertEqual(predicate.predicateFormat, expectedPredicate.predicateFormat)
     }
     
@@ -256,7 +256,7 @@ class PrediKitTests: XCTestCase {
             includeIf.bool(.isAwesome).isTrue() ||
             includeIf.number(.krakenAge).equals(age)
         }
-        let expectedPredicate = NSPredicate(format: "title == %@ || birthdate < %@ || isAwesome == %@ || age == \(age)", theKrakensTitle, rightNow as CVarArg, isAwesome as CVarArg)
+        let expectedPredicate = NSPredicate(format: "title == %@ || birthdate < %@ || isAwesome == %@ || age == \(age)", theKrakensTitle, rightNow as CVarArg, NSNumber(value: isAwesome))
         XCTAssertEqual(predicate.predicateFormat, expectedPredicate.predicateFormat)
     }
     
