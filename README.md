@@ -48,7 +48,7 @@ To integrate PrediKit through CocoaPods, make sure the `use_frameworks!` line is
 
 ```ruby
 use_frameworks!
-#for the latest version that is compatible with Swift 3.0 use:
+#for the latest version that is compatible with Swift 4.2 use:
 pod 'PrediKit'
 #for the latest version that is compatible with legacy Swift 2.3 use this instead:
 pod 'PrediKit', :git => 'https://github.com/KrakenDev/PrediKit.git', :branch => 'swift2.3'
@@ -169,7 +169,7 @@ let predicate = NSPredicate(ManagedLegend.self) { includeIf in
     //Include any ManagedLegend instance if the property named "string" is NOT nil and does NOT equal "The Almighty Kraken"
     !includeIf.string("title").equalsNil() &&
     !includeIf.string("title").equals("The Almighty Kraken") &&
-    
+
     //Also include any ManagedLegend instance if the date property named "birthdate" is in the past or if the bool property "isAwesome" is true.
     includeIf.date("birthdate").isEarlierThan(NSDate()) ||
     includeIf.bool("isAwesome").isTrue()
@@ -183,7 +183,7 @@ let predicate = NSPredicate(ManagedLegend.self) { includeIf in
     let isKrakenQuery = includeIf.string("title").equals("The Almighty Kraken")
     let birthdateQuery = includeIf.date("birthdate").isEarlierThan(NSDate())
     let isAwesomeQuery = includeIf.bool("isAwesome").isTrue
-    
+
     if shouldCheckBirthdate {
         (isKrakenQuery && birthdateQuery) || isAwesomeQuery
     } else {
@@ -205,7 +205,7 @@ PrediKit also has built-in support for subquery predicates:
 ```swift
 let predicate = NSPredicate(ManagedLegend.self) { includeIf in
     includeIf.string("title").equals("The Almighty Kraken") &&
-    
+
     //Only include Krakens that have more than three hungry cerberus friends
     includeIf.collection("cerberusFriends").subquery(ManagedCerberus.self) {
         $0.bool("isHungry").isTrue()

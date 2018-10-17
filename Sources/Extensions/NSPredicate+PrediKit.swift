@@ -26,7 +26,7 @@ public extension NSPredicate {
         if predicateBuilder.predicateString.isEmpty {
             self.init(value: false)
         } else {
-            self.init(format: predicateBuilder.predicateString, argumentArray: predicateBuilder.arguments.flatMap({$0}))
+            self.init(format: predicateBuilder.predicateString, argumentArray: predicateBuilder.arguments.compactMap({$0}))
         }
     }
 }
