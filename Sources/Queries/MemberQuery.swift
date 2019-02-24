@@ -45,7 +45,7 @@ public final class MemberQuery<T: Reflectable, MemberType: Reflectable>: Predica
     override func validatedProperty(_ property: String, file: String = #file, line: Int = #line) -> String {
         if !memberType.properties().contains(Selector(property)) && self.memberType != NSObject.self {
             #if DEBUG
-                print("\(String(type)) does not seem to contain property \"\(property)\". This could be due to the optionality of a value type. Possible property key values:\n\(type.properties()).\nWarning in file:\(file) at line \(line)")
+                print("\(String(describing: type)) does not seem to contain property \"\(property)\". This could be due to the optionality of a value type. Possible property key values:\n\(type.properties()).\nWarning in file:\(file) at line \(line)")
             #endif
         }
         
