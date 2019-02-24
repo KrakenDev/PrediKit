@@ -147,7 +147,7 @@ open class PredicateBuilder<T: Reflectable> {
     internal func validatedProperty(_ property: String, file: String = #file, line: Int = #line) -> String {
         if !type.properties().contains(Selector(property)) && self.type != NSObject.self {
             #if DEBUG
-                print("\(String(type)) does not seem to contain property \"\(property)\". This could be due to the optionality of a value type. Possible property key values:\n\(type.properties()).\nWarning in file:\(file) at line \(line)")
+                print("\(String(describing: type)) does not seem to contain property \"\(property)\". This could be due to the optionality of a value type. Possible property key values:\n\(type.properties()).\nWarning in file:\(file) at line \(line)")
             #endif
         }
         
