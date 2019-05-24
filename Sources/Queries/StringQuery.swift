@@ -125,11 +125,11 @@ public final class StringQuery<T: Reflectable>: NilComparable, Matchable {
      - file: Name of the file the function is being called from. Defaults to `#file`
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
-    @discardableResult public func equals(_ string: String) -> FinalizedIncluder<T> {
-        builder.predicateString = "\(property) == \"\(string)\""
+    @discardableResult public func equals(_ string: String, options: PredicateOptions = .None) -> FinalizedIncluder<T> {
+        builder.predicateString = "\(property) ==\(optionsString(options)) \"\(string)\""
         return FinalizedIncluder(builder: builder)
     }
-    
+
     fileprivate func optionsString(_ options: PredicateOptions) -> String {
         if !options.isEmpty && !options.contains(.None) {
             var string = "["
