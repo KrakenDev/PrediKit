@@ -72,6 +72,8 @@ class PrediKitTests: XCTestCase {
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title CONTAINS[c] %@", theKrakensTitle).predicateFormat)
             includeIf.string(.krakenTitle).matches(theKrakensTitle, options: .CaseInsensitive)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title MATCHES[c] %@", theKrakensTitle).predicateFormat)
+            includeIf.string(.krakenTitle).equals(theKrakensTitle, options: .CaseInsensitive)
+            XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title ==[c] %@", theKrakensTitle).predicateFormat)
 
             includeIf.string(.krakenTitle).beginsWith(theKrakensTitle, options: .DiacriticInsensitive)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title BEGINSWITH[d] %@", theKrakensTitle).predicateFormat)
@@ -81,6 +83,8 @@ class PrediKitTests: XCTestCase {
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title CONTAINS[d] %@", theKrakensTitle).predicateFormat)
             includeIf.string(.krakenTitle).matches(theKrakensTitle, options: .DiacriticInsensitive)
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title MATCHES[d] %@", theKrakensTitle).predicateFormat)
+            includeIf.string(.krakenTitle).equals(theKrakensTitle, options: .DiacriticInsensitive)
+            XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title ==[d] %@", theKrakensTitle).predicateFormat)
 
             includeIf.string(.krakenTitle).beginsWith(theKrakensTitle, options: [.CaseInsensitive, .DiacriticInsensitive])
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title BEGINSWITH[cd] %@", theKrakensTitle).predicateFormat)
@@ -90,6 +94,8 @@ class PrediKitTests: XCTestCase {
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title CONTAINS[cd] %@", theKrakensTitle).predicateFormat)
             includeIf.string(.krakenTitle).matches(theKrakensTitle, options: [.CaseInsensitive, .DiacriticInsensitive])
             XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title MATCHES[cd] %@", theKrakensTitle).predicateFormat)
+            includeIf.string(.krakenTitle).equals(theKrakensTitle, options: [.CaseInsensitive, .DiacriticInsensitive])
+            XCTAssertEqual(includeIf.predicateString, NSPredicate(format: "title ==[cd] %@", theKrakensTitle).predicateFormat)
         }
     }
     
