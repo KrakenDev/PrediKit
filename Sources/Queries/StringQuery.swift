@@ -126,7 +126,7 @@ public final class StringQuery<T: Reflectable>: NilComparable, Matchable {
      - line: Number of the line the function is being called from. Defaults to `#line`
      */
     @discardableResult public func equals(_ string: String, options: PredicateOptions = .None) -> FinalizedIncluder<T> {
-        builder.predicateString = "\(property) == \(optionsString(options)) \"\(string)\""
+        builder.predicateString = "\(property) ==\(optionsString(options)) \"\(string)\""
         return FinalizedIncluder(builder: builder)
     }
 
