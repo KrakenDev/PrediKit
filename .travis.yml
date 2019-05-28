@@ -13,14 +13,6 @@ env:
   - OSX_SDK=macosx10.13
   - tvOS_SDK=appletvsimulator11.2
   - watchOS_SDK=watchsimulator4.2
-  matrix:
-    - DESTINATION="OS=11.2,name=iPhone 7 Plus"     SCHEME="$iOS_FRAMEWORK_SCHEME"     SDK="$iOS_SDK"     RUN_TESTS="YES" POD_LINT="YES"
-
-    - DESTINATION="arch=x86_64"                    SCHEME="$OSX_FRAMEWORK_SCHEME"     SDK="$OSX_SDK"     RUN_TESTS="YES" POD_LINT="NO"
-
-    - DESTINATION="OS=11.2,name=Apple TV 4K (at 1080p)"    SCHEME="$tvOS_FRAMEWORK_SCHEME"    SDK="$tvOS_SDK"    RUN_TESTS="YES" POD_LINT="NO"
-
-    - DESTINATION="OS=4.2,name=Apple Watch - 42mm" SCHEME="$watchOS_FRAMEWORK_SCHEME" SDK="$watchOS_SDK" RUN_TESTS="NO"  POD_LINT="NO"
 before_install:
     - 'echo ''gem: --no-ri --no-rdoc'' > ~/.gemrc'
     - gem install xcpretty -N
