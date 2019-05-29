@@ -15,11 +15,7 @@ script:
   - xcodebuild -showsdks
 
   # Build Framework in Debug and Run Tests if specified
-  - if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -project "$PROJECT" -alltargets -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty -c;
-    else
-      xcodebuild -project "$PROJECT" -alltargets -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
-    fi
+  xcodebuild -project "$PROJECT" -alltargets -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty -c;
 
   # Run `pod lib lint` if specified
   - if [ $POD_LINT == "YES" ]; then
