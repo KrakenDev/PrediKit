@@ -6,9 +6,9 @@ env:
   - LANG=en_US.UTF-8
   - PROJECT=PrediKit.xcodeproj
 before_install:
-    - 'echo ''gem: --no-ri --no-rdoc'' > ~/.gemrc'
-    - gem install xcpretty -N
-    - gem install slather cocoapods
+  - 'echo ''gem: --no-ri --no-rdoc'' > ~/.gemrc'
+  - gem install xcpretty -N
+  - gem install slather cocoapods
 script:
   - set -o pipefail
   - xcodebuild -version
@@ -18,8 +18,6 @@ script:
   xcodebuild -project "$PROJECT" -alltargets -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty -c;
 
   # Run `pod lib lint` if specified
-  - if [ $POD_LINT == "YES" ]; then
-      pod lib lint --quick;
-    fi
+  pod lib lint --quick;
 after_success:
     - slather
